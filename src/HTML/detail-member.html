@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>AdminLTE 2 | User Profile</title>
+		<!-- Tell the browser to be responsive to screen width -->
+		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+		<!-- Bootstrap 3.3.6 -->
+		<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+		<!-- Ionicons -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+		<!-- Theme style -->
+		<link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
+		<!-- AdminLTE Skins. Choose a skin from the css/skins
+		folder instead of downloading all of them to reduce the load. -->
+		<link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body class="hold-transition skin-blue sidebar-mini">
+		<div class="wrapper">
+
+			<header class="main-header">
+				<!-- Logo -->
+				<a href="../" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels --> <span class="logo-mini"><b>A</b>LT</span> <!-- logo for regular state and mobile devices --> <span class="logo-lg"><b>Admin</b>LTE</span> </a>
+				<!-- Header Navbar: style can be found in header.less -->
+				<nav class="navbar navbar-static-top">
+					<!-- Sidebar toggle button-->
+					<a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
+
+					<div class="navbar-custom-menu">
+						<ul class="nav navbar-nav">
+							<!-- Messages: style can be found in dropdown.less-->
+							<!-- Notifications: style can be found in dropdown.less -->
+							<!-- Tasks: style can be found in dropdown.less -->
+
+							<!-- User Account: style can be found in dropdown.less -->
+							<li class="dropdown user user-menu">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="dist/img/avatar.png" class="user-image" alt="User Image"> <span class="hidden-xs" id="username_navbar"></span> </a>
+								<ul class="dropdown-menu">
+									<!-- User image -->
+									<li class="user-header">
+										<img id="user-avatar" src="dist/img/avatar.png" class="img-circle" alt="User Image">
+										<p id="username_profile">
+											<small>ProNhaDat Admin</small>
+										</p>
+									</li>
+									<!-- Menu Body -->
+									<!-- Menu Footer-->
+									<li class="user-footer">
+										<div class="pull-right" onclick="logout()">
+											<a href="#" class="btn btn-default btn-flat">Sign out</a>
+										</div>
+									</li>
+								</ul>
+							</li>
+							<!-- Control Sidebar Toggle Button -->
+							<li>
+								<a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</header>
+			<!-- Left side column. contains the logo and sidebar -->
+			<aside class="main-sidebar"></aside>
+			<!-- Content Wrapper. Contains page content -->
+			<div class="content-wrapper">
+				<!-- Content Header (Page header) -->
+				<section class="content-header">
+					<h1>Member profile</h1>
+					<ol class="breadcrumb">
+						<li>
+							<a href="../"><i class="fa fa-dashboard"></i> Home</a>
+						</li>
+						<li class="active">
+							Member profile
+						</li>
+					</ol>
+				</section>
+
+				<!-- Main content -->
+				<section class="content">
+
+					<div class="row">
+						<div class="col-md-3">
+
+							<!-- Profile Image -->
+							<div class="box box-primary">
+								<div class="box-body box-profile">
+									<img class="profile-user-img img-responsive img-circle" src="../dist/img/user4-128x128.jpg" alt="User profile picture">
+
+									<h3 class="profile-username text-center">Nina Mcintire</h3>
+
+									<p class="text-muted text-center">
+										Software Engineer
+									</p>
+
+									<ul class="list-group list-group-unbordered">
+										<li class="list-group-item">
+											<b>Tin đăng</b><a class="pull-right" id="number-listing">0</a>
+										</li>
+										<li class="list-group-item">
+											<b>Yêu cầu</b><a class="pull-right" id="number-request">0</a>
+										</li>
+										<li class="list-group-item">
+											<b>Bạn bè</b><a class="pull-right" id="number-contact">0</a>
+										</li>
+									</ul>
+								</div>
+								<!-- /.box-body -->
+							</div>
+							<!-- /.box -->
+						</div>
+						<!-- /.col -->
+						<div class="col-md-9">
+							<div class="nav-tabs-custom">
+								<ul class="nav nav-tabs">
+									<li class="active">
+										<a href="#listing-tab" data-toggle="tab">Tin đăng</a>
+									</li>
+									<li>
+										<a href="#request-tab" data-toggle="tab">Yêu cầu</a>
+									</li>
+									<li>
+										<a href="#friend-tab" data-toggle="tab">Bạn bè</a>
+									</li>
+									<li>
+										<a href="#map-tab" data-toggle="tab" onclick="setTimeout(function() {resize()}, 100);">Bản đồ</a>
+									</li>
+								</ul>
+								<div class="tab-content">
+									<div class="active tab-pane" id="listing-tab">
+										<!-- Post -->
+										<!-- TABLE: LATEST LISTING -->
+										<div class="box box-info" id="box-info-request">
+											<div class="box-header with-border">
+												<h3 class="box-title">Tin đăng</h3>
+												<div class="box-tools pull-right">
+													<button type="button" class="btn btn-box-tool" data-widget="collapse">
+														<i class="fa fa-minus"></i>
+													</button>
+													<button type="button" class="btn btn-box-tool" data-widget="remove">
+														<i class="fa fa-times"></i>
+													</button>
+												</div>
+											</div>
+											<!-- /.box-header -->
+											<div class="box-body">
+												<div class="table-responsive">
+													<table class="table no-margin">
+														<thead>
+															<tr>
+																<th>Tựa đề</th>
+																<th>Giá</th>
+																<th>Diện tích(m<sup>2</sup>)</th>
+																<th>Phòng tắm</th>
+																<th>Phòng ngủ</th>
+																<th>Địa chỉ</th>
+															</tr>
+														</thead>
+														<tbody id="table-listing"></tbody>
+													</table>
+												</div>
+												<!-- /.table-responsive -->
+												<ul class="pagination pagination-sm no-margin pull-right" id="pagination-listing"></ul>
+											</div>
+											<!-- /.box-body -->
+										</div>
+										<!-- /.post -->
+									</div>
+									<!-- /.tab-pane -->
+									<div class="tab-pane" id="request-tab">
+										<!-- Post -->
+										<!-- TABLE: LATEST REQUEST -->
+										<div class="box box-info" id="box-info-request">
+											<div class="box-header with-border">
+												<h3 class="box-title">Yêu cầu</h3>
+												<div class="box-tools pull-right">
+													<button type="button" class="btn btn-box-tool" data-widget="collapse">
+														<i class="fa fa-minus"></i>
+													</button>
+													<button type="button" class="btn btn-box-tool" data-widget="remove">
+														<i class="fa fa-times"></i>
+													</button>
+												</div>
+											</div>
+											<!-- /.box-header -->
+											<div class="box-body">
+												<div class="table-responsive">
+													<table class="table no-margin">
+														<thead>
+															<tr>
+																<th>Tựa đề</th>
+																<th>Giá</th>
+																<th>Diện tích(m<sup>2</sup>)</th>
+																<th>Phòng tắm</th>
+																<th>Phòng ngủ</th>
+																<th>Địa chỉ</th>
+															</tr>
+														</thead>
+														<tbody id="table-request"></tbody>
+													</table>
+												</div>
+												<!-- /.table-responsive -->
+												<ul class="pagination pagination-sm no-margin pull-right" id="pagination-request"></ul>
+
+											</div>
+											<!-- /.box-body -->
+										</div>
+									</div>
+									<!-- /.tab-pane -->
+									<div class="tab-pane" id="friend-tab">
+										<!-- Post -->
+										<!-- TABLE: LATEST REQUEST -->
+										<div class="box box-info" id="box-info-request">
+											<div class="box-header with-border">
+												<h3 class="box-title">Bạn bè</h3>
+												<div class="box-tools pull-right">
+													<button type="button" class="btn btn-box-tool" data-widget="collapse">
+														<i class="fa fa-minus"></i>
+													</button>
+													<button type="button" class="btn btn-box-tool" data-widget="remove">
+														<i class="fa fa-times"></i>
+													</button>
+												</div>
+											</div>
+											<!-- /.box-header -->
+											<div class="box-body">
+												<!-- /.users-list -->
+												<ul class="users-list clearfix" id="table-member"></ul>
+												<ul class="pagination pagination-sm no-margin pull-right" id="pagination-friend"></ul>
+											</div>
+											<!-- /.box-body -->
+										</div>
+									</div>
+									<!-- /.tab-pane -->
+									<div class="tab-pane" id="map-tab">
+										<!-- Post -->
+										<!-- Map -->
+										<div class="box box-info" id="box-info-request">
+											<div class="box-header with-border">
+												<h3 class="box-title">Bản đồ</h3>
+												<div class="box-tools pull-right">
+													<button type="button" class="btn btn-box-tool" data-widget="collapse">
+														<i class="fa fa-minus"></i>
+													</button>
+													<button type="button" class="btn btn-box-tool" data-widget="remove">
+														<i class="fa fa-times"></i>
+													</button>
+												</div>
+											</div>
+											<!-- /.box-header -->
+											<div class="box-body">
+												<div class="row">
+													<!--<div class="col-md-12 col-sm-8"> -->
+													<div class="pad">
+														<!-- Map will be created here -->
+														<div id="world-map-markers" style="height: 350px;"></div>
+													</div>
+													<!--</div> -->
+													<!-- /.col -->
+
+													<!-- /.col -->
+												</div>
+												<!-- /.row -->
+											</div>
+											<!-- /.box-body -->
+										</div>
+									</div>
+
+									<div class="tab-pane" id="settings">
+										<form class="form-horizontal">
+											<div class="form-group">
+												<label for="inputName" class="col-sm-2 control-label">Name</label>
+
+												<div class="col-sm-10">
+													<input type="email" class="form-control" id="inputName" placeholder="Name">
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="inputEmail" class="col-sm-2 control-label">Email</label>
+
+												<div class="col-sm-10">
+													<input type="email" class="form-control" id="inputEmail" placeholder="Email">
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="inputName" class="col-sm-2 control-label">Name</label>
+
+												<div class="col-sm-10">
+													<input type="text" class="form-control" id="inputName" placeholder="Name">
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="inputExperience" class="col-sm-2 control-label">Experience</label>
+
+												<div class="col-sm-10">
+													<textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="inputSkills" class="col-sm-2 control-label">Skills</label>
+
+												<div class="col-sm-10">
+													<input type="text" class="form-control" id="inputSkills" placeholder="Skills">
+												</div>
+											</div>
+											<div class="form-group">
+												<div class="col-sm-offset-2 col-sm-10">
+													<div class="checkbox">
+														<label>
+															<input type="checkbox">
+															I agree to the <a href="#">terms and conditions</a> </label>
+													</div>
+												</div>
+											</div>
+											<div class="form-group">
+												<div class="col-sm-offset-2 col-sm-10">
+													<button type="submit" class="btn btn-danger">
+														Submit
+													</button>
+												</div>
+											</div>
+										</form>
+									</div>
+									<!-- /.tab-pane -->
+								</div>
+								<!-- /.tab-content -->
+							</div>
+							<!-- /.nav-tabs-custom -->
+						</div>
+						<!-- /.col -->
+					</div>
+					<!-- /.row -->
+
+				</section>
+				<!-- /.content -->
+			</div>
+			<!-- Control Sidebar -->
+			<aside class="control-sidebar control-sidebar-dark">
+				<!-- Create the tabs -->
+				<ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+					<li>
+						<a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a>
+					</li>
+					<li>
+						<a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a>
+					</li>
+				</ul>
+				<!-- Tab panes -->
+				<div class="tab-content">
+					<!-- Home tab content -->
+					<div class="tab-pane" id="control-sidebar-home-tab">
+						<h3 class="control-sidebar-heading">Recent Activity</h3>
+						<ul class="control-sidebar-menu">
+							<li>
+								<a href="javascript:void(0)"> <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+								<div class="menu-info">
+									<h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+
+									<p>
+										Will be 23 on April 24th
+									</p>
+								</div> </a>
+							</li>
+							<li>
+								<a href="javascript:void(0)"> <i class="menu-icon fa fa-user bg-yellow"></i>
+								<div class="menu-info">
+									<h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
+
+									<p>
+										New phone +1(800)555-1234
+									</p>
+								</div> </a>
+							</li>
+							<li>
+								<a href="javascript:void(0)"> <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
+								<div class="menu-info">
+									<h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
+
+									<p>
+										nora@example.com
+									</p>
+								</div> </a>
+							</li>
+							<li>
+								<a href="javascript:void(0)"> <i class="menu-icon fa fa-file-code-o bg-green"></i>
+								<div class="menu-info">
+									<h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
+
+									<p>
+										Execution time 5 seconds
+									</p>
+								</div> </a>
+							</li>
+						</ul>
+						<!-- /.control-sidebar-menu -->
+
+						<h3 class="control-sidebar-heading">Tasks Progress</h3>
+						<ul class="control-sidebar-menu">
+							<li>
+								<a href="javascript:void(0)"> <h4 class="control-sidebar-subheading"> Custom Template Design <span class="label label-danger pull-right">70%</span></h4>
+								<div class="progress progress-xxs">
+									<div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+								</div> </a>
+							</li>
+							<li>
+								<a href="javascript:void(0)"> <h4 class="control-sidebar-subheading"> Update Resume <span class="label label-success pull-right">95%</span></h4>
+								<div class="progress progress-xxs">
+									<div class="progress-bar progress-bar-success" style="width: 95%"></div>
+								</div> </a>
+							</li>
+							<li>
+								<a href="javascript:void(0)"> <h4 class="control-sidebar-subheading"> Laravel Integration <span class="label label-warning pull-right">50%</span></h4>
+								<div class="progress progress-xxs">
+									<div class="progress-bar progress-bar-warning" style="width: 50%"></div>
+								</div> </a>
+							</li>
+							<li>
+								<a href="javascript:void(0)"> <h4 class="control-sidebar-subheading"> Back End Framework <span class="label label-primary pull-right">68%</span></h4>
+								<div class="progress progress-xxs">
+									<div class="progress-bar progress-bar-primary" style="width: 68%"></div>
+								</div> </a>
+							</li>
+						</ul>
+						<!-- /.control-sidebar-menu -->
+
+					</div>
+					<!-- /.tab-pane -->
+					<!-- Stats tab content -->
+					<div class="tab-pane" id="control-sidebar-stats-tab">
+						Stats Tab Content
+					</div>
+					<!-- /.tab-pane -->
+					<!-- Settings tab content -->
+					<div class="tab-pane" id="control-sidebar-settings-tab">
+						<form method="post">
+							<h3 class="control-sidebar-heading">General Settings</h3>
+
+							<div class="form-group">
+								<label class="control-sidebar-subheading"> Report panel usage
+									<input type="checkbox" class="pull-right" checked>
+								</label>
+
+								<p>
+									Some information about this general settings option
+								</p>
+							</div>
+							<!-- /.form-group -->
+
+							<div class="form-group">
+								<label class="control-sidebar-subheading"> Allow mail redirect
+									<input type="checkbox" class="pull-right" checked>
+								</label>
+
+								<p>
+									Other sets of options are available
+								</p>
+							</div>
+							<!-- /.form-group -->
+
+							<div class="form-group">
+								<label class="control-sidebar-subheading"> Expose author name in posts
+									<input type="checkbox" class="pull-right" checked>
+								</label>
+
+								<p>
+									Allow the user to show his name in blog posts
+								</p>
+							</div>
+							<!-- /.form-group -->
+
+							<h3 class="control-sidebar-heading">Chat Settings</h3>
+
+							<div class="form-group">
+								<label class="control-sidebar-subheading"> Show me as online
+									<input type="checkbox" class="pull-right" checked>
+								</label>
+							</div>
+							<!-- /.form-group -->
+
+							<div class="form-group">
+								<label class="control-sidebar-subheading"> Turn off notifications
+									<input type="checkbox" class="pull-right">
+								</label>
+							</div>
+							<!-- /.form-group -->
+
+							<div class="form-group">
+								<label class="control-sidebar-subheading"> Delete chat history <a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a> </label>
+							</div>
+							<!-- /.form-group -->
+						</form>
+					</div>
+					<!-- /.tab-pane -->
+				</div>
+			</aside>
+			<!-- /.control-sidebar -->
+			<!-- Add the sidebar's background. This div must be placed
+			immediately after the control sidebar -->
+			<div class="control-sidebar-bg"></div>
+		</div>
+		<!-- ./wrapper -->
+
+		<!-- jQuery 2.2.3 -->
+		<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+		<!-- Bootstrap 3.3.6 -->
+		<script src="../bootstrap/js/bootstrap.min.js"></script>
+		<!-- FastClick -->
+		<script src="../plugins/fastclick/fastclick.js"></script>
+		<!-- AdminLTE App -->
+		<script src="../dist/js/app.min.js"></script>
+		<!-- moment.js -->
+		<script src="../library/moment.js"></script>
+		<!-- common.js -->
+		<script src="../common/common.js"></script>
+		<!-- sha256 -->
+		<script src="../library/sha256.js"></script>
+		<!-- Utils.js -->
+		<script src="../library/Utils.js"></script>
+
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7YWs1TvfsYc-HdtNSD3OkCeunJ_ONbgs"></script>
+
+		<script>
+			var access_token;
+			var expires_in;
+			var first_name;
+			var user_id;
+			var current_user_id;
+			var avatar;
+			var PAGE_SIZE_LISTING = 20;
+			var PAGE_SIZE_REQUEST = 20;
+			var pageListing = 1;
+			var pageRequest = 1;
+			var pageFriend = 1;
+			var jsonMember;
+			var jsonListing;
+			var jsonRequest;
+			var mapCenter = new google.maps.LatLng(10.7730152, 106.6979573);
+			var hasPosition = false;
+			var map;
+			var objListingMap = new Object();
+			var objRequestMap = new Object();
+			var objMemberMap = new Object();
+			$(document).ready(function() {
+				$(".main-sidebar").load("content/main-sidebar.html", function() {
+					if ( typeof (Storage) !== undefined) {
+						access_token = localStorage.getItem("access_token");
+						expires_in = localStorage.getItem("expires_in");
+						first_name = localStorage.getItem("first_name");
+						user_id = localStorage.getItem("user_id");
+						avatar = localStorage.getItem("avatar");
+
+						if (access_token === null || access_token === "" || expires_in === null || expires_in === "" || user_id === null || user_id === "") {
+							window.location.href = "login.html";
+						} else {
+
+							$('#username_navbar').html(first_name);
+							$('#username_slidebar').html(first_name);
+							if (avatar != null && avatar != "") {
+								$('.user-image').attr('src', avatar);
+								$('#user-avatar').attr('src', avatar);
+								$('.img-circle').attr('src', avatar);
+							}
+
+							var localObj = JSON.parse(localStorage.getItem("objMember"));
+							if (localObj != undefined) {
+								$(".profile-user-img.img-responsive.img-circle").attr("src", localObj.avatar);
+								$(".profile-username.text-center").html(localObj.name + " - " + localObj.mobile);
+								$(".text-muted.text-center").html(moment(localObj.timestamp).format("HH:mm:ss"));
+								current_user_id = localObj.userId;
+								if (localObj.lat > 0 || localObj.lon > 0) {
+									mapCenter = new google.maps.LatLng(localObj.lat, localObj.lon);
+									hasPosition = true;
+								}
+								initMap();
+								ajaxGetUserRequest(1);
+								ajaxGetUserListing(1);
+								ajaxGetUserFriend(1);
+							} else {
+								window.location.href = "login.html";
+							}
+						}
+
+					}
+				});
+			});
+
+			function resize() {
+				google.maps.event.trigger(map, 'resize');
+				map.setCenter(mapCenter);
+			}
+
+			function initMap() {
+				map = new google.maps.Map(document.getElementById('world-map-markers'), {
+					zoom : 12,
+					center : mapCenter
+				});
+				if ((mapCenter.lat() > 0 || mapCenter.lng() > 0) && hasPosition) {
+					var marker = new google.maps.Marker({
+						position : mapCenter,
+						map : map
+					});
+				}
+			}
+
+			function ajaxGetUserListing(page) {
+				pageListing = page;
+				var timestamp = new Date().getTime();
+
+				var signature = sha256(access_token + "|" + current_user_id + "|" + page + "|" + PAGE_SIZE_LISTING + "|" + timestamp + "|" + SECRET_KEY);
+
+				var requestURL = getApiURL + postUserListing;
+
+				userListingDTO = {
+					tok : access_token,
+					userId : current_user_id,
+					pag : page,
+					psi : PAGE_SIZE_LISTING,
+					tmp : timestamp,
+					sig : signature
+				};
+
+				$.ajax({
+					url : requestURL,
+					async : false,
+					method : "POST",
+					data : JSON.stringify(userListingDTO),
+					crossDomain : true,
+					beforeSend : function(request) {
+						request.setRequestHeader("Authentication", access_token);
+					},
+					success : function(response) {
+						userListingOutDTO = response;
+					},
+					error : function(error) {
+						userListingOutDTO = error;
+					},
+					complete : function() {
+						ajaxUserListingComplete(userListingOutDTO);
+					}
+				});
+
+			}
+
+			function ajaxUserListingComplete(userListingOutDTO) {
+				if (userListingOutDTO.code == 0) {
+					$('#table-listing').empty();
+					$("#pagination-listing").empty();
+					$('#number-listing').html(userListingOutDTO.data.tot);
+					jsonListing = userListingOutDTO;
+
+					$.each(jsonListing.data.lst, function(idx, listing) {
+						objListingMap[listing.lid] = listing;
+
+						var price;
+						if (listing.pri > 0) {
+							if (listing.mode == TYPE_SELL) {
+								price = listing.pri + " " + priceUnitMap[listing.unit];
+							} else {
+								price = listing.pri + " " + priceUnitMap[listing.unit] + "/tháng";
+							}
+						} else {
+							price = "thỏa thuận";
+						}
+
+						$('#table-listing').append("<tr>" + "<td><a id ='" + listing.lid + "' onclick='onClickDetail(1,this.id)'>" + listing.tit + "</td>" + "<td><span>" + price + "</span></td>" + "<td><span>" + listing.are + "</span></td>" + "<td><span>" + listing.now + "</span></td>" + "<td><span>" + listing.nob + "</span></td>" + "<td><span>" + listing.add + "</span></td>" + "</tr>");
+
+					});
+
+					var numPage;
+					if (jsonListing.data.tot % PAGE_SIZE_LISTING == 0) {
+						numPage = parseInt(jsonListing.data.tot / PAGE_SIZE_LISTING);
+					} else {
+						numPage = parseInt(jsonListing.data.tot / PAGE_SIZE_LISTING) + 1;
+					}
+
+					if (numPage < 2) {
+						$("#pagination-listing").hide();
+					} else {
+						$("#pagination-listing").show();
+						$('#pagination-listing').append("<li id='left-pagination-listing'> <a onclick='prePageListing()'>&laquo;</a></li>");
+						for ( i = 1; i <= numPage; i++) {
+							if (i == pageListing) {
+								$('#pagination-listing').append("<li><a onclick='ajaxGetUserListing(" + i + ")' style='background: #9499a0'>" + i + "</a>");
+							} else {
+								$('#pagination-listing').append("<li><a onclick='ajaxGetUserListing(" + i + ")'>" + i + "</a>");
+							}
+						}
+
+						$('#pagination-listing').append("<li id='right-pagination-listing'> <a onclick='nextPageListing()'>&raquo;</a></li>");
+
+						if (pageListing == 1) {
+							$("#left-pagination-listing").hide();
+						} else if (pageListing == numPage) {
+							$("#right-pagination-listing").hide();
+						}
+					}
+				} else if (userListingOutDTO.code == 408) {
+					logout();
+				}
+			}
+
+			function ajaxGetUserRequest(page) {
+				pageRequest = page;
+				var timestamp = new Date().getTime();
+
+				var signature = sha256(access_token + "|" + current_user_id + "|" + page + "|" + PAGE_SIZE_REQUEST + "|" + timestamp + "|" + SECRET_KEY);
+
+				var requestURL = getApiURL + postUserRequest;
+
+				userRequestDTO = {
+					tok : access_token,
+					userId : current_user_id,
+					pag : page,
+					psi : PAGE_SIZE_REQUEST,
+					tmp : timestamp,
+					sig : signature
+				};
+
+				$.ajax({
+					url : requestURL,
+					async : false,
+					method : "POST",
+					data : JSON.stringify(userRequestDTO),
+					crossDomain : true,
+					beforeSend : function(request) {
+						request.setRequestHeader("Authentication", access_token);
+					},
+					success : function(response) {
+						userRequestOutDTO = response;
+					},
+					error : function(error) {
+						userRequestOutDTO = error;
+					},
+					complete : function() {
+						ajaxUserRequestComplete(userRequestOutDTO);
+					}
+				});
+
+			}
+
+			function ajaxUserRequestComplete(userRequestOutDTO) {
+				if (userRequestOutDTO.code == 0) {
+					$('#table-request').empty();
+					$("#pagination-request").empty();
+					$('#number-request').html(userRequestOutDTO.data.tot);
+					jsonRequest = userRequestOutDTO;
+
+					$.each(jsonRequest.data.lst, function(idx, request) {
+						objRequestMap[request.rid] = request;
+
+						var price;
+						if (request.pri > 0) {
+							if (request.mode == TYPE_SELL) {
+								price = request.pri + " " + priceUnitMap[request.unit];
+							} else {
+								price = request.pri + " " + priceUnitMap[request.unit] + "/tháng";
+							}
+						} else {
+							price = "thỏa thuận";
+						}
+
+						$('#table-request').append("<tr>" + "<td><a id ='" + request.rid + "' onclick='onClickDetail(3,this.id)'>" + request.tit + "</td>" + "<td><span>" + price + "</span></td>" + "<td><span>" + request.are + "</span></td>" + "<td><span>" + request.now + "</span></td>" + "<td><span>" + request.nob + "</span></td>" + "<td><span>" + request.add + "</span></td>" + "</tr>");
+
+					});
+
+					var numPage;
+					if (jsonRequest.data.tot % PAGE_SIZE_REQUEST == 0) {
+						numPage = parseInt(jsonRequest.data.tot / PAGE_SIZE_REQUEST);
+					} else {
+						numPage = parseInt(jsonRequest.data.tot / PAGE_SIZE_REQUEST) + 1
+					}
+
+					if (numPage < 2) {
+						$("#pagination-request").hide();
+					} else {
+						$("#pagination-request").show();
+						$('#pagination-request').append("<li id='left-pagination-request'> <a onclick='prePageRequest()'>&laquo;</a></li>");
+						for ( i = 1; i <= numPage; i++) {
+							if (i == pageRequest) {
+								$('#pagination-request').append("<li><a onclick='ajaxGetUserRequest(" + i + ")' style='background: #9499a0'>" + i + "</a>");
+							} else {
+								$('#pagination-request').append("<li><a onclick='ajaxGetUserRequest(" + i + ")'>" + i + "</a>");
+							}
+						}
+
+						$('#pagination-request').append("<li id='right-pagination-request'> <a onclick='nextPageListing()'>&raquo;</a></li>");
+
+						if (pageRequest == 1) {
+							$("#left-pagination-request").hide();
+						} else if (pageRequest == numPage) {
+							$("#right-pagination-request").hide();
+						}
+					}
+				} else if (userRequestOutDTO.code == 408) {
+					logout();
+				}
+			}
+
+			function ajaxGetUserFriend(page) {
+				pageFriend = page;
+				var timestamp = new Date().getTime();
+				var pageSize = 10;
+				var signature = sha256(access_token + "|" + current_user_id + "|" + page + "|" + pageSize + "|" + timestamp + "|" + SECRET_KEY);
+
+				var requestURL = getApiURL + postUserFriend;
+
+				userFriendDTO = {
+					tok : access_token,
+					userId : current_user_id,
+					pag : page,
+					psi : pageSize,
+					tmp : timestamp,
+					sig : signature
+				};
+
+				$.ajax({
+					url : requestURL,
+					async : false,
+					method : "POST",
+					data : JSON.stringify(userFriendDTO),
+					crossDomain : true,
+					beforeSend : function(request) {
+						request.setRequestHeader("Authentication", access_token);
+					},
+					success : function(response) {
+						userFriendOutDTO = response;
+					},
+					error : function(error) {
+						userFriendOutDTO = error;
+					},
+					complete : function() {
+						ajaxUserFriendComplete(userFriendOutDTO);
+					}
+				});
+
+			}
+
+			function ajaxUserFriendComplete(userFriendOutDTO) {
+				if (userFriendOutDTO.code == 0) {
+					$('#table-member').empty();
+					$("#pagination-friend").empty();
+					$('#number-contact').html(userFriendOutDTO.data.tot);
+					jsonFriend = userFriendOutDTO;
+					$.each(jsonFriend.data.lst, function(idx, member) {
+						objMemberMap[member.userId] = member;
+						$('#table-member').append("<li id='" + member.userId + "' onclick='onClickDetail(2, this.id)'>" + "<img src='" + member.avatar + "' alt='User Image'>" + "<a class='users-list-name' href='#'>" + member.name + " - " + member.mobile + "</a>" + "<span class='users-list-date'>" + moment(member.timestamp).format("HH:mm:ss") + "</span>" + "</li>");
+					});
+
+					var numPage;
+					if (userFriendOutDTO.data.tot % PAGE_SIZE_REQUEST == 0) {
+						numPage = parseInt(userFriendOutDTO.data.tot / PAGE_SIZE_REQUEST);
+					} else {
+						numPage = parseInt(userFriendOutDTO.data.tot / PAGE_SIZE_REQUEST) + 1
+					}
+
+					if (numPage < 2) {
+						$("#pagination-friend").hide();
+					} else {
+						$("#pagination-friend").show();
+						$('#pagination-friend').append("<li id='left-pagination-friend'> <a onclick='prePageRequest()'>&laquo;</a></li>");
+						for ( i = 1; i <= numPage; i++) {
+							if (i == pageFriend) {
+								$('#pagination-friend').append("<li><a onclick='ajaxGetUserFriend(" + i + ")' style='background: #9499a0'>" + i + "</a>");
+							} else {
+								$('#pagination-friend').append("<li><a onclick='ajaxGetUserFriend(" + i + ")'>" + i + "</a>");
+							}
+						}
+
+						$('#pagination-friend').append("<li id='right-pagination-friend'> <a onclick='nextPageFriend()'>&raquo;</a></li>");
+
+						if (pageFriend == 1) {
+							$("#left-pagination-friend").hide();
+						} else if (pageFriend == numPage) {
+							$("#right-pagination-request").hide();
+						}
+
+					}
+				} else if (userFriendOutDTO.code == 408) {
+					logout();
+				}
+			}
+
+			function onClickDetail(type, id) {
+
+				if (type == 1) {//listing
+					localStorage.setItem("objListing", JSON.stringify(objListingMap[id]));
+					window.location.href = "detail-listing.html";
+				} else if (type == 2) {//friend member
+					localStorage.setItem("objMember", JSON.stringify(objMemberMap[id]));
+					window.location.href = "detail-member.html";
+				} else {//request
+					localStorage.setItem("objRequest", JSON.stringify(objRequestMap[id]));
+					window.location.href = "detail-request.html";
+				}
+
+			}
+		</script>
+	</body>
+</html>

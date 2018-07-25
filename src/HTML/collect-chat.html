@@ -1,0 +1,2001 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>AdminLTE 2 | Invoice</title>
+	<!-- Tell the browser to be responsive to screen width -->
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+	<!-- Bootstrap 3.3.6 -->
+	<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+	<!-- Ionicons -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+	<!-- DataTables -->
+	<link rel="stylesheet" href="../plugins/datatables/dataTables.bootstrap.css">
+	<!-- Select2 -->
+	<link rel="stylesheet" href="../plugins/select2/select2.css">
+	<!-- Toast -->
+	<link rel="stylesheet" href="../plugins/toast/jquery.toast.css">
+	<!-- Theme style -->
+	<link rel="stylesheet" href="../dist/css/AdminLTE.css">
+	<!-- AdminLTE Skins. Choose a skin from the css/skins
+    folder instead of downloading all of them to reduce the load. -->
+	<link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
+
+	<!-- Chat Skins. Choose a skin from the css/skins
+    folder instead of downloading all of them to reduce the load. -->
+	<link rel="stylesheet" href="../dist/css/Chat.css">
+
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+	<header class="main-header">
+		<!-- Logo -->
+		<a href="../" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels --> <span class="logo-mini"><b>A</b>LT</span>
+			<!-- logo for regular state and mobile devices --> <span class="logo-lg"><b>Admin</b>LTE</span> </a>
+		<!-- Header Navbar: style can be found in header.less -->
+		<nav class="navbar navbar-static-top">
+			<!-- Sidebar toggle button-->
+			<a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button"> <span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
+
+			<div class="navbar-custom-menu">
+				<ul class="nav navbar-nav">
+					<!-- Messages: style can be found in dropdown.less-->
+					<!-- Notifications: style can be found in dropdown.less -->
+					<!-- Tasks: style can be found in dropdown.less -->
+
+					<!-- User Account: style can be found in dropdown.less -->
+					<li class="dropdown user user-menu">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="dist/img/avatar.png"
+																						 class="user-image"
+																						 alt="User Image"> <span
+								class="hidden-xs" id="username_navbar"></span> </a>
+						<ul class="dropdown-menu">
+							<!-- User image -->
+							<li class="user-header">
+								<img id="user-avatar" src="dist/img/avatar.png" class="img-circle" alt="User Image">
+								<p id="username_profile">
+									<small>ProNhaDat Admin</small>
+								</p>
+							</li>
+							<!-- Menu Body -->
+							<!-- Menu Footer-->
+							<li class="user-footer">
+								<div class="pull-right" onclick="logout()">
+									<a href="#" class="btn btn-default btn-flat">Sign out</a>
+								</div>
+							</li>
+						</ul>
+					</li>
+					<!-- Control Sidebar Toggle Button -->
+					<li>
+						<a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+	<!-- Left side column. contains the logo and sidebar -->
+	<aside class="main-sidebar"></aside>
+
+	<!-- Content Wrapper. Contains page content -->
+	<div class="content-wrapper">
+		<!-- Content Header (Page header) -->
+		<section class="content-header">
+			<h1> Collect Data Chat</h1>
+			<ol class="breadcrumb">
+				<li>
+					<a href="../"><i class="fa fa-dashboard"></i> Home</a>
+				</li>
+				<li class="active">
+					collect-chat
+				</li>
+			</ol>
+		</section>
+
+		<!-- Main content -->
+		<div class="bg-white" style="padding-top: 10px; display: flex;">
+			<div class="col-md-4">
+				<div class="box bg-white height-control">
+					<div id="box-body" class="box-body" style="min-height: 537px">
+						<p id='empty-result'> No more result!</p>
+						<img id='loading-icon' src="data:image/gif;base64,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"/>
+						<div class="table-responsive" >
+							<!-- conversation list -->
+							<ul class="friend-list" id="conversation-list"></ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div id='chat-panel' class="col-md-6">
+				<!-- DIRECT CHAT SUCCESS -->
+				<div class="box box-success direct-chat direct-chat-success">
+					<div class="box-header with-border">
+						<h3 class="box-title" id="chat-title"></h3>
+						<div class="box-tools pull-right">
+							<button class="btn btn-box-tool" data-widget="collapse">
+								<i class="fa fa-minus"></i>
+							</button>
+							<button class="btn btn-box-tool" data-toggle="tooltip" title="Contacts"
+									data-widget="chat-pane-toggle">
+								<i class="fa fa-comments"></i>
+							</button>
+						</div>
+					</div><!-- /.box-header -->
+					<div class="box-body">
+						<p id='empty-result-1'> No more result!</p>
+						<img id='loading-icon-1' src="data:image/gif;base64,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"/>
+						<!-- Conversations are loaded here -->
+						<ol class="direct-chat-messages" id="direct-chat-messages-body"></ol>
+
+						<div class="direct-chat-contacts">
+							<div id="direct-chat-contacts-body"></div>
+							<button onclick="updateConversation()" class="btn btn-block btn-success">
+								<i class="fa fa-plus"></i>Thêm người vào cuộc hội thoại
+							</button>
+
+						</div><!-- /.direct-chat-pane -->
+					</div><!-- /.box-body -->
+					<div class="box-footer">
+						<form action="#" method="post">
+							<div class="col-md-4" style="padding-left: 2px; padding-right: 2px;">
+								<select id="chat-member-user" class="js-example-templating"
+										style="width: 100%;"></select>
+							</div>
+							<div class="col-md-8" style="padding-left: 2px; padding-right: 2px;">
+								<div class="input-group">
+									<input type="text" id="input-message" name="message" placeholder="Type Message ..."
+										   class="form-control">
+									<span class="input-group-btn">
+												<button type="button" class="btn btn-success btn-flat" id="send-button"
+														onclick="onClickSendMessage()">
+													Send
+												</button> </span>
+								</div>
+							</div>
+							<div class="btn-footer">
+								<!--
+                                <button onclick="window.location.href='#popup-clisting'"  class="bg_none pull-right" id="create-conversation">
+                                <i class="glyphicon glyphicon-film"></i>
+                                </button>-->
+								<button onclick="location.href='#popup-crequest'" type="button"
+										class="bg_none pull-right">
+									<i class="glyphicon glyphicon-search"></i>
+								</button>
+								<button onclick="location.href='#popup-clisting'" type="button"
+										class="bg_none pull-right">
+									<i class="glyphicon glyphicon-cog"></i>
+								</button>
+							</div>
+						</form>
+					</div><!-- /.box-footer-->
+				</div><!--/.direct-chat -->
+			</div><!-- /.col -->
+			<div id="right-control-panel" class="col-md-2">
+				<button id='right-control-button' type="button" onclick="toggleControl()" class="btn btn-link">
+					<i id='control-panel-icon' class="fa fa-caret-square-o-right fa-2x" aria-hidden="true"></i>
+				</button>
+				</th>
+				<table id="control-table" class="table table-bordered text-center">
+					<tr>
+						<th>
+							<button onclick="createConversation()" type="button" class="btn bg-olive btn-flat margin">
+								Thêm cuộc hội thoại
+							</button>
+						</th>
+					</tr>
+					<tr>
+						<th>
+							<button onclick="onCreateListing()" type="button" class="btn bg-maroon btn-flat margin">
+								Thêm tin đăng
+							</button>
+						</th>
+					</tr>
+					<tr>
+						<th>
+							<button onclick="onCreateRequest()" type="button" class="btn bg-orange btn-flat margin"
+									style="margin-top: 5px;">
+								Thêm yêu cầu
+							</button>
+						</th>
+					</tr>
+					<tr>
+						<th>
+							<button onclick="onCreateUser()" type="button" class="btn bg-purple btn-flat margin"
+									style="margin-top: 5px;">
+								Thêm người dùng
+							</button>
+						</th>
+					</tr>
+				</table>
+			</div>
+			<!-- /.content -->
+		</div>
+	</div>
+	<!-- Modal create conversation -->
+	<a href="#" class="modal" id="popup-updateconversation" aria-hidden="true"> </a>
+	<div class="modal-dialog">
+		<div class="modal-header">
+			<label class="control-label">Thêm người vào cuộc thoại</label>
+			<a href="#" class="btn-close" aria-hidden="true">×</a>
+		</div>
+		<div class="modal-body">
+			<div class="form-group">
+				<select id="select-update-user" class="form-control select2" multiple="multiple"
+						data-placeholder="Thêm người vào cuộc hội thoại" style="width: 100%;"></select>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button onclick="ajaxUpdateConversation()" type="button" class="btn bg-maroon btn-flat margin">
+				Hoàn tất
+			</button>
+			</th>
+		</div>
+	</div>
+
+	<!-- Modal update conversation -->
+	<a href="#" class="modal" id="popup-createconversation" aria-hidden="true"> </a>
+	<div class="modal-dialog">
+		<div class="modal-header">
+			<input type="text" class="form-control" id="inputConversationName" placeholder="Nhập tên cuộc hội thoại">
+			<a href="#" class="btn-close" aria-hidden="true">×</a>
+		</div>
+		<div class="modal-body">
+			<div class="form-group">
+				<select id="select-all-user" class="form-control select2" multiple="multiple"
+						data-placeholder="Chọn người tham gia cuộc hội thoại" style="width: 100%;"></select>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button onclick="ajaxCreateConversation()" type="button" class="btn bg-maroon btn-flat margin">
+				Hoàn tất
+			</button>
+			</th>
+		</div>
+	</div>
+
+	<!-- Modal listing -->
+	<a href="#" class="modal" id="popup-clisting" aria-hidden="true"> </a>
+	<div class="modal-dialog" style="width: inherit; overflow:auto">
+		<div class="box-header">
+			<h3 class="box-title">Chọn tin đăng muốn gửi</h3>
+			<a href="#" class="btn-close" aria-hidden="true">×</a>
+		</div>
+		<div class="modal-body" style="overflow:auto">
+			<div class="form-group">
+				<div class="box" style="overflow:auto">
+					<!-- /.box-header -->
+					<div class="box-body">
+						<table id="table-listing" class="table table-bordered table-striped">
+							<thead>
+							<tr>
+								<th>Tựa đề</th>
+								<th>Giá</th>
+								<th>Diện tích(m<sup>2</sup>)</th>
+								<th>Phòng tắm</th>
+								<th>Phòng ngủ</th>
+								<th>Địa chỉ</th>
+								<th>Gửi</th>
+							</tr>
+							</thead>
+							<tbody id="table-listing-item"></tbody>
+						</table>
+					</div>
+					<!-- /.box-body -->
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button onclick="onCreateListingForUser()" type="button" class="btn bg-olive btn-flat margin">
+				Tạo mới tin đăng
+			</button>
+			</th>
+		</div>
+	</div>
+
+	<!-- Modal request -->
+	<a href="#" class="modal" id="popup-crequest" aria-hidden="true"> </a>
+	<div class="modal-dialog" style="width: inherit; overflow:auto">
+		<div class="box-header">
+			<h3 class="box-title">Chọn yêu cầu muốn gửi</h3>
+			<a href="#" class="btn-close" aria-hidden="true">×</a>
+		</div>
+		<div class="modal-body" style="overflow:auto">
+			<div class="form-group">
+				<div class="box" style="overflow:auto">
+					<!-- /.box-header -->
+					<div class="box-body">
+						<table id="table-request" class="table table-bordered table-striped">
+							<thead>
+							<tr>
+								<th>Tựa đề</th>
+								<th>Giá</th>
+								<th>Diện tích(m<sup>2</sup>)</th>
+								<th>Phòng tắm</th>
+								<th>Phòng ngủ</th>
+								<th>Địa chỉ</th>
+								<th>Gửi</th>
+							</tr>
+							</thead>
+							<tbody id="table-request-item"></tbody>
+						</table>
+					</div>
+					<!-- /.box-body -->
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button onclick="onCreateRequestForUser()" type="button" class="btn bg-olive btn-flat margin">
+				Tạo mới yêu cầu
+			</button>
+			</th>
+		</div>
+	</div>
+	<!-- ./firebase -->
+	<script src="https://www.gstatic.com/firebasejs/4.1.1/firebase.js"></script>
+	<!-- jQuery 2.2.3 -->
+	<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+	<!-- Bootstrap 3.3.6 -->
+	<script src="../bootstrap/js/bootstrap.min.js"></script>
+	<!-- Select2 -->
+	<script src="../plugins/datatables/jquery.dataTables.min.js"></script>
+	<script src="../plugins/datatables/dataTables.bootstrap.min.js"></script>
+	<!-- Select2 -->
+	<script src="../plugins/select2/select2.full.min.js"></script>
+	<!-- FastClick -->
+	<script src="../plugins/fastclick/fastclick.js"></script>
+	<!-- toast -->
+	<script src="../plugins/toast/jquery.toast.js"></script>
+	<!-- AdminLTE App -->
+	<script src="../dist/js/app.min.js"></script>
+	<!-- App for demo purposes -->
+	<script src="../dist/js/demo.js"></script>
+	<!-- common -->
+	<script src="../common/common.js"></script>
+	<!-- message -->
+	<script src="../common/message.js"></script>
+	<!-- slider -->
+	<script src="../library/jssor.slider-22.2.8.mini.js" type="text/javascript"></script>
+	<!-- Utils.js -->
+	<script src="../library/utils.js"></script>
+	<!-- commonUtils.js -->
+	<script src="../library/commonUtils.js"></script>
+	<!-- sha256 -->
+	<!-- sha256 -->
+	<script src="../library/sha256.js"></script>
+	<!-- leanModal -->
+	<script src="../dist/js/jquery.leanModal.min.js"></script>
+	<!-- Map API -->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7YWs1TvfsYc-HdtNSD3OkCeunJ_ONbgs"></script>
+
+	<script>
+        var jsonRequestTracking;
+        var access_token;
+        var firebase_token;
+        var first_name;
+        var user_id;
+        var avatar;
+        var globalContact;
+        var globalRequest;
+        var globalListing;
+        var currentChatId;
+        var pageListing = 1;
+        var pageRequest = 1;
+        var PAGE_SIZE_LISTING = 30;
+        var PAGE_SIZE_REQUEST = 30;
+        var messagesMap = {};
+        var lastKey;
+        var lastMessageKey;
+        var startMessageKey;
+        var chatID;
+        var keys = [];
+        var messagesData = [];
+        var requesting = false;
+        var initialDataLoaded = false;
+        document.getElementById("box-body").addEventListener('scroll', function () {
+            var scrollTop = $(this).scrollTop();
+            if (scrollTop < 1) {
+                $("#loading-icon").show();
+                messageService();
+            }
+        });
+        document.getElementById("direct-chat-messages-body").addEventListener('scroll', function () {
+            var scrollTop = $(this).scrollTop();
+            if (scrollTop < 1) {
+                $("#loading-icon-1").show();
+                loadMoreMessages();
+            }
+        });
+        $('#box-body').scrollTop = 1500;
+        $('#empty-result').hide();
+        $('#empty-result-1').hide();
+        $('#loading-icon-1').hide();
+
+        $(document).ready(function () {
+            globalContact = JSON.parse(localStorage.getItem(PRE_GLOBAL_CONTACT));
+            globalRequest = JSON.parse(localStorage.getItem(PRE_GLOBAL_REQUEST));
+            globalListing = JSON.parse(localStorage.getItem(PRE_GLOBAL_LISTING));
+
+            if (globalContact == undefined || globalContact == null) {
+                globalContact = {};
+            }
+
+            if (globalRequest == undefined || globalRequest == null) {
+                globalRequest = {};
+            }
+
+            if (globalListing == undefined || globalListing == null) {
+                globalListing = {};
+            }
+
+            $('.select2').select2({
+                templateResult: addUserPic,
+                templateSelection: addUserPic,
+            });
+
+            function addUserPic(opt) {
+                if (!opt.id) {
+                    return opt.text;
+                }
+                var optimage = $(opt.element).data('image');
+                if (!optimage) {
+                    return opt.text;
+                } else {
+                    var $opt = $('<ul class="contacts-list-item">' + '<li><a href="#"> <img class="contacts-list-img-item" src="' + optimage + '" alt="Contact Avatar">' + '<div class="contacts-list-info">' + '<span class="contacts-list-name"> ' + $(opt.element).text() + ' </span>' + '<span class="contacts-list-phone"> ' + $(opt.element).attr("id") + '</span>' + '</div>' + '</a></li>' + '</ul>');
+                    return $opt;
+                }
+            };
+
+            function chooseUserPic(opt) {
+                if (!opt.id) {
+                    return opt.text;
+                }
+                var optimage = $(opt.element).data('image');
+                if (!optimage) {
+                    return opt.text;
+                } else {
+                    var $opt = $('<ul class="contacts-list-item">' + '<li><a href="#"> <img class="contacts-list-img-item" src="' + optimage + '" alt="Contact Avatar">' + '<div class="contacts-list-info">' + '<span class="contacts-list-name"> ' + $(opt.element).text() + ' </span>');
+                }
+                return $opt;
+            };
+
+            $(".js-example-templating").select2({
+                templateResult: chooseUserPic
+            });
+
+            $("#chat-member-user").on("select2:select", function (e) {
+                readyMediaForSend();
+            });
+
+            var exist = false;
+
+            $("#select-all-user").select2({
+                templateResult: addUserPic,
+                templateSelection: addUserPic,
+                tags: true,
+                tokenSeparators: [",", " "],
+                matcher: function (params, data) {
+                    // If there are no search terms, return all of the data
+                    if ($.trim(params.term) === '') {
+                        return data;
+                    }
+                    // `params.term` should be the term that is used for searching
+                    keywords = params.term;
+                    // `data.text` is the text that is displayed for the data object
+                    // check if data.text contains all of keywords, if some is missing, return null
+                    if (keywords == "" || data.text.toUpperCase().indexOf(keywords.toUpperCase()) >= 0 || data.element.id.toUpperCase().indexOf(keywords.toUpperCase()) >= 0) {
+                        exist = true;
+                        return data;
+                    }
+                    return null;
+                }
+            }).on("change", function (e) {
+                if ($(".select2-results").children().children().length == 1) {
+                    var isNew = $(this).find('[data-select2-tag="true"]');
+                    if (isNew.length) {
+                        ajaxGetContactInfoByMobile(isNew.val(), isNew);
+                    } else {
+                        isNew.remove();
+                    }
+                }
+            });
+
+            $("#select-update-user").select2({
+                templateResult: addUserPic,
+                templateSelection: addUserPic,
+                tags: true,
+                tokenSeparators: [",", " "],
+                matcher: function (params, data) {
+                    // If there are no search terms, return all of the data
+                    if ($.trim(params.term) === '') {
+                        return data;
+                    }
+                    // `params.term` should be the term that is used for searching
+                    keywords = params.term;
+                    // `data.text` is the text that is displayed for the data object
+                    // check if data.text contains all of keywords, if some is missing, return null
+                    if (keywords == "" || data.text.toUpperCase().indexOf(keywords.toUpperCase()) >= 0 || data.element.id.toUpperCase().indexOf(keywords.toUpperCase()) >= 0) {
+                        exist = true;
+                        return data;
+                    }
+                    return null;
+                }
+            }).on("change", function (e) {
+                if ($(".select2-results").children().children().length == 1) {
+                    var isNew = $(this).find('[data-select2-tag="true"]');
+                    if (isNew.length) {
+                        ajaxGetContactInfoByMobile(isNew.val(), isNew);
+                    } else {
+                        isNew.remove();
+                    }
+                }
+            });
+
+            $("#input-message").keyup(function (event) {
+                if (event.keyCode == 13) {
+                    $("#send-button").click();
+                    return;
+                }
+            });
+
+            $(".main-sidebar").load("content/main-sidebar.html", function () {
+                if (typeof (Storage) !== "undefined") {
+                    access_token = localStorage.getItem("access_token");
+                    firebase_token = localStorage.getItem("firebase_token");
+                    first_name = localStorage.getItem("first_name");
+                    user_id = localStorage.getItem("user_id");
+                    avatar = localStorage.getItem("avatar");
+
+                    if (access_token == null || access_token == "" || firebase_token == null || firebase_token == "" || user_id == null || user_id == "") {
+                        window.location.href = "login.html";
+                    } else {
+                        $('#username_navbar').html(first_name);
+                        $('#username_slidebar').html(first_name);
+                        if (avatar != null && avatar != "") {
+                            $('.user-image').attr('src', avatar);
+                            $('#user-avatar').attr('src', avatar);
+                            $('.img-circle').attr('src', avatar);
+                        }
+                    }
+
+                }
+            });
+            var config = {
+
+				/*apiKey : "AIzaSyCM_uNk9ZHo0oCV0NcS-rP1ZorsrKfiqtc",
+				 authDomain : "pronhadatdev.firebaseapp.com",
+				 databaseURL : "https://pronhadatdev.firebaseio.com",
+				 projectId : "pronhadatdev",
+				 storageBucket : "pronhadatdev.appspot.com",
+				 messagingSenderId : "1001133110063"*/
+                apiKey: "AIzaSyCZ_ohWzi5rtkjPiKoP4BfnaAlNceyJn5c",
+                authDomain: "reflecting-zone-136507.firebaseapp.com",
+                databaseURL: "https://reflecting-zone-136507.firebaseio.com",
+                projectId: "reflecting-zone-136507",
+                storageBucket: "reflecting-zone-136507.appspot.com",
+                messagingSenderId: "539349489758"
+            };
+            firebase.initializeApp(config);
+        });
+
+        /**
+         * sign in firebase.
+         */
+        function signInFirebase(token) {
+            // Sign in with custom token generated following previous instructions.
+            // [START authwithtoken]
+            firebase.auth().signInWithCustomToken(token).catch(function (error) {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // [START_EXCLUDE]
+                if (errorCode === 'auth/invalid-custom-token') {
+                    alert('The token you provided is not valid.');
+                } else {
+                    console.error(error);
+                }
+            });
+        }
+
+        /**
+         * initApp handles setting up UI event listeners and registering Firebase auth listeners:
+         *  - firebase.auth().onAuthStateChanged: This listener is called when the user is signed in or
+         *    out, and that is where we update the UI.
+         */
+        function initApp() {
+            // Listening for auth state changes.
+            // [START authstatelistener]
+            firebase.auth().onAuthStateChanged(function (user) {
+                if (user) {
+                    // User is signed in.
+                    messageService();
+                } else {
+                    // If a token has been passed in the hash fragment we display it in the UI and start the sign in process.
+                    firebase.auth().signInWithCustomToken(firebase_token);
+                }
+            });
+            // [END authstatelistener]
+        }
+
+
+        window.onload = function () {
+            initApp();
+        };
+
+        /**
+         * Listener message firebase.
+         */
+        function messageService() {
+            if (lastKey) {
+                var userRef = firebase.database().ref('user_metadata/' + user_id).orderByKey().endAt(lastKey).limitToLast(10);
+			} else {
+                var userRef = firebase.database().ref('user_metadata/' + user_id).orderByKey().limitToLast(10);
+			}
+            userRef.on('child_added', function (userData) {
+                var conversationDTO = new Object();
+                conversationDTO.author = user_id;
+                conversationDTO.conversationId = userData.key;
+                conversationDTO.activeMessageTmp = userData.val().active_message_tmp;
+                conversationDTO.displayFg = userData.val().display == null ? false : userData.val().display;
+                conversationDTO.lastMessage = "";
+                conversationDTO.unReadMessage = 0;
+
+                roomRef = firebase.database().ref('room_metadata/' + userData.key).orderByKey().limitToFirst(10);
+                roomRef.on('child_added', function (roomData) {
+                    var arrMember = [];
+                    $.each(roomData.val(), function (key, member) {
+                        arrMember.push(key);
+                        if (key == user_id) {
+                            conversationDTO.conversationName = member.room_name;
+                            conversationDTO.conversationImage = member.room_url;
+                            conversationDTO.timeJoinIn = member.join_room_tmp;
+                        }
+
+                    });
+                    conversationDTO.memberList = arrMember;
+                    removeConversationUI(conversationDTO.conversationId);
+                    setConversationUI(conversationDTO, true);
+                    localStorage.setItem(PRE_KEY_CHAT + conversationDTO.conversationId, JSON.stringify(conversationDTO));
+                });
+
+                roomRef.on('child_changed', function (roomData) {
+                    var conversationDTO = {};
+                    var conversationObject = localStorage.getItem(PRE_KEY_CHAT + userData.key);
+                    if (conversationObject != undefined) {
+                        conversationDTO = JSON.parse(conversationObject);
+                        var arrMember = [];
+                        $.each(roomData.val(), function (key, member) {
+                            arrMember.push(key);
+                            if (key == user_id) {
+                                conversationDTO.conversationName = member.room_name;
+                            }
+                        });
+                        conversationDTO.memberList = arrMember;
+                        //removeConversationUI(userData.key);
+                        setConversationUI(conversationDTO, true);
+                        localStorage.setItem(PRE_KEY_CHAT + userData.key, JSON.stringify(conversationDTO));
+                    }
+
+                });
+
+                roomRef.on('child_removed', function (roomData) {
+                    removeConversationUI(roomData.key);
+                });
+
+            });
+
+            userRef.on('child_changed', function (data) {
+                //alert(data.key + ":" + data.val().text);
+            });
+
+            userRef.on('child_removed', function (data) {
+                //alert(data.key + ":" + data.val().text);
+            });
+
+            userRef.once("value", function(snap) {
+                var keys2 = Object.keys(snap.val());
+                if (keys2.length == 1) {
+                    $('#empty-result').show();
+                    $('#loading-icon').hide();
+				} else {
+                    lastKey = keys2[0];
+				}
+
+            });
+        }
+
+        function loadMoreMessages() {
+            getMessages(chatID, lastMessageKey);
+		}
+
+        function getMessages(conversationId, startKey) {
+            initialDataLoaded = false;
+            $('#loading-icon-1').show();
+            var messageRef;
+            if (startKey) {
+				messageRef = firebase.database().ref('message_metadata/' + conversationId).orderByKey().endAt(startKey).limitToLast(10);
+			} else {
+				messageRef = firebase.database().ref('message_metadata/' + conversationId).orderByKey().limitToLast(10);
+            }
+
+            messageRef.on('child_added', function(messageData) {
+                if (initialDataLoaded) {
+                    retrieveMessage(messageData, conversationId, "yes", true);
+				} else {
+                    messagesData.push(messageData);
+                    keys.push(messageData.key);
+				}
+            });
+
+            messageRef.on('child_changed', function(messageData) {
+                retrieveMessage(messageData, conversationId);
+            });
+
+            messageRef.on('child_removed', function(messageData) {
+            })
+            messageRef.once("value", function(snap) {
+                if (snap.val()) {
+                    var keys2 = Object.keys(snap.val());
+                    if (keys2.length == 1) {
+                        $('#empty-result-1').show();
+                        $('#loading-icon-1').hide();
+                    } else {
+                        lastMessageKey = keys2[0];
+                    }
+				}
+				for (var i = messagesData.length - 1; i > 0; i--) {
+                    retrieveMessage(messagesData[i], conversationId, i == messagesData.length - 1);
+				}
+                messagesData = [];
+                initialDataLoaded = true;
+                $('#loading-icon-1').hide();
+            });
+        }
+
+        function retrieveMessage(messageInfo, chatId, append, lastMessage) {
+            var conversationDTO;
+            var messageDTO;
+            var conversationObject = localStorage.getItem(PRE_KEY_CHAT + chatId);
+            if (conversationObject != undefined) {
+                conversationDTO = JSON.parse(conversationObject);
+            }
+
+            var messageObject = messagesMap[chatId];
+            if (messageObject != undefined) {
+                messageDTO = JSON.parse(messageObject);
+            } else {
+                messageDTO = {};
+            }
+
+            var message = JSON.parse(messageInfo.val().private_message);
+            messageDTO[messageInfo.key] = messageInfo.val();
+            messagesMap[chatId] = JSON.stringify(messageDTO);
+            if (lastMessage == true) {
+            	if (message.typ == MESSAGE_TYPE.TEXT || message.typ == MESSAGE_TYPE.CONVERSATION_CHANGE) {
+                	conversationDTO.lastMessage = message.msg;
+            	} else if (message.typ == MESSAGE_TYPE.LISTING) {
+                	conversationDTO.lastMessage = MESSAGE_LISTING;
+            	} else {
+                	conversationDTO.lastMessage = MESSAGE_REQUEST;
+            	}
+            }
+
+            
+
+            if (chatId == currentChatId) {
+                setMessageUI(messageInfo.key, messageInfo.val(), append);
+            } else {
+                if (conversationDTO.activeMessageTmp != 0 && messageInfo.val().time_stamp > conversationDTO.activeMessageTmp && messageInfo.val().time_stamp > conversationDTO.timeJoinIn) {
+                    conversationDTO.unReadMessage = conversationDTO.unReadMessage + 1;
+                }
+            }
+
+            //conversationDTO.activeMessageTmp = messageInfo.val().time_stamp;
+            localStorage.setItem(PRE_KEY_CHAT + chatId, JSON.stringify(conversationDTO));
+            removeConversationUI(chatId);
+            if (lastMessage) {
+            	  setConversationUI(conversationDTO, false);
+            }
+          
+        }
+
+        function onClickShowChat(chatId) {
+            $('#empty-result-1').hide();
+            getMessages(chatId);
+            chatID = chatId;
+            //clear unread message
+            $('#' + chatId + "-un-read-message").removeClass('label label-danger');
+            $('#' + chatId + "-un-read-message").addClass('text-muted');
+            $('#' + chatId + "-un-read-message").empty('');
+            $('#' + chatId + "-un-read-message").append('<i class="fa fa-check"></i>');
+
+            var conversationDTO;
+            var messageDTO;
+            var conversationObject = localStorage.getItem(PRE_KEY_CHAT + chatId);
+            if (conversationObject != undefined) {
+                conversationDTO = JSON.parse(conversationObject);
+            }
+
+            var messageObject = messagesMap[chatId];
+            if (messageObject != undefined) {
+                messageDTO = JSON.parse(messageObject);
+            }
+
+            if (currentChatId != null && currentChatId != undefined) {
+                //remove old chat active
+                $('#' + currentChatId).removeClass("active");
+                //update active of old chat
+                var date = new Date();
+                var timestamp = date.getTime();
+                var conversationActive = {
+                    active_message_tmp: timestamp,
+                    display: true
+                };
+
+                var userRef = firebase.database().ref().child('user_metadata/' + user_id);
+                var updates = {};
+                updates[currentChatId] = conversationActive;
+                userRef.update(updates);
+                //get conversation on local db and save
+                var conversationObjectOld = localStorage.getItem(PRE_KEY_CHAT + currentChatId);
+                if (conversationObjectOld != undefined) {
+                    conversationOld = JSON.parse(conversationObjectOld);
+                    conversationOld.unReadMessage = 0;
+                    conversationOld.activeMessageTmp = timestamp;
+                    localStorage.setItem(PRE_KEY_CHAT + currentChatId, JSON.stringify(conversationOld));
+                }
+            }
+
+            //add new chat id to current chat id
+            currentChatId = chatId;
+            //add class active for new chat id
+            $('#' + chatId).addClass("active");
+            $('#chat-member-user').empty();
+            $('#direct-chat-contacts-body').empty('');
+            if (conversationDTO != undefined) {
+                $.each(conversationDTO.memberList, function (index, fui) {
+                    var contact = globalContact[fui];
+                    if (contact == undefined) {
+                        ajaxGetContactInfoByFui(fui, callback_select);
+                    } else {
+                        if (contact.ava == "" || contact.ava == undefined) {
+                            contact.ava = DEFAULT_AVATAR;
+                        }
+                        $('#chat-member-user').append('<option value = "flag" data-image=' + contact.ava + ' id=' + PRE_CONTACT_SELECT + fui + '>' + contact.fin + '</option>');
+                        //set contacts on current conversation
+                        $('#direct-chat-contacts-body').append('<ul class="contacts-list" id=' + PRE_CONTACT_CURRENT + fui + '><li><a href="#"> <img class="contacts-list-img" src=' + contact.ava + ' alt="Contact Avatar"><div class="contacts-list-info"><span class="contacts-list-name white" style="color: #fff">' + contact.fin + '</span><span class="contacts-list-msg">' + contact.mob + '</span></div> </a></li></ul>');
+                    }
+                });
+            }
+
+            $('#chat-title').text(conversationDTO.conversationName);
+            $('#direct-chat-messages-body').empty();
+            $.each(messageDTO, function (key, data) {
+                var message = messageDTO[key];
+                setMessageUI(key, message);
+            });
+
+            //get media for initial author
+            pageListing = 1;
+            pageRequest = 1;
+            readyMediaForSend();
+        }
+
+        function readyMediaForSend() {
+            var author = $('#chat-member-user').find(":selected").attr("id").substring(PRE_CONTACT_SELECT.length);
+            if (author != null && author != "") {
+                var objectListing = localStorage.getItem(PRE_USER_LISTING + author);
+                var objectRequest = localStorage.getItem(PRE_USER_REQUEST + author);
+                if (objectListing != undefined && objectListing != null) {
+                    listingInfo(author, JSON.parse(objectListing).length, JSON.parse(objectListing));
+                } else {
+                    ajaxGetListingForUser(author, pageListing);
+                }
+
+                if (objectRequest != undefined && objectRequest != null) {
+                    requestInfo(author, JSON.parse(objectRequest).length, JSON.parse(objectRequest));
+                } else {
+                    ajaxGetRequestForUser(author, pageRequest);
+                }
+            }
+        }
+
+        function removeConversationUI(conversationId) {
+            $('#' + conversationId).remove();
+        }
+
+        function setConversationUI(conversationDTO, first) {
+            if ($("#" + conversationDTO.conversationId).length > 0) {
+                return;
+			}
+            $('#loading-icon').show();
+            if (conversationDTO.conversationImage == "" || conversationDTO.conversationImage == undefined)
+                conversationDTO.conversationImage = DEFAULT_AVATAR;
+
+            if (conversationDTO.conversationImage == "" || conversationDTO.conversationImage == undefined)
+                conversationDTO.conversationImage = DEFAULT_AVATAR;
+
+            if (!first) {
+                $('#conversation-list').append('<li class="post" id=' + conversationDTO.conversationId + ' onclick="onClickShowChat(this.id)">' + '<a href="#" class="clearfix">' + '<img src=' + conversationDTO.conversationImage + ' alt="" class="img-circle">' + '<div class="friend-name"><strong>' + conversationDTO.conversationName + '</strong></div><div class="last-message text-muted">' + conversationDTO.lastMessage + '</div> <small class="time text-muted">' + timeSince(conversationDTO.activeMessageTmp) + '</small> <small id=' + conversationDTO.conversationId + "-un-read-message" + ' class="chat-alert"></small> </a></li>');
+            } else {
+                $('#conversation-list').prepend('<li class="post" id=' + conversationDTO.conversationId + ' onclick="onClickShowChat(this.id)">' + '<a href="#" class="clearfix">' + '<img src=' + conversationDTO.conversationImage + ' alt="" class="img-circle">' + '<div class="friend-name"><strong>' + conversationDTO.conversationName + '</strong></div><div class="last-message text-muted">' + conversationDTO.lastMessage + '</div> <small class="time text-muted">' + timeSince(conversationDTO.activeMessageTmp) + '</small> <small id=' + conversationDTO.conversationId + "-un-read-message" + ' class="chat-alert"></small> </a></li>');
+            }
+            if (conversationDTO.unReadMessage > 0) {
+                $('#' + conversationDTO.conversationId + "-un-read-message").removeClass('text-muted');
+                $('#' + conversationDTO.conversationId + "-un-read-message").addClass('label label-danger');
+                $('#' + conversationDTO.conversationId + "-un-read-message").append(conversationDTO.unReadMessage);
+            } else {
+                $('#' + conversationDTO.conversationId + "-un-read-message").removeClass('label label-danger');
+                $('#' + conversationDTO.conversationId + "-un-read-message").addClass('text-muted');
+                $('#' + conversationDTO.conversationId + "-un-read-message").append('<i class="fa fa-check"></i>');
+            }
+            $('#loading-icon').hide();
+        }
+
+        function setMessageUI(key, message, append) {
+            if ($("#" + key).length > 0) {
+                return;
+			}
+            var messageMsg;
+            var listing;
+            var request;
+            var private_msg = JSON.parse(message.private_message);
+            var contact = globalContact[message.author];
+            if (contact == undefined) {
+                contact = new Object();
+                contact.fin = DEFAULT_NAME;
+                contact.ava = DEFAULT_AVATAR;
+                ajaxGetContactInfoByFui(message.author, null);
+            } else {
+                if (contact.ava == "" || contact.ava == undefined) {
+                    contact.ava = DEFAULT_AVATAR;
+                }
+            }
+
+            if (private_msg.typ == MESSAGE_TYPE.TEXT || private_msg.typ == MESSAGE_TYPE.CONVERSATION_CHANGE) {
+                messageMsg = private_msg.msg;
+                if (message.author != user_id && message.owner != user_id) {
+                    if (append) {
+                        $('#direct-chat-messages-body').append('<li id=' + key + ' class="direct-chat-msg">' + '<div class="direct-chat-info clearfix">' + '<span class="direct-chat-name pull-left ' + PRE_CONTACT_NAME + message.author + '">' + contact.fin + '</span> <span class="direct-chat-timestamp pull-right">' + timeSince(message.time_stamp) + '</span>' + '</div>' + '<img class="direct-chat-img ' + PRE_CONTACT_AVATAR + message.author + '" src=' + contact.ava + ' alt="message user image">' + '<div class="direct-chat-text">' + messageMsg + '</div></li>');
+                    } else {
+                        $('#direct-chat-messages-body').prepend('<li id=' + key + ' class="direct-chat-msg">' + '<div class="direct-chat-info clearfix">' + '<span class="direct-chat-name pull-left ' + PRE_CONTACT_NAME + message.author + '">' + contact.fin + '</span> <span class="direct-chat-timestamp pull-right">' + timeSince(message.time_stamp) + '</span>' + '</div>' + '<img class="direct-chat-img ' + PRE_CONTACT_AVATAR + message.author + '" src=' + contact.ava + ' alt="message user image">' + '<div class="direct-chat-text">' + messageMsg + '</div></li>');
+                    }
+                } else {
+                    if (append) {
+                        $('#direct-chat-messages-body').append('<li id=' + key + ' class="direct-chat-msg right">' + '<div class="direct-chat-info clearfix">' + '<span class="direct-chat-name pull-right ' + PRE_CONTACT_NAME + message.author + '">' + contact.fin + '</span> <span class="direct-chat-timestamp pull-left">' + timeSince(message.time_stamp) + '</span>' + '</div>' + '<img class="direct-chat-img ' + PRE_CONTACT_NAME + message.author + '" src=' + contact.ava + ' alt="message user image">' + '<div class="direct-chat-text">' + messageMsg + '</div></li>');
+                    } else {
+                        $('#direct-chat-messages-body').prepend('<li id=' + key + ' class="direct-chat-msg right">' + '<div class="direct-chat-info clearfix">' + '<span class="direct-chat-name pull-right ' + PRE_CONTACT_NAME + message.author + '">' + contact.fin + '</span> <span class="direct-chat-timestamp pull-left">' + timeSince(message.time_stamp) + '</span>' + '</div>' + '<img class="direct-chat-img ' + PRE_CONTACT_NAME + message.author + '" src=' + contact.ava + ' alt="message user image">' + '<div class="direct-chat-text">' + messageMsg + '</div></li>');
+
+                    }
+                }
+            } else if (private_msg.typ == MESSAGE_TYPE.REQUEST) {
+                var request = globalRequest[private_msg.msg];
+                if (request == null || request == undefined) {
+                    messageMsg = i_info_request;
+                    if (message.author != user_id && message.owner != user_id) {
+                        if (append) {
+                            $('#direct-chat-messages-body').append('<li id=' + key + ' class="direct-chat-msg">' + '<div class="direct-chat-info clearfix">' + '<span class="direct-chat-name pull-left ' + PRE_CONTACT_NAME + message.author + '">' + contact.fin + '</span> <span class="direct-chat-timestamp pull-right">' + timeSince(message.time_stamp) + '</span>' + '</div>' + '<img class="direct-chat-img ' + PRE_CONTACT_AVATAR + message.author + '" src=' + contact.ava + ' alt="message user image">' + '<div class="direct-chat-text">' + '<div class="info-box bg-gray">' + '<span class="info-box-icon"><i class="fa fa-search"></i></span><div class="info-box-content"><div><span class="info-box-text">' + messageMsg + '</span></div><div class="small-box-footer" >' + '<i class="fa fa-bed"><span style="padding-left: 0.5em;margin-right: 1em;"></span></i>' + '<i class="fa fa-tty"><span style="padding-left: 0.5em;margin-right: 1em;"></span></i>' + '<i class="fa fa-arrows"><span style="padding-left: 0.5em;margin-right: 1em;">m<sup>2</sup></span></i>' + '</div></div></div> </div></li>');
+
+                        } else {
+                            $('#direct-chat-messages-body').prepend('<li id=' + key + ' class="direct-chat-msg">' + '<div class="direct-chat-info clearfix">' + '<span class="direct-chat-name pull-left ' + PRE_CONTACT_NAME + message.author + '">' + contact.fin + '</span> <span class="direct-chat-timestamp pull-right">' + timeSince(message.time_stamp) + '</span>' + '</div>' + '<img class="direct-chat-img ' + PRE_CONTACT_AVATAR + message.author + '" src=' + contact.ava + ' alt="message user image">' + '<div class="direct-chat-text">' + '<div class="info-box bg-gray">' + '<span class="info-box-icon"><i class="fa fa-search"></i></span><div class="info-box-content"><div><span class="info-box-text">' + messageMsg + '</span></div><div class="small-box-footer" >' + '<i class="fa fa-bed"><span style="padding-left: 0.5em;margin-right: 1em;"></span></i>' + '<i class="fa fa-tty"><span style="padding-left: 0.5em;margin-right: 1em;"></span></i>' + '<i class="fa fa-arrows"><span style="padding-left: 0.5em;margin-right: 1em;">m<sup>2</sup></span></i>' + '</div></div></div> </div></li>');
+                        }
+                    } else {
+                        if (append) {
+                            $('#direct-chat-messages-body').append('<li id=' + key + ' class="direct-chat-msg right">' + '<div class="direct-chat-info clearfix">' + '<span class="direct-chat-name pull-right ' + PRE_CONTACT_NAME + message.author + '">' + contact.fin + '</span> <span class="direct-chat-timestamp pull-left">' + timeSince(message.time_stamp) + '</span>' + '</div>' + '<img class="direct-chat-img ' + PRE_CONTACT_NAME + message.author + '" src=' + contact.ava + ' alt="message user image">' + '<div class="direct-chat-text">' + '<div class="info-box bg-green">' + '<span class="info-box-icon"><i class="fa fa-search"></i></span><div class="info-box-content"><div><span class="info-box-text">' + messageMsg + '</span></div><div class="small-box-footer" >' + '<i class="fa fa-bed"><span style="padding-left: 0.5em;margin-right: 1em;"></span></i>' + '<i class="fa fa-tty"><span style="padding-left: 0.5em;margin-right: 1em;"></span></i>' + '<i class="fa fa-arrows"><span style="padding-left: 0.5em;margin-right: 1em;">m<sup>2</sup></span></i>' + '</div></div></div> </div></li>');
+
+                        } else {
+                            $('#direct-chat-messages-body').prepend('<li id=' + key + ' class="direct-chat-msg right">' + '<div class="direct-chat-info clearfix">' + '<span class="direct-chat-name pull-right ' + PRE_CONTACT_NAME + message.author + '">' + contact.fin + '</span> <span class="direct-chat-timestamp pull-left">' + timeSince(message.time_stamp) + '</span>' + '</div>' + '<img class="direct-chat-img ' + PRE_CONTACT_NAME + message.author + '" src=' + contact.ava + ' alt="message user image">' + '<div class="direct-chat-text">' + '<div class="info-box bg-green">' + '<span class="info-box-icon"><i class="fa fa-search"></i></span><div class="info-box-content"><div><span class="info-box-text">' + messageMsg + '</span></div><div class="small-box-footer" >' + '<i class="fa fa-bed"><span style="padding-left: 0.5em;margin-right: 1em;"></span></i>' + '<i class="fa fa-tty"><span style="padding-left: 0.5em;margin-right: 1em;"></span></i>' + '<i class="fa fa-arrows"><span style="padding-left: 0.5em;margin-right: 1em;">m<sup>2</sup></span></i>' + '</div></div></div> </div></li>');
+
+                        }
+                    }
+
+                    ajaxGetRequestInfo(message, contact, key, private_msg.msg, append, callback_request);
+                } else {
+                    callback_request(key, message, contact, request, true, append);
+                }
+            } else if (private_msg.typ == MESSAGE_TYPE.LISTING) {
+                var listing = globalListing[private_msg.msg];
+                if (listing == null || listing == undefined) {
+                    messageMsg = i_info_listing;
+                    if (message.author != user_id && message.owner != user_id) {
+                        if (append) {
+                            $('#direct-chat-messages-body').append('<li id=' + key + ' class="direct-chat-msg">' + '<div class="direct-chat-info clearfix">' + '<span class="direct-chat-name pull-left ' + PRE_CONTACT_NAME + message.author + '">' + contact.fin + '</span> <span class="direct-chat-timestamp pull-right">' + timeSince(message.time_stamp) + '</span>' + '</div>' + '<img class="direct-chat-img ' + PRE_CONTACT_AVATAR + message.author + '" src=' + contact.ava + ' alt="message user image">' + '<div class="direct-chat-text">' + '<div class="info-box bg-gray">' + '<span class="info-box-icon"><img class="img-responsive" src="../dist/img/photo2.png" alt="Photo"></i></span><div class="info-box-content"><div><span class="info-box-text">' + messageMsg + '</span></div><div class="small-box-footer" >' + '<i class="fa fa-bed"><span style="padding-left: 0.5em;margin-right: 1em;"></span></i>' + '<i class="fa fa-tty"><span style="padding-left: 0.5em;margin-right: 1em;"></span></i>' + '<i class="fa fa-arrows"><span style="padding-left: 0.5em;margin-right: 1em;">m<sup>2</sup></span></i>' + '</div></div></div> </div></li>');
+                        } else {
+                            $('#direct-chat-messages-body').prepend('<li id=' + key + ' class="direct-chat-msg">' + '<div class="direct-chat-info clearfix">' + '<span class="direct-chat-name pull-left ' + PRE_CONTACT_NAME + message.author + '">' + contact.fin + '</span> <span class="direct-chat-timestamp pull-right">' + timeSince(message.time_stamp) + '</span>' + '</div>' + '<img class="direct-chat-img ' + PRE_CONTACT_AVATAR + message.author + '" src=' + contact.ava + ' alt="message user image">' + '<div class="direct-chat-text">' + '<div class="info-box bg-gray">' + '<span class="info-box-icon"><img class="img-responsive" src="../dist/img/photo2.png" alt="Photo"></i></span><div class="info-box-content"><div><span class="info-box-text">' + messageMsg + '</span></div><div class="small-box-footer" >' + '<i class="fa fa-bed"><span style="padding-left: 0.5em;margin-right: 1em;"></span></i>' + '<i class="fa fa-tty"><span style="padding-left: 0.5em;margin-right: 1em;"></span></i>' + '<i class="fa fa-arrows"><span style="padding-left: 0.5em;margin-right: 1em;">m<sup>2</sup></span></i>' + '</div></div></div> </div></li>');
+                        }
+                    } else {
+                        if (append) {
+                            $('#direct-chat-messages-body').append('<li id=' + key + ' class="direct-chat-msg right">' + '<div class="direct-chat-info clearfix">' + '<span class="direct-chat-name pull-right ' + PRE_CONTACT_NAME + message.author + '">' + contact.fin + '</span> <span class="direct-chat-timestamp pull-left">' + timeSince(message.time_stamp) + '</span>' + '</div>' + '<img class="direct-chat-img ' + PRE_CONTACT_NAME + message.author + '" src=' + contact.ava + ' alt="message user image">' + '<div class="direct-chat-text">' + '<div class="info-box bg-green">' + '<span class="info-box-icon"><img class="img-responsive" src="../dist/img/photo2.png" alt="Photo"></i></span><div class="info-box-content"><div><span class="info-box-text">' + messageMsg + '</span></div><div class="small-box-footer" >' + '<i class="fa fa-bed"><span style="padding-left: 0.5em;margin-right: 1em;"></span></i>' + '<i class="fa fa-tty"><span style="padding-left: 0.5em;margin-right: 1em;"></span></i>' + '<i class="fa fa-arrows"><span style="padding-left: 0.5em;margin-right: 1em;">m<sup>2</sup></span></i>' + '</div></div></div> </div></li>');
+                        } else {
+                            $('#direct-chat-messages-body').prepend('<li id=' + key + ' class="direct-chat-msg right">' + '<div class="direct-chat-info clearfix">' + '<span class="direct-chat-name pull-right ' + PRE_CONTACT_NAME + message.author + '">' + contact.fin + '</span> <span class="direct-chat-timestamp pull-left">' + timeSince(message.time_stamp) + '</span>' + '</div>' + '<img class="direct-chat-img ' + PRE_CONTACT_NAME + message.author + '" src=' + contact.ava + ' alt="message user image">' + '<div class="direct-chat-text">' + '<div class="info-box bg-green">' + '<span class="info-box-icon"><img class="img-responsive" src="../dist/img/photo2.png" alt="Photo"></i></span><div class="info-box-content"><div><span class="info-box-text">' + messageMsg + '</span></div><div class="small-box-footer" >' + '<i class="fa fa-bed"><span style="padding-left: 0.5em;margin-right: 1em;"></span></i>' + '<i class="fa fa-tty"><span style="padding-left: 0.5em;margin-right: 1em;"></span></i>' + '<i class="fa fa-arrows"><span style="padding-left: 0.5em;margin-right: 1em;">m<sup>2</sup></span></i>' + '</div></div></div> </div></li>');
+                        }
+                    }
+                    ajaxGetListingInfo(message, contact, key, private_msg.msg, append, callback_listing);
+                } else {
+                    callback_listing(key, message, contact, listing, true);
+                }
+            }
+            $('#direct-chat-messages-body').scrollTop = 100;
+        }
+
+        function callback_request(key, message, contact, requestDTO, addFg, append) {
+            var mode;
+            var price;
+            if (requestDTO.mode == TYPE_BUY) {
+                mode = STR_BUY;
+
+            } else {
+                mode = STR_RENT;
+            }
+
+            if (requestDTO.pri > 0) {
+                price = requestDTO.pri;
+                if (requestDTO.mode == TYPE_BUY) {
+                    price = requestDTO.pri + " " + priceUnitMap[requestDTO.unit];
+                } else {
+                    price = requestDTO.pri + " " + priceUnitMap[requestDTO.unit] + "/" + MONTH;
+                }
+            } else {
+                price = PRICE_DISSCUSS;
+            }
+            var htmlElement;
+            if (message.author != user_id && message.owner != user_id) {
+                htmlElement = '<div id=' + requestDTO.rid + ' class="direct-chat-msg">' + '<div class="direct-chat-info clearfix">' + '<span class="direct-chat-name pull-left ' + PRE_CONTACT_NAME + message.author + '">' + contact.fin + '</span> <span class="direct-chat-timestamp pull-right">' + timeSince(message.time_stamp) + '</span>' + '</div>' + '<img class="direct-chat-img ' + PRE_CONTACT_AVATAR + message.author + '" src=' + contact.ava + ' alt="message user image">' + '<div class="direct-chat-text">' + '<div class="info-box bg-gray">' + '<span class="info-box-icon"><i class="fa fa-search"></i></span><div class="info-box-content"><div><span class="info-box-mode">' + mode + '</span>' + '<span class="info-box-text">' + requestDTO.tit + '</span></div><div><span class="info-box-number">' + price + '</span></div><span class="progress-description">' + requestDTO.add + '</span><div class="small-box-footer" >' + '<i class="fa fa-bed"><span style="padding-left: 0.5em;margin-right: 1em;">' + requestDTO.nob + '</span></i>' + '<i class="fa fa-tty"><span style="padding-left: 0.5em;margin-right: 1em;">' + requestDTO.now + '</span></i>' + '<i class="fa fa-arrows"><span style="padding-left: 0.5em;margin-right: 1em;">' + requestDTO.are + 'm<sup>2</sup></span></i>' + '</div></div></div> </div></div>';
+                if (addFg) {
+                    if (append) {
+                        $('#direct-chat-messages-body').append(htmlElement);
+                    } else {
+                        $('#direct-chat-messages-body').prepend(htmlElement);
+                    }
+                } else {
+                    $("#" + key).replaceWith(htmlElement);
+                }
+            } else {
+                if (addFg) {
+                    htmlElement = '<div id=' + requestDTO.rid + ' class="direct-chat-msg right">' + '<div class="direct-chat-info clearfix">' + '<span class="direct-chat-name pull-right ' + PRE_CONTACT_NAME + message.author + '">' + contact.fin + '</span> <span class="direct-chat-timestamp pull-left">' + timeSince(message.time_stamp) + '</span>' + '</div>' + '<img class="direct-chat-img ' + PRE_CONTACT_NAME + message.author + '" src=' + contact.ava + ' alt="message user image">' + '<div class="direct-chat-text">' + '<div class="info-box bg-green">' + '<span class="info-box-icon"><i class="fa fa-search"></i></span><div class="info-box-content"><div><span class="info-box-mode">' + mode + '</span>' + '<span class="info-box-text">' + requestDTO.tit + '</span></div><div><span class="info-box-number">' + price + '</span></div><span class="progress-description">' + requestDTO.add + '</span><div class="small-box-footer" >' + '<i class="fa fa-bed"><span style="padding-left: 0.5em;margin-right: 1em;">' + requestDTO.nob + '</span></i>' + '<i class="fa fa-tty"><span style="padding-left: 0.5em;margin-right: 1em;">' + requestDTO.now + '</span></i>' + '<i class="fa fa-arrows"><span style="padding-left: 0.5em;margin-right: 1em;">' + requestDTO.are + 'm<sup>2</sup></span></i>' + '</div></div></div> </div></div>';
+                    if (append) {
+                        $('#direct-chat-messages-body').append(htmlElement);
+                    } else {
+                        $('#direct-chat-messages-body').prepend(htmlElement);
+                    }
+                } else {
+                    $("#" + key).replaceWith(htmlElement);
+                }
+            }
+        }
+
+        function callback_listing(key, message, contact, listingDTO, append, addFg) {
+            var mode;
+            var price;
+            var image = "../dist/img/photo2.png";
+            if (listingDTO.mode == TYPE_SELL) {
+                mode = STR_SELL;
+
+            } else {
+                mode = STR_LEASE;
+            }
+
+            if (listingDTO.pri > 0) {
+                price = listingDTO.pri;
+                if (listingDTO.mode == TYPE_SELL) {
+                    price = listingDTO.pri + " " + priceUnitMap[listingDTO.unit];
+                } else {
+                    price = listingDTO.pri + " " + priceUnitMap[listingDTO.unit] + "/" + MONTH;
+                }
+            } else {
+                price = PRICE_DISSCUSS;
+            }
+
+            if (listingDTO.img != undefined && listingDTO.img.length > 0) {
+                image = listingDTO.img[1];
+            }
+
+            var htmlElement;
+            if (message.author != user_id && message.owner != user_id) {
+                htmlElement = '<div id=' + listingDTO.lid + ' class="direct-chat-msg">' + '<div class="direct-chat-info clearfix">' + '<span class="direct-chat-name pull-left ' + PRE_CONTACT_NAME + message.author + '">' + contact.fin + '</span> <span class="direct-chat-timestamp pull-right">' + timeSince(message.time_stamp) + '</span>' + '</div>' + '<img class="direct-chat-img ' + PRE_CONTACT_AVATAR + message.author + '" src=' + contact.ava + ' alt="message user image">' + '<div class="direct-chat-text">' + '<div class="info-box bg-gray">' + '<span class="info-box-icon"><img class="img-responsive" src="' + image + '" alt="Photo"></i></span><div class="info-box-content"><div><span class="info-box-mode">' + mode + '</span>' + '<span class="info-box-text">' + listingDTO.tit + '</span></div><div><span class="info-box-number">' + price + '</span></div><span class="progress-description">' + listingDTO.add + '</span><div class="small-box-footer" >' + '<i class="fa fa-bed"><span style="padding-left: 0.5em;margin-right: 1em;">' + listingDTO.nob + '</span></i>' + '<i class="fa fa-tty"><span style="padding-left: 0.5em;margin-right: 1em;">' + listingDTO.now + '</span></i>' + '<i class="fa fa-arrows"><span style="padding-left: 0.5em;margin-right: 1em;">' + listingDTO.are + 'm<sup>2</sup></span></i>' + '</div></div></div> </div></div>';
+                if (addFg) {
+                    if (append) {
+                        $('#direct-chat-messages-body').append(htmlElement);
+                    } else {
+                        $('#direct-chat-messages-body').prepend(htmlElement);
+                    }
+
+                } else {
+                    $("#" + key).replaceWith(htmlElement);
+                }
+            } else {
+                htmlElement = '<div id=' + listingDTO.lid + ' class="direct-chat-msg right">' + '<div class="direct-chat-info clearfix">' + '<span class="direct-chat-name pull-right ' + PRE_CONTACT_NAME + message.author + '">' + contact.fin + '</span> <span class="direct-chat-timestamp pull-left">' + timeSince(message.time_stamp) + '</span>' + '</div>' + '<img class="direct-chat-img ' + PRE_CONTACT_NAME + message.author + '" src=' + contact.ava + ' alt="message user image">' + '<div class="direct-chat-text">' + '<div class="info-box bg-green">' + '<span class="info-box-icon"><img class="img-responsive" src="' + image + '" alt="Photo"></i></span><div class="info-box-content"><div><span class="info-box-mode">' + mode + '</span>' + '<span class="info-box-text">' + listingDTO.tit + '</span></div><div><span class="info-box-number">' + price + '</span></div><span class="progress-description">' + listingDTO.add + '</span><div class="small-box-footer" >' + '<i class="fa fa-bed"><span style="padding-left: 0.5em;margin-right: 1em;">' + listingDTO.nob + '</span></i>' + '<i class="fa fa-tty"><span style="padding-left: 0.5em;margin-right: 1em;">' + listingDTO.now + '</span></i>' + '<i class="fa fa-arrows"><span style="padding-left: 0.5em;margin-right: 1em;">' + listingDTO.are + 'm<sup>2</sup></span></i>' + '</div></div></div> </div></div>';
+                if (addFg) {
+                    if (append) {
+                        $('#direct-chat-messages-body').append(htmlElement);
+                    } else {
+                        $('#direct-chat-messages-body').prepend(htmlElement);
+                    }
+                } else {
+                    $("#" + key).replaceWith(htmlElement);
+                }
+            }
+        }
+
+        function onCreateListing() {
+            window.open("create-listing.html", '_blank');
+        }
+
+        function onCreateRequest() {
+            window.open("create-request.html", '_blank');
+        }
+
+        function onCreateUser() {
+            window.open("create-user.html", '_blank');
+        }
+
+        function onCreateListingForUser() {
+            var author = $('#chat-member-user').find(":selected").attr("id").substring(PRE_CONTACT_SELECT.length);
+            window.open("create-listing.html?uid=" + author, '_blank');
+            window.location.href = "#";
+        }
+
+        function onCreateRequestForUser() {
+            var author = $('#chat-member-user').find(":selected").attr("id").substring(PRE_CONTACT_SELECT.length);
+            window.open("create-request.html?uid=" + author, '_blank');
+            window.location.href = "#";
+        }
+
+        function onClickSendMessage() {
+            var message = $('#input-message').val();
+            if (message == undefined || message.trim() == "")
+                return;
+
+            var messageObject = {};
+            messageObject.msg = message;
+            messageObject.typ = MESSAGE_TYPE.TEXT;
+            var author = $('#chat-member-user').find(":selected").attr("id").substring(PRE_CONTACT_SELECT.length);
+
+            sendMsgToFireBase(author, messageObject);
+
+        }
+
+        function sendMsgToFireBase(author, messageObject) {
+            var date = new Date();
+            var timestamp = date.getTime();
+            var messageData = {
+                time_stamp: timestamp,
+                private_message: JSON.stringify(messageObject),
+                author: author,
+                active: true,
+                owner: user_id
+            };
+            var messageRef = firebase.database().ref().child('message_metadata/' + currentChatId);
+            var newPostKey = messageRef.push().key;
+            var updates = {};
+            updates[newPostKey] = messageData;
+            messageRef.update(updates);
+            $('#input-message').val('');
+
+        }
+
+        function callback_select(fui) {
+            var contact = globalContact[fui];
+            if (contact != undefined) {
+                if (contact.ava == "" || contact.ava == undefined) {
+                    contact.ava = DEFAULT_AVATAR;
+                }
+                $('#chat-member-user').append('<option value = "flag" data-image=' + contact.ava + ' id=' + PRE_CONTACT_SELECT + fui + '>' + contact.fin + '</option>');
+                $('#direct-chat-contacts-body').append('<ul class="contacts-list" id=' + PRE_CONTACT_CURRENT + fui + '><li><a href="#"> <img class="contacts-list-img" src=' + contact.ava + ' alt="Contact Avatar"><div class="contacts-list-info"><span class="contacts-list-name" style="color: #fff">' + contact.fin + '</span><span class="contacts-list-msg">' + contact.mob + '</span></div> </a></li></ul>');
+
+            }
+        }
+
+        function toggleControl() {
+            $('#chat-panel').toggleClass('col-md-6 col-md-8');
+            $('#right-control-panel').toggleClass('col-md-2 col-md-1');
+            $('#control-table').toggle();
+            $('#control-panel-icon').toggleClass(" fa-caret-square-o-right  fa-caret-square-o-left ");
+        }
+
+        function createConversation() {
+            $('#select-all-user').empty('');
+            $.each(globalContact, function (key, contact) {
+                if (contact.ava == "" || contact.ava == undefined) {
+                    contact.ava = DEFAULT_AVATAR;
+                }
+                $('#select-all-user').append('<option data-image=' + contact.ava + ' value=' + PRE_CONTACT_ALL + contact.uid + ' id=' + contact.mob + '>' + contact.fin + '</option>');
+            });
+            window.location.href = "#popup-createconversation";
+        }
+
+        function ajaxCreateConversation() {
+            var date = new Date();
+            var timestamp = date.getTime();
+
+            var title = document.getElementById('inputConversationName').value;
+            if (title == null || title == "") {
+                $.toast({
+                    heading: 'Warning',
+                    text: w_require_title_chat,
+                    showHideTransition: 'plain',
+                    icon: 'warning'
+                });
+                return;
+            }
+
+            var signature = sha256(access_token + "|" + timestamp + "|" + MAIN_SECRET_KEY);
+
+            var requestURL = getApiURL + postCreateChat;
+
+            var arrayMem = new Array();
+            $.each($("#select-all-user").select2('data'), function (idx, mem) {
+                arrayMem[idx] = mem.element.value.substring(PRE_CONTACT_ALL.length);
+            });
+
+            arrayMem.push(user_id);
+
+            if (arrayMem.size) {
+                $.toast({
+                    heading: 'Warning',
+                    text: w_require_input_mem_chat,
+                    showHideTransition: 'plain',
+                    icon: 'warning'
+                });
+                return;
+            }
+
+            createConversationDTO = {
+                tok: access_token,
+                members: arrayMem,
+                tmp: timestamp,
+                sig: signature
+            };
+
+            $.ajax({
+                url: requestURL,
+                async: false,
+                method: "POST",
+                dataType: 'json',
+                data: JSON.stringify(createConversationDTO),
+                crossDomain: true,
+                beforeSend: function (request) {
+                    request.setRequestHeader("Authentication", access_token);
+                },
+                success: function (response) {
+                    createConversationOutDTO = response;
+                },
+                error: function (error) {
+                    createConversationOutDTO = error;
+                },
+                complete: function () {
+                    ajaxCreateConversationComplete(createConversationOutDTO, title, arrayMem);
+                }
+            });
+
+        }
+
+        function ajaxCreateConversationComplete(createConversationOutDTO, title, arrayMem) {
+            if (createConversationOutDTO.code == 0) {
+                var chatId = createConversationOutDTO.data.chatId;
+                if (chatId != undefined && chatId != "") {
+                    console.log(chatId);
+                    createConversationToFireBase(chatId, title, arrayMem);
+                }
+            } else if (createConversationOutDTO.code == 408) {
+                logout();
+            }
+        }
+
+        function createConversationToFireBase(chatId, title, arrayMem) {
+            var rootRef = firebase.database().ref();
+            var roomRef = rootRef.child('room_metadata/' + chatId);
+            var userRef = rootRef.child('user_metadata');
+            var roomInfo = {};
+            var listUser = {};
+            var userRoom = {};
+            var userInfo = {};
+            var updates = {};
+            var date = new Date();
+            var timestamp = date.getTime();
+            //set info conversation for admin
+            var useroomInfo = {
+                room_name: title,
+                room_url: avatar,
+                join_room_tmp: timestamp,
+            };
+            userRoom[user_id] = useroomInfo;
+
+            //add room and last message active for admin
+            userInfo['active_message_tmp'] = timestamp;
+            userInfo['display'] = true;
+            updates[chatId] = userInfo;
+            firebase.database().ref().child('user_metadata/' + user_id).update(updates);
+
+            $.each(arrayMem, function (idx, mem) {
+                if (mem != undefined && mem != user_id) {
+                    //set info conversation for user
+                    userRoom[mem] = useroomInfo;
+                    //add room and last message active for admin
+                    userInfo['active_message_tmp'] = timestamp;
+                    userInfo['display'] = true;
+                    updates = {};
+                    updates[chatId] = userInfo;
+                    firebase.database().ref().child('user_metadata/' + mem).update(updates);
+                }
+            });
+
+            updates = {};
+            updates['list_users'] = userRoom;
+            firebase.database().ref().child('room_metadata/' + chatId).update(updates);
+
+            window.location.href = "#";
+            $('#select-all-user').val('');
+            $.toast({
+                heading: 'Success',
+                text: s_create_chat,
+                showHideTransition: 'plain',
+                icon: 'success'
+            });
+
+        }
+
+		/*Update conversation*/
+
+        function updateConversation() {
+            $('#select-update-user').empty('');
+            var conversationDTO;
+            if (currentChatId != null && currentChatId != undefined) {
+                var conversationObject = localStorage.getItem(PRE_KEY_CHAT + currentChatId);
+                if (conversationObject != undefined) {
+                    conversationDTO = JSON.parse(conversationObject);
+                }
+
+            }
+
+            $.each(globalContact, function (key, contact) {
+                if (contact.ava == "" || contact.ava == undefined) {
+                    contact.ava = DEFAULT_AVATAR;
+                }
+                if (conversationDTO.memberList.indexOf(contact.uid) >= 0) {
+                    $('#select-update-user').append('<option data-image=' + contact.ava + ' disabled="disabled" value=' + PRE_CONTACT_ALL + contact.uid + ' id=' + contact.mob + '>' + contact.fin + '</option>');
+                } else {
+                    $('#select-update-user').append('<option data-image=' + contact.ava + ' value=' + PRE_CONTACT_ALL + contact.uid + ' id=' + contact.mob + '>' + contact.fin + '</option>');
+                }
+            });
+
+            window.location.href = "#popup-updateconversation";
+        }
+
+        function ajaxUpdateConversation() {
+            if (currentChatId != null && currentChatId != undefined) {
+                var date = new Date();
+                var timestamp = date.getTime();
+
+                var signature = sha256(access_token + "|" + currentChatId + "|" + timestamp + "|" + MAIN_SECRET_KEY);
+
+                var requestURL = getApiURL + postUpdateChat;
+
+                var arrayMem = new Array();
+                $.each($("#select-update-user").select2('data'), function (idx, mem) {
+                    arrayMem[idx] = mem.element.value.substring(PRE_CONTACT_ALL.length);
+                });
+
+                if (arrayMem.size) {
+                    $.toast({
+                        heading: 'Warning',
+                        text: w_require_input_mem_chat,
+                        showHideTransition: 'plain',
+                        icon: 'warning'
+                    });
+                    return;
+                }
+
+                updateConversationDTO = {
+                    tok: access_token,
+                    chatId: currentChatId,
+                    members: arrayMem,
+                    tmp: timestamp,
+                    sig: signature
+                };
+
+                $.ajax({
+                    url: requestURL,
+                    async: false,
+                    method: "POST",
+                    dataType: 'json',
+                    data: JSON.stringify(updateConversationDTO),
+                    crossDomain: true,
+                    beforeSend: function (request) {
+                        request.setRequestHeader("Authentication", access_token);
+                    },
+                    success: function (response) {
+                        updateConversationOutDTO = response;
+                    },
+                    error: function (error) {
+                        updateConversationOutDTO = error;
+                    },
+                    complete: function () {
+                        ajaxUpdateConversationComplete(updateConversationOutDTO, currentChatId, arrayMem);
+                    }
+                });
+            }
+
+        }
+
+        function ajaxUpdateConversationComplete(updateConversationOutDTO, currentChatId, arrayMem) {
+            if (updateConversationOutDTO.code == R_SUCCESS) {
+                updateConversationToFireBase(currentChatId, arrayMem);
+            } else if (updateConversationOutDTO.code == R_EXISTED) {
+                logout();
+            }
+        }
+
+        function updateConversationToFireBase(chatId, arrayMem) {
+            var rootRef = firebase.database().ref();
+            var roomRef = rootRef.child('room_metadata/' + chatId);
+            var userRef = rootRef.child('user_metadata');
+            var roomInfo = {};
+            var listUser = {};
+            var userRoom = {};
+            var userInfo = {};
+            var updateUser = {};
+            var updateRoom = {};
+            var date = new Date();
+            var timestamp = date.getTime();
+
+            var conversationDTO;
+            if (currentChatId != null && currentChatId != undefined) {
+                var conversationObject = localStorage.getItem(PRE_KEY_CHAT + currentChatId);
+                if (conversationObject != undefined) {
+                    conversationDTO = JSON.parse(conversationObject);
+
+                    //set info conversation for admin
+                    var useroomInfo = {
+                        room_name: conversationDTO.conversationName,
+                        room_url: avatar,
+                        join_room_tmp: timestamp,
+                    };
+
+                    $.each(arrayMem, function (idx, mem) {
+                        updateUser = {};
+                        updateRoom = {};
+                        //add room and last message active for user
+                        userInfo['active_message_tmp'] = timestamp;
+                        userInfo['display'] = true;
+                        updateUser[chatId] = userInfo;
+                        firebase.database().ref().child('user_metadata/' + mem).update(updateUser);
+
+                        //add user for list of room
+                        userRoom[mem] = useroomInfo;
+                        firebase.database().ref().child('room_metadata/' + chatId + "/list_users").update(userRoom);
+
+                        //add user into current conversation
+                        var contact = globalContact[mem];
+                        if (contact != undefined) {
+                            if (contact.ava == "" || contact.ava == undefined) {
+                                contact.ava = DEFAULT_AVATAR;
+                            }
+                            $('#chat-member-user').append('<option value = "flag" data-image=' + contact.ava + ' id=' + PRE_CONTACT_SELECT + mem + '>' + contact.fin + '</option>');
+                            //set contacts on current conversation
+                            $('#direct-chat-contacts-body').append('<ul class="contacts-list" id=' + PRE_CONTACT_CURRENT + mem + '><li><a href="#"> <img class="contacts-list-img" src=' + contact.ava + ' alt="Contact Avatar"><div class="contacts-list-info"><span class="contacts-list-name white" style="color: #fff">' + contact.fin + '</span><span class="contacts-list-msg">' + contact.mob + '</span></div> </a></li></ul>');
+                        }
+                    });
+                }
+
+                window.location.href = "#";
+
+                $('#select-update-user').val('');
+                $.toast({
+                    heading: 'Success',
+                    text: s_update_user,
+                    showHideTransition: 'plain',
+                    icon: 'success'
+                });
+
+            } else {
+                $.toast({
+                    heading: 'Error',
+                    text: e_not_select_conversation,
+                    showHideTransition: 'plain',
+                    icon: 'error'
+                });
+            }
+
+        }
+
+        function ajaxGetContactInfoByFui(firebaseUI, listener) {
+            var date = new Date();
+            var timestamp = date.getTime();
+
+            var signature = sha256(access_token + "|" + timestamp + "|" + MAIN_SECRET_KEY);
+
+            var requestURL = getApiURL + postGetAccountInfoByFui;
+
+            contactInfoDTO = {
+                tok: access_token,
+                fui: firebaseUI,
+                tmp: timestamp,
+                sig: signature
+            };
+
+            $.ajax({
+                url: requestURL,
+                async: false,
+                method: "POST",
+                dataType: 'json',
+                data: JSON.stringify(contactInfoDTO),
+                crossDomain: true,
+                beforeSend: function (request) {
+                    request.setRequestHeader("Authentication", access_token);
+                },
+                success: function (response) {
+                    contactInfoOutDTO = response;
+                },
+                error: function (error) {
+                    contactInfoOutDTO = error;
+                },
+                complete: function () {
+                    ajaxGetContactInfoByFuiComplete(contactInfoOutDTO, listener);
+                }
+            });
+
+        }
+
+        function ajaxGetContactInfoByFuiComplete(contactInfoOutDTO, listener) {
+            if (contactInfoOutDTO.code == 0) {
+                var contact = contactInfoOutDTO.data;
+                globalContact[contact.uid] = contact;
+                localStorage.setItem(PRE_GLOBAL_CONTACT, JSON.stringify(globalContact));
+
+                $('.' + PRE_CONTACT_NAME + contact.uid).text(contact.fin);
+                $('#' + PRE_CONTACT_SELECT + contact.uid).text(contact.fin);
+                if (contact.ava != "" && contact.ava != undefined) {
+                    $('.' + PRE_CONTACT_AVATAR + contact.uid).attr("src", contact.ava);
+                    $('.' + PRE_CONTACT_SELECT + contact.uid).attr("data-imag", contact.ava);
+                }
+
+                if (listener != null) {
+                    listener(contact.uid);
+                }
+            } else if (contactInfoOutDTO.code == 408) {
+                logout();
+            }
+        }
+
+        function ajaxGetContactInfoByMobile(mobile, isNew) {
+            var formatPhone = formatNumberPhone(mobile);
+            if (isValidatePhone(formatPhone) == null) {
+                $.toast({
+                    heading: 'Error',
+                    text: e_incorrect_phone,
+                    showHideTransition: 'plain',
+                    icon: 'error'
+                });
+                isNew.remove();
+                return;
+
+            }
+            var date = new Date();
+            var timestamp = date.getTime();
+
+            var signature = sha256(access_token + "|" + timestamp + "|" + SECRET_KEY);
+
+            var requestURL = getApiURL + postGetAccountInfoByMobile;
+
+            accountInfoDTO = {
+                tok: access_token,
+                mob: mobile,
+                tmp: timestamp,
+                sig: signature
+            };
+
+            $.ajax({
+                url: requestURL,
+                async: false,
+                method: "POST",
+                dataType: 'json',
+                data: JSON.stringify(accountInfoDTO),
+                crossDomain: true,
+                beforeSend: function (request) {
+                    request.setRequestHeader("Authentication", access_token);
+                },
+                success: function (response) {
+                    accountInfoOutDTO = response;
+                },
+                error: function (error) {
+                    accountInfoOutDTO = error;
+                },
+                complete: function () {
+                    ajaxGetContactInfoByMobileComplete(accountInfoOutDTO, isNew);
+                }
+            });
+
+        }
+
+        function ajaxGetContactInfoByMobileComplete(accountInfoOutDTO, isNew) {
+            if (accountInfoOutDTO.code == R_SUCCESS) {
+                var contact = accountInfoOutDTO.data;
+                globalContact[contact.uid] = contact;
+                localStorage.setItem(PRE_GLOBAL_CONTACT, JSON.stringify(globalContact));
+                if (contact != undefined) {
+                    if (contact.ava == "" || contact.ava == undefined) {
+                        contact.ava = DEFAULT_AVATAR;
+                    }
+                    //$('#select-all-user').append('<option data-image=' + contact.ava + ' value=' + PRE_CONTACT_ALL + contact.uid + ' id=' + contact.mob + '>' + contact.fin + '</option>');
+                    isNew.replaceWith('<option data-image=' + contact.ava + ' value=' + PRE_CONTACT_ALL + contact.uid + ' id=' + contact.mob + '>' + contact.fin + '</option>');
+
+                    $('.select2-selection__choice:last').remove();
+                    $('.select2-search__field').val(isNew.val()).focus();
+                }
+            } else if (accountInfoOutDTO.code == R_NOT_EXIST) {
+                isNew.remove();
+            } else if (accountInfoOutDTO.code == R_EXPIRED) {
+                logout();
+            }
+        }
+
+        function ajaxGetListingForUser(author, page) {
+            pageListing = page;
+            var timestamp = new Date().getTime();
+
+            var signature = sha256(access_token + "|" + author + "|" + page + "|" + PAGE_SIZE_LISTING + "|" + timestamp + "|" + SECRET_KEY);
+
+            var requestURL = getApiURL + postUserListing;
+
+            userListingDTO = {
+                tok: access_token,
+                userId: author,
+                pag: page,
+                psi: PAGE_SIZE_LISTING,
+                tmp: timestamp,
+                sig: signature
+            };
+
+            $.ajax({
+                url: requestURL,
+                async: false,
+                method: "POST",
+                data: JSON.stringify(userListingDTO),
+                crossDomain: true,
+                beforeSend: function (request) {
+                    request.setRequestHeader("Authentication", access_token);
+                },
+                success: function (response) {
+                    userListingOutDTO = JSON.parse(response);
+                },
+                error: function (error) {
+                    userListingOutDTO = error;
+                },
+                complete: function () {
+                    ajaxUserListingComplete(author, userListingOutDTO);
+                }
+            });
+
+        }
+
+        function ajaxUserListingComplete(author, userListingOutDTO) {
+            if (userListingOutDTO.code == R_SUCCESS) {
+                listingInfo(author, userListingOutDTO.data.tot, userListingOutDTO.data.lst);
+            } else if (userListingOutDTO.code == R_EXPIRED) {
+                logout();
+            }
+
+        }
+
+        function ajaxGetRequestForUser(author, page) {
+            pageRequest = page;
+            var timestamp = new Date().getTime();
+
+            var signature = sha256(access_token + "|" + author + "|" + page + "|" + PAGE_SIZE_REQUEST + "|" + timestamp + "|" + SECRET_KEY);
+
+            var requestURL = getApiURL + postUserRequest;
+
+            console.log("author: " + author);
+            userRequestDTO = {
+                tok: access_token,
+                userId: author,
+                pag: page,
+                psi: PAGE_SIZE_REQUEST,
+                tmp: timestamp,
+                sig: signature
+            };
+
+            $.ajax({
+                url: requestURL,
+                async: false,
+                method: "POST",
+                data: JSON.stringify(userRequestDTO),
+                crossDomain: true,
+                beforeSend: function (request) {
+                    request.setRequestHeader("Authentication", access_token);
+                },
+                success: function (response) {
+                    userRequestOutDTO = JSON.parse(response);
+                },
+                error: function (error) {
+                    userRequestOutDTO = error;
+                },
+                complete: function () {
+                    ajaxGetRequestComplete(author, userRequestOutDTO);
+                }
+            });
+
+        }
+
+        function ajaxGetRequestComplete(author, userRequestOutDTO) {
+            if (userRequestOutDTO.code == R_SUCCESS) {
+                requestInfo(author, userRequestOutDTO.data.tot, userRequestOutDTO.data.lst);
+            } else if (userRequestOutDTO.code == R_EXPIRED) {
+                logout();
+            }
+
+        }
+
+        function listingInfo(author, tot, objListingMap) {
+            var jsonObject = [];
+            if (objListingMap != undefined) {
+                if (pageListing == 1) {
+                    $('#table-listing-item').empty();
+                } else {
+                    var objectListing = localStorage.getItem(PRE_USER_LISTING + author);
+                    if (objectListing != undefined && objectListing != null) {
+                        jsonObject = JSON.parse(objectListing);
+                    }
+                }
+
+                $.each(objListingMap, function (idx, listing) {
+                    jsonObject.push(listing);
+                    var price;
+                    if (listing.pri > 0) {
+                        if (listing.mode == TYPE_SELL) {
+                            price = listing.pri + " " + priceUnitMap[listing.unit];
+                        } else {
+                            price = listing.pri + " " + priceUnitMap[listing.unit] + "/tháng";
+                        }
+                    } else {
+                        price = "thỏa thuận";
+                    }
+                    $('#table-listing-item').append("<tr>" + "<td><a>" + listing.tit + "</td>" + "<td><span>" + price + "</span></td>" + "<td><span>" + listing.are + "</span></td>" + "<td><span>" + listing.now + "</span></td>" + "<td><span>" + listing.nob + "</span></td>" + "<td><span>" + listing.add + "</span></td><td><button id ='" + listing.lid + "' type='button' onclick='onClickSendListing(this.id)' class='btn bg-maroon btn-flat margin'>" + "Gửi" + "</button></td></tr>");
+                });
+                $('#table-listing').DataTable();
+            }
+            localStorage.setItem(PRE_USER_LISTING + author, JSON.stringify(jsonObject));
+            if (tot > jsonObject.length) {
+                pageListing++;
+                ajaxGetListingForUser(author, pageListing);
+            }
+        }
+
+        function requestInfo(author, tot, objRequestMap) {
+            var jsonObject = [];
+            if (objRequestMap != undefined) {
+                if (pageRequest == 1) {
+                    $('#table-request-item').empty();
+                } else {
+                    var objectRequest = localStorage.getItem(PRE_USER_REQUEST + author);
+                    if (objectRequest != undefined && objectRequest != null) {
+                        jsonObject = JSON.parse(objectRequest);
+                    }
+                }
+
+                $.each(objRequestMap, function (idx, request) {
+                    jsonObject.push(request);
+                    var price;
+                    if (request.pri > 0) {
+                        if (request.mode == TYPE_BUY) {
+                            price = request.pri + " " + priceUnitMap[request.unit];
+                        } else {
+                            price = request.pri + " " + priceUnitMap[request.unit] + "/tháng";
+                        }
+                    } else {
+                        price = "thỏa thuận";
+                    }
+                    $('#table-request-item').append("<tr>" + "<td><a>" + request.tit + "</td>" + "<td><span>" + price + "</span></td>" + "<td><span>" + request.are + "</span></td>" + "<td><span>" + request.now + "</span></td>" + "<td><span>" + request.nob + "</span></td>" + "<td><span>" + request.add + "</span></td><td><button id ='" + request.rid + "' type='button' onclick='onClickSendRequest(this.id)' class='btn bg-maroon btn-flat margin'>" + "Gửi" + "</button></td></tr>");
+                });
+                $('#table-request').DataTable();
+            }
+            localStorage.setItem(PRE_USER_REQUEST + author, JSON.stringify(jsonObject));
+            if (tot > jsonObject.length) {
+                pageRequest++;
+                ajaxGetRequestForUser(author, pageRequest);
+            }
+        }
+
+        function onClickSendListing(lid) {
+            var author = $('#chat-member-user').find(":selected").attr("id").substring(PRE_CONTACT_SELECT.length);
+            if (currentChatId != null && currentChatId != undefined) {
+                ajaxSendMediaToServer(author, lid, null);
+            }
+        }
+
+        function onClickSendRequest(rid) {
+            var author = $('#chat-member-user').find(":selected").attr("id").substring(PRE_CONTACT_SELECT.length);
+            if (currentChatId != null && currentChatId != undefined) {
+                ajaxSendMediaToServer(author, null, rid);
+            }
+        }
+
+        function ajaxSendMediaToServer(author, lid, rid) {
+            if (currentChatId != null && currentChatId != undefined) {
+                var mediaId;
+                var date = new Date();
+                var timestamp = date.getTime();
+                var typeMessage = MESSAGE_TYPE.LISTING;
+
+                var signature = sha256(access_token + "|" + currentChatId + "|" + timestamp + "|" + MAIN_SECRET_KEY);
+
+                var requestURL = getApiURL + postUpdateChat;
+
+                var arrayMedia = new Array();
+
+                if (lid != null && lid != undefined && lid != "") {
+                    arrayMedia[0] = lid;
+                    sendMediaDTO = {
+                        tok: access_token,
+                        chatId: currentChatId,
+                        listings: arrayMedia,
+                        tmp: timestamp,
+                        sig: signature
+                    };
+                    mediaId = lid;
+                } else if (rid != null && rid != undefined && rid != "") {
+                    arrayMedia[0] = rid;
+                    sendMediaDTO = {
+                        tok: access_token,
+                        chatId: currentChatId,
+                        requests: arrayMedia,
+                        tmp: timestamp,
+                        sig: signature
+                    };
+                    mediaId = rid;
+                    typeMessage = MESSAGE_TYPE.REQUEST;
+                } else {
+                    $.toast({
+                        heading: 'Error',
+                        text: e_not_select_media,
+                        showHideTransition: 'plain',
+                        icon: 'error'
+                    });
+                    return;
+
+                }
+
+                $.ajax({
+                    url: requestURL,
+                    async: false,
+                    method: "POST",
+                    dataType: 'json',
+                    data: JSON.stringify(sendMediaDTO),
+                    crossDomain: true,
+                    beforeSend: function (request) {
+                        request.setRequestHeader("Authentication", access_token);
+                    },
+                    success: function (response) {
+                        sendMediaOutDTO = response;
+                    },
+                    error: function (error) {
+                        sendMediaOutDTO = error;
+                    },
+                    complete: function () {
+                        ajaxSendMediaToServerComplete(sendMediaOutDTO, mediaId, currentChatId, author, typeMessage);
+                    }
+                });
+            }
+
+        }
+
+        function ajaxSendMediaToServerComplete(sendMediaOutDTO, mediaId, currentChatId, author, typeMessage) {
+            if (sendMediaOutDTO.code == R_SUCCESS) {
+                var messageObject = {};
+                messageObject.msg = mediaId;
+                messageObject.typ = typeMessage;
+                sendMsgToFireBase(author, messageObject);
+                window.location.href = "#";
+            } else if (sendMediaOutDTO.code == R_EXISTED) {
+                logout();
+            }
+        }
+
+        function ajaxGetRequestInfo(message, contact, messageId, rid, append, listener) {
+            var timestamp = new Date().getTime();
+
+            var signature = sha256(access_token + "|" + rid + "|" + timestamp + "|" + MAIN_SECRET_KEY);
+
+            var requestURL = getApiURL + postGetRequestChat;
+
+            infoRequestDTO = {
+                tok: access_token,
+                rid: rid,
+                tmp: timestamp,
+                sig: signature
+            };
+
+            $.ajax({
+                url: requestURL,
+                async: false,
+                method: "POST",
+                data: JSON.stringify(infoRequestDTO),
+                crossDomain: true,
+                beforeSend: function (request) {
+                    request.setRequestHeader("Authentication", access_token);
+                },
+                success: function (response) {
+                    infoRequestOutDTO = JSON.parse(response);
+                },
+                error: function (error) {
+                    infoRequestOutDTO = error;
+                },
+                complete: function () {
+                    ajaxGetRequestInfoComplete(infoRequestOutDTO, messageId, message, contact, listener);
+                }
+            });
+
+        }
+
+        function ajaxGetRequestInfoComplete(infoRequestOutDTO, messageId, message, contact, listener) {
+            if (infoRequestOutDTO.code == R_SUCCESS) {
+                var request = infoRequestOutDTO.data;
+                globalRequest[request.rid] = request;
+                localStorage.setItem(PRE_GLOBAL_REQUEST, JSON.stringify(globalRequest));
+                listener(messageId, message, contact, request, false);
+            } else if (infoRequestOutDTO.code == R_EXPIRED) {
+                logout();
+            }
+        }
+
+        function ajaxGetListingInfo(message, contact, messageId, lid, append, listener) {
+            var timestamp = new Date().getTime();
+
+            var signature = sha256(access_token + "|" + lid + "|" + timestamp + "|" + MAIN_SECRET_KEY);
+
+            var requestURL = getApiURL + postGetListingChat;
+
+            infoListingDTO = {
+                tok: access_token,
+                lid: lid,
+                tmp: timestamp,
+                sig: signature
+            };
+
+            $.ajax({
+                url: requestURL,
+                async: false,
+                method: "POST",
+                data: JSON.stringify(infoListingDTO),
+                crossDomain: true,
+                beforeSend: function (request) {
+                    request.setRequestHeader("Authentication", access_token);
+                },
+                success: function (response) {
+                    infoListingOutDTO = JSON.parse(response);
+                },
+                error: function (error) {
+                    infoListingOutDTO = error;
+                },
+                complete: function () {
+                    ajaxGetListingInfoComplete(infoListingOutDTO, messageId, message, contact, append, listener);
+                }
+            });
+
+        }
+
+        function ajaxGetListingInfoComplete(infoListingOutDTO, messageId, message, contact, append, listener) {
+            if (infoListingOutDTO.code == R_SUCCESS) {
+                var listing = infoListingOutDTO.data;
+                globalListing[listing.lid] = listing;
+                localStorage.setItem(PRE_GLOBAL_LISTING, JSON.stringify(globalListing));
+                listener(messageId, message, contact, listing, false, append);
+            } else if (infoListingOutDTO.code == R_EXPIRED) {
+                logout();
+            }
+        }
+	</script>
+</body>
+</html>

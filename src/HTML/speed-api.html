@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>AdminLTE 2 | Invoice</title>
+		<!-- Tell the browser to be responsive to screen width -->
+		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+		<!-- Bootstrap 3.3.6 -->
+		<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+		<!-- Ionicons -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+		<!-- Theme style -->
+		<link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
+		<!-- AdminLTE Skins. Choose a skin from the css/skins
+		folder instead of downloading all of them to reduce the load. -->
+		<link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body class="hold-transition skin-blue sidebar-mini">
+		<div class="wrapper">
+
+			<header class="main-header">
+				<!-- Logo -->
+				<a href="../" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels --> <span class="logo-mini"><b>A</b>LT</span> <!-- logo for regular state and mobile devices --> <span class="logo-lg"><b>Admin</b>LTE</span> </a>
+				<!-- Header Navbar: style can be found in header.less -->
+				<nav class="navbar navbar-static-top">
+					<!-- Sidebar toggle button-->
+					<a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
+
+					<div class="navbar-custom-menu">
+						<ul class="nav navbar-nav">
+							<!-- Messages: style can be found in dropdown.less-->
+							<!-- Notifications: style can be found in dropdown.less -->
+							<!-- Tasks: style can be found in dropdown.less -->
+
+							<!-- User Account: style can be found in dropdown.less -->
+							<li class="dropdown user user-menu">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="dist/img/avatar.png" class="user-image" alt="User Image"> <span class="hidden-xs" id="username_navbar"></span> </a>
+								<ul class="dropdown-menu">
+									<!-- User image -->
+									<li class="user-header">
+										<img id="user-avatar" src="dist/img/avatar.png" class="img-circle" alt="User Image">
+										<p id="username_profile">
+											<small>ProNhaDat Admin</small>
+										</p>
+									</li>
+									<!-- Menu Body -->
+									<!-- Menu Footer-->
+									<li class="user-footer">
+										<div class="pull-right" onclick="logout()">
+											<a href="#" class="btn btn-default btn-flat">Sign out</a>
+										</div>
+									</li>
+								</ul>
+							</li>
+							<!-- Control Sidebar Toggle Button -->
+							<li>
+								<a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</header>
+			<!-- Left side column. contains the logo and sidebar -->
+			<aside class="main-sidebar"></aside>
+
+			<!-- Content Wrapper. Contains page content -->
+			<div class="content-wrapper">
+				<!-- Content Header (Page header) -->
+				<section class="content-header">
+					<h1> Speed API <small>(preview of speed api: milisecond)</small></h1>
+					<ol class="breadcrumb">
+						<li>
+							<a href="../"><i class="fa fa-dashboard"></i> Home</a>
+						</li>
+						<li class="active">
+							speed api
+						</li>
+					</ol>
+				</section>
+
+				<!-- Main content -->
+				<section class="content">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="box">
+								<div class="box-header">
+									<h3 class="box-title">USER API</h3>
+
+								</div>
+								<!-- /.box-header -->
+								<div class="box-body no-padding">
+									<table class="table" id="user-api">
+										<tr>
+											<th style="width: 10px">#</th>
+											<th>Api path</th>
+											<th style="width: 40px">Max</th>
+											<th style="width: 40px">Min</th>
+											<th style="width: 40px">Count</th>
+											<th style="width: 40px">95%</th>
+											<th style="width: 40px">Average</th>
+										</tr>
+
+									</table>
+								</div>
+								<!-- /.box-body -->
+							</div>
+							<!-- /.box -->
+
+							<div class="box">
+								<div class="box-header">
+									<h3 class="box-title">LISTING API</h3>
+
+								</div>
+								<!-- /.box-header -->
+								<div class="box-body no-padding">
+									<table class="table" id="listing-api">
+										<tr>
+											<th style="width: 10px">#</th>
+											<th>Api path</th>
+											<th style="width: 40px">Max</th>
+											<th style="width: 40px">Min</th>
+											<th style="width: 40px">Count</th>
+											<th style="width: 40px">95%</th>
+											<th style="width: 40px">Average</th>
+										</tr>
+									</table>
+								</div>
+								<!-- /.box-body -->
+							</div>
+
+							<div class="box">
+								<div class="box-header">
+									<h3 class="box-title">CALENDAR API</h3>
+
+								</div>
+								<!-- /.box-header -->
+								<div class="box-body no-padding">
+									<table class="table" id="calendar-api">
+										<tr>
+											<th style="width: 10px">#</th>
+											<th>Api path</th>
+											<th style="width: 40px">Max</th>
+											<th style="width: 40px">Min</th>
+											<th style="width: 40px">Count</th>
+											<th style="width: 40px">95%</th>
+											<th style="width: 40px">Average</th>
+										</tr>
+
+									</table>
+								</div>
+								<!-- /.box-body -->
+							</div>
+
+							<div class="box">
+								<div class="box-header">
+									<h3 class="box-title">COMMUNICATION API</h3>
+
+								</div>
+								<!-- /.box-header -->
+								<div class="box-body no-padding">
+									<table class="table" id="communication-api">
+										<tr>
+											<th style="width: 10px">#</th>
+											<th>Api path</th>
+											<th style="width: 40px">Max</th>
+											<th style="width: 40px">Min</th>
+											<th style="width: 40px">Count</th>
+											<th style="width: 40px">95%</th>
+											<th style="width: 40px">Average</th>
+										</tr>
+
+									</table>
+								</div>
+								<!-- /.box-body -->
+							</div>
+							<!-- /.box -->
+						</div>
+						<!-- /.col -->
+						<div class="col-md-6">
+							<div class="box">
+								<div class="box-header">
+									<h3 class="box-title">DASHBORAD API</h3>
+
+								</div>
+								<!-- /.box-header -->
+								<div class="box-body no-padding">
+									<table class="table" id="dashboard-api">
+										<tr>
+											<th style="width: 10px">#</th>
+											<th>Api path</th>
+											<th style="width: 40px">Max</th>
+											<th style="width: 40px">Min</th>
+											<th style="width: 40px">Count</th>
+											<th style="width: 40px">95%</th>
+											<th style="width: 40px">Average</th>
+										</tr>
+
+									</table>
+								</div>
+								<!-- /.box-body -->
+							</div>
+							<!-- /.box -->
+
+							<div class="box">
+								<div class="box-header">
+									<h3 class="box-title">SEARCH API</h3>
+
+								</div>
+								<!-- /.box-header -->
+								<div class="box-body no-padding">
+									<table class="table" id="search-api">
+										<tr>
+											<th style="width: 10px">#</th>
+											<th>Api path</th>
+											<th style="width: 40px">Max</th>
+											<th style="width: 40px">Min</th>
+											<th style="width: 40px">Count</th>
+											<th style="width: 40px">95%</th>
+											<th style="width: 40px">Average</th>
+										</tr>
+
+									</table>
+								</div>
+								<!-- /.box-body -->
+							</div>
+
+							<div class="box">
+								<div class="box-header">
+									<h3 class="box-title">CHAT API</h3>
+
+								</div>
+								<!-- /.box-header -->
+								<div class="box-body no-padding">
+									<table class="table" id="chat-api">
+										<tr>
+											<th style="width: 10px">#</th>
+											<th>Api path</th>
+											<th style="width: 40px">Max</th>
+											<th style="width: 40px">Min</th>
+											<th style="width: 40px">Count</th>
+											<th style="width: 40px">95%</th>
+											<th style="width: 40px">Average</th>
+										</tr>
+
+									</table>
+								</div>
+								<!-- /.box-body -->
+							</div>
+
+							<div class="box">
+								<div class="box-header">
+									<h3 class="box-title">TRACKING API</h3>
+
+								</div>
+								<!-- /.box-header -->
+								<div class="box-body no-padding">
+									<table class="table" id="tracking-api">
+										<tr>
+											<th style="width: 10px">#</th>
+											<th>Api path</th>
+											<th style="width: 50px">Max</th>
+											<th style="width: 50px">Min</th>
+											<th style="width: 50px">Count</th>
+											<th style="width: 40px">95%</th>
+											<th style="width: 50px">Average</th>
+										</tr>
+
+									</table>
+								</div>
+								<!-- /.box-body -->
+							</div>
+						</div>
+						<!-- /.box -->
+					</div>
+					<!-- /.col -->
+			</div>
+			<!-- /.row -->
+
+			</section>
+			<!-- /.content -->
+		</div>
+		<!-- ./wrapper -->
+
+		<!-- jQuery 2.2.3 -->
+		<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+		<!-- Bootstrap 3.3.6 -->
+		<script src="../bootstrap/js/bootstrap.min.js"></script>
+		<!-- FastClick -->
+		<script src="../plugins/fastclick/fastclick.js"></script>
+		<!-- AdminLTE App -->
+		<script src="../dist/js/app.min.js"></script>
+		<!-- AdminLTE for demo purposes -->
+		<script src="../dist/js/demo.js"></script>
+		<!-- AdminLTE for demo purposes -->
+		<script src="../dist/js/demo.js"></script>
+		<!-- common -->
+		<script src="../common/common.js"></script>
+		<!-- slider -->
+		<script src="../library/jssor.slider-22.2.8.mini.js" type="text/javascript"></script>
+		<!-- Utils.js -->
+		<script src="../library/Utils.js"></script>
+		<!-- sha256 -->
+		<script src="../library/sha256.js"></script>
+		<!-- Map API -->
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7YWs1TvfsYc-HdtNSD3OkCeunJ_ONbgs"></script>
+
+		<script>
+			var jsonRequestTracking;
+			var access_token;
+			var expires_in;
+			var first_name;
+			var user_id;
+			var avatar;
+			$(document).ready(function() {
+				$(".main-sidebar").load("content/main-sidebar.html", function() {
+					if ( typeof (Storage) !== "undefined") {
+						access_token = localStorage.getItem("access_token");
+						expires_in = localStorage.getItem("expires_in");
+						first_name = localStorage.getItem("first_name");
+						user_id = localStorage.getItem("user_id");
+						avatar = localStorage.getItem("avatar");
+
+						if (access_token == null || access_token == "" || expires_in == null || expires_in == "" || user_id == null || user_id == "") {
+							window.location.href = "login.html";
+						} else {
+							$('#username_navbar').html(first_name);
+							$('#username_slidebar').html(first_name);
+							if (avatar != null && avatar != "") {
+								$('.user-image').attr('src', avatar);
+								$('#user-avatar').attr('src', avatar);
+								$('.img-circle').attr('src', avatar);
+							}
+
+							ajaxGetRequestTracking();
+						}
+
+					}
+				});
+			});
+
+			function ajaxGetRequestTracking() {
+				var date = new Date();
+				var timestamp = date.getTime();
+
+				var signature = sha256(access_token + "|" + timestamp + "|" + SECRET_KEY);
+
+				var requestURL = getApiURL + postRequestTracking;
+
+				requestTrackingDTO = {
+					tok : access_token,
+					tmp : timestamp,
+					sig : signature
+				};
+
+				$.ajax({
+					url : requestURL,
+					async : false,
+					method : "POST",
+					dataType : "json",
+					data : JSON.stringify(requestTrackingDTO),
+					crossDomain : true,
+					beforeSend : function(request) {
+						request.setRequestHeader("Authentication", access_token);
+					},
+					success : function(response) {
+						requestTrackingOutDTO = response;
+					},
+					error : function(error) {
+						requestTrackingOutDTO = error;
+					},
+					complete : function() {
+						ajaxRequestTrackingComplete(requestTrackingOutDTO);
+					}
+				});
+
+			}
+
+			function ajaxRequestTrackingComplete(requestTrackingOutDTO) {
+				if (requestTrackingOutDTO.code == 0) {
+					jsonRequestTracking = requestTrackingOutDTO;
+
+					var sttUser = 1;
+					var sttListing = 1;
+					var sttSearch = 1;
+					var sttTracking = 1;
+					var sttCalendar = 1;
+					var sttChat = 1;
+					var sttDashboard = 1;
+					var sttCommunications = 1;
+					var stt;
+					var tableHtml;
+
+					$.each(jsonRequestTracking.data.lst, function(idx, requestTracking) {
+						switch(requestTracking.servletPath) {
+						case '/search':
+							tableHtml = $('#search-api');
+							stt = sttSearch;
+							sttSearch++;
+							break;
+						case '/dashboard':
+							tableHtml = $('#dashboard-api');
+							stt = sttDashboard;
+							sttDashboard++;
+							break;
+						case '/listing':
+							tableHtml = $('#listing-api');
+							stt = sttListing;
+							sttListing++;
+							break;
+						case '/communications':
+							tableHtml = $('#communication-api');
+							stt = sttCommunications;
+							sttCommunications++;
+							break;
+						case '/chat':
+							tableHtml = $('#chat-api');
+							stt = sttChat;
+							sttChat++;
+							break;
+						case '/calendar':
+							tableHtml = $('#calendar-api');
+							stt = sttCalendar;
+							sttCalendar++;
+							break;
+						case '/user':
+							tableHtml = $('#user-api');
+							stt = sttUser;
+							sttUser++;
+							break;
+						case '/tracking':
+							tableHtml = $('#tracking-api');
+							stt = sttTracking;
+							sttTracking++;
+							break;
+						default:
+							tableHtml = $('#user-api');
+							stt = sttUser;
+							sttUser++;
+							break;
+						}
+						tableHtml.append("<tr>" + "<td>" + stt + "</td>" + "<td>" + requestTracking.path + "</td>" + "<td>" + requestTracking.max + "</td>" + "<td>" + requestTracking.min + "</td>" + "<td>" + requestTracking.count + "</td>" + "<td><span class='badge bg-red'>" + requestTracking.v95Percent + "</span></td>" + "<td><span class='badge bg-yellow'>" + requestTracking.average + "</span></td>" + "</tr>");
+					});
+				} else if (requestTrackingOutDTO.code == 408) {
+					logout();
+				}
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>AdminLTE 2 | Invoice</title>
+		<!-- Tell the browser to be responsive to screen width -->
+		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+		<!-- Bootstrap 3.3.6 -->
+		<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+		<!-- Ionicons -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+		<!-- Theme style -->
+		<link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
+		<!-- AdminLTE Skins. Choose a skin from the css/skins
+		folder instead of downloading all of them to reduce the load. -->
+		<link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body class="hold-transition skin-blue sidebar-mini">
+		<div class="wrapper">
+
+			<header class="main-header">
+				<!-- Logo -->
+				<a href="../" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels --> <span class="logo-mini"><b>A</b>LT</span> <!-- logo for regular state and mobile devices --> <span class="logo-lg"><b>Admin</b>LTE</span> </a>
+				<!-- Header Navbar: style can be found in header.less -->
+				<nav class="navbar navbar-static-top">
+					<!-- Sidebar toggle button-->
+					<a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
+
+					<div class="navbar-custom-menu">
+						<ul class="nav navbar-nav">
+							<!-- Messages: style can be found in dropdown.less-->
+							<!-- Notifications: style can be found in dropdown.less -->
+							<!-- Tasks: style can be found in dropdown.less -->
+
+							<!-- User Account: style can be found in dropdown.less -->
+							<li class="dropdown user user-menu">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="../dist/img/avatar.png" class="user-image" alt="User Image"> <span class="hidden-xs" id="username_navbar"></span> </a>
+								<ul class="dropdown-menu">
+									<!-- User image -->
+									<li class="user-header">
+										<img id="user-avatar" src="../dist/img/avatar.png" class="img-circle" alt="User Image">
+										<p id="username_profile">
+											<small>ProNhaDat Admin</small>
+										</p>
+									</li>
+									<!-- Menu Body -->
+									<!-- Menu Footer-->
+									<li class="user-footer">
+										<div class="pull-right" onclick="logout()">
+											<a href="#" class="btn btn-default btn-flat">Sign out</a>
+										</div>
+									</li>
+								</ul>
+							</li>
+							<!-- Control Sidebar Toggle Button -->
+							<li>
+								<a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</header>
+			<!-- Left side column. contains the logo and sidebar -->
+			<aside class="main-sidebar"></aside>
+
+			<!-- Content Wrapper. Contains page content -->
+			<div class="content-wrapper">
+				<!-- Content Header (Page header) -->
+				<section class="content-header">
+					<h1 id="type-detail"> Chi tiết yêu cầu<small id="id-detail"></small></h1>
+					<ol class="breadcrumb">
+						<li>
+							<a href="../"><i class="fa fa-dashboard"></i> Home</a>
+						</li>
+						<li class="active">
+							detail
+						</li>
+					</ol>
+				</section>
+
+				<!-- Main content -->
+				<section class="invoice">
+					<!-- title row -->
+					<div class="row">
+						<div class="col-xs-12">
+							<h2 class="page-header" id="title-detail"><i class="ion ion-ios-search-strong"></i></h2>
+						</div>
+						<!-- /.col -->
+					</div>
+					<!-- info row -->
+					<div class="row invoice-info">
+						<div class="col-sm-12 invoice-col">
+							<strong><i class="fa  fa-map-signs margin-r-5"></i>Hướng</strong>
+							<p id="direct-detail">
+
+							</p>
+							<strong><i class="fa fa-map-marker margin-r-5"></i>Địa chỉ</strong>
+							<p class="text-muted" id="address"></p>
+							<p class="text-muted" id="realty-type">
+								Nhà phố
+							</p>
+						</div>
+						<!-- /.col -->
+					</div>
+					<!-- /.row -->
+
+					<!-- Table row -->
+					<div class="row">
+						<div class="col-xs-12 table-responsive">
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>Giá</th>
+										<th>Diện tích(m<sup>2</sup>)</th>
+										<th>Phòng tắm</th>
+										<th>Phòng ngủ</th>
+										<th>Số tầng</th>
+										<th>Hướng</th>
+										<th>Tình trạng pháp lý</th>
+									</tr>
+								</thead>
+							</table>
+						</div>
+						<!-- /.col -->
+					</div>
+					<!-- /.row -->
+					<!-- map row -->
+					<div class="row">
+						<div class="col-md-12 col-sm-8">
+							<div class="pad">
+								<!-- Map will be created here -->
+								<div id="world-map-markers" style="height: 400px;"></div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<!-- /.content -->
+				<div class="clearfix"></div>
+			</div>
+
+			<!-- Control Sidebar -->
+			<aside class="control-sidebar control-sidebar-dark">
+				<!-- Create the tabs -->
+				<ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+					<li>
+						<a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a>
+					</li>
+					<li>
+						<a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a>
+					</li>
+				</ul>
+				<!-- Tab panes -->
+				<div class="tab-content">
+					<!-- Home tab content -->
+					<div class="tab-pane" id="control-sidebar-home-tab">
+						<h3 class="control-sidebar-heading">Recent Activity</h3>
+						<ul class="control-sidebar-menu">
+							<li>
+								<a href="javascript:void(0)"> <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+								<div class="menu-info">
+									<h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+
+									<p>
+										Will be 23 on April 24th
+									</p>
+								</div> </a>
+							</li>
+							<li>
+								<a href="javascript:void(0)"> <i class="menu-icon fa fa-user bg-yellow"></i>
+								<div class="menu-info">
+									<h4 class="control-sidebar-subheading">Frodo Updated His Profile</h4>
+
+									<p>
+										New phone +1(800)555-1234
+									</p>
+								</div> </a>
+							</li>
+							<li>
+								<a href="javascript:void(0)"> <i class="menu-icon fa fa-envelope-o bg-light-blue"></i>
+								<div class="menu-info">
+									<h4 class="control-sidebar-subheading">Nora Joined Mailing List</h4>
+
+									<p>
+										nora@example.com
+									</p>
+								</div> </a>
+							</li>
+							<li>
+								<a href="javascript:void(0)"> <i class="menu-icon fa fa-file-code-o bg-green"></i>
+								<div class="menu-info">
+									<h4 class="control-sidebar-subheading">Cron Job 254 Executed</h4>
+
+									<p>
+										Execution time 5 seconds
+									</p>
+								</div> </a>
+							</li>
+						</ul>
+						<!-- /.control-sidebar-menu -->
+
+						<h3 class="control-sidebar-heading">Tasks Progress</h3>
+						<ul class="control-sidebar-menu">
+							<li>
+								<a href="javascript:void(0)"> <h4 class="control-sidebar-subheading"> Custom Template Design <span class="label label-danger pull-right">70%</span></h4>
+								<div class="progress progress-xxs">
+									<div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+								</div> </a>
+							</li>
+							<li>
+								<a href="javascript:void(0)"> <h4 class="control-sidebar-subheading"> Update Resume <span class="label label-success pull-right">95%</span></h4>
+								<div class="progress progress-xxs">
+									<div class="progress-bar progress-bar-success" style="width: 95%"></div>
+								</div> </a>
+							</li>
+							<li>
+								<a href="javascript:void(0)"> <h4 class="control-sidebar-subheading"> Laravel Integration <span class="label label-warning pull-right">50%</span></h4>
+								<div class="progress progress-xxs">
+									<div class="progress-bar progress-bar-warning" style="width: 50%"></div>
+								</div> </a>
+							</li>
+							<li>
+								<a href="javascript:void(0)"> <h4 class="control-sidebar-subheading"> Back End Framework <span class="label label-primary pull-right">68%</span></h4>
+								<div class="progress progress-xxs">
+									<div class="progress-bar progress-bar-primary" style="width: 68%"></div>
+								</div> </a>
+							</li>
+						</ul>
+						<!-- /.control-sidebar-menu -->
+
+					</div>
+					<!-- /.tab-pane -->
+					<!-- Stats tab content -->
+					<div class="tab-pane" id="control-sidebar-stats-tab">
+						Stats Tab Content
+					</div>
+					<!-- /.tab-pane -->
+					<!-- Settings tab content -->
+					<div class="tab-pane" id="control-sidebar-settings-tab">
+						<form method="post">
+							<h3 class="control-sidebar-heading">General Settings</h3>
+
+							<div class="form-group">
+								<label class="control-sidebar-subheading"> Report panel usage
+									<input type="checkbox" class="pull-right" checked>
+								</label>
+
+								<p>
+									Some information about this general settings option
+								</p>
+							</div>
+							<!-- /.form-group -->
+
+							<div class="form-group">
+								<label class="control-sidebar-subheading"> Allow mail redirect
+									<input type="checkbox" class="pull-right" checked>
+								</label>
+
+								<p>
+									Other sets of options are available
+								</p>
+							</div>
+							<!-- /.form-group -->
+
+							<div class="form-group">
+								<label class="control-sidebar-subheading"> Expose author name in posts
+									<input type="checkbox" class="pull-right" checked>
+								</label>
+
+								<p>
+									Allow the user to show his name in blog posts
+								</p>
+							</div>
+							<!-- /.form-group -->
+
+							<h3 class="control-sidebar-heading">Chat Settings</h3>
+
+							<div class="form-group">
+								<label class="control-sidebar-subheading"> Show me as online
+									<input type="checkbox" class="pull-right" checked>
+								</label>
+							</div>
+							<!-- /.form-group -->
+
+							<div class="form-group">
+								<label class="control-sidebar-subheading"> Turn off notifications
+									<input type="checkbox" class="pull-right">
+								</label>
+							</div>
+							<!-- /.form-group -->
+
+							<div class="form-group">
+								<label class="control-sidebar-subheading"> Delete chat history <a href="javascript:void(0)" class="text-red pull-right"><i class="fa fa-trash-o"></i></a> </label>
+							</div>
+							<!-- /.form-group -->
+						</form>
+					</div>
+					<!-- /.tab-pane -->
+				</div>
+			</aside>
+			<!-- /.control-sidebar -->
+			<!-- Add the sidebar's background. This div must be placed
+			immediately after the control sidebar -->
+			<div class="control-sidebar-bg"></div>
+		</div>
+		<!-- ./wrapper -->
+		<!-- jQuery 2.2.3 -->
+		<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+		<!-- Bootstrap 3.3.6 -->
+		<script src="../bootstrap/js/bootstrap.min.js"></script>
+		<!-- FastClick -->
+		<script src="../plugins/fastclick/fastclick.js"></script>
+		<!-- AdminLTE App -->
+		<script src="../dist/js/app.min.js"></script>
+		<!-- AdminLTE for demo purposes -->
+		<script src="../dist/js/demo.js"></script>
+		<!-- AdminLTE for demo purposes -->
+		<script src="../dist/js/demo.js"></script>
+		<!-- common -->
+		<script src="../common/common.js"></script>
+		<!-- Utils.js -->
+		<script src="../library/Utils.js"></script>
+		<!-- Map API -->
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7YWs1TvfsYc-HdtNSD3OkCeunJ_ONbgs"></script>
+
+		<script>
+			var access_token;
+			var expires_in;
+			var first_name;
+			var user_id;
+			var avatar;
+
+			$(document).ready(function() {
+				$(".main-sidebar").load("content/main-sidebar.html", function() {
+					if ( typeof (Storage) !== undefined) {
+						access_token = localStorage.getItem("access_token");
+						expires_in = localStorage.getItem("expires_in");
+						first_name = localStorage.getItem("first_name");
+						user_id = localStorage.getItem("user_id");
+						avatar = localStorage.getItem("avatar");
+
+						if (access_token == null || access_token == "" || expires_in == null || expires_in == "" || user_id == null || user_id == "") {
+							window.location.href = "login.html";
+						} else {
+
+							$('#username_navbar').html(first_name);
+							$('#username_slidebar').html(first_name);
+
+							if (avatar != null && avatar != "") {
+								$('.user-image').attr('src', avatar);
+								$('.img-circle').attr('src', avatar);
+							}
+
+							var localObj = JSON.parse(localStorage.getItem("objRequest"));
+							if (localObj != undefined) {
+								$("#id-detail").html("#" + localObj.rid);
+								$("#title-detail").html('&nbsp;' + localObj.tit);
+								$("#address").html(localObj.add);
+								$("#realty-type").html(realtyTypeMap[localObj.typ]);
+
+								if (localObj.dir.length == 0) {
+									localObj.dir[0] = 0;
+								}
+
+								$.each(localObj.dir, function(idx, dir) {
+									$('#direct-detail').append("<span class ='label label-primary'>" + directMap[dir] + "</span>");
+								});
+
+								var price;
+								if (localObj.pri > 0) {
+									if (localObj.mode == TYPE_SELL) {
+										price = localObj.pri + " " + priceUnitMap[localObj.unit];
+									} else {
+										price = localObj.pri + " " + priceUnitMap[localObj.unit] + "/tháng";
+									}
+								} else {
+									price = "thỏa thuận";
+								}
+
+								if (localObj.lat > 0 && localObj.lon > 0) {
+									initMap(localObj.lat, localObj.lon, localObj.rad);
+								}
+
+								$('.table.table-striped').append("<tr>" + "<td><span>" + price + "</span></td>" + "<td><span>" + localObj.are + "</span></td>" + "<td><span>" + localObj.now + "</span></td>" + "<td><span>" + localObj.nob + "</span></td>" + "<td><span>" + localObj.nof + "</span></td>" + "<td><span>" + directMap[localObj.dir] + "</span></td>" + "<td><span>" + legalMap[localObj.cod] + "</span></td>" + "</tr>");
+
+							} else {
+								window.location.href = "../";
+							}
+						}
+
+					}
+				});
+
+			});
+
+			function initMap(lat, lng, radius) {
+				var latLng = new google.maps.LatLng(lat, lng);
+				map = new google.maps.Map(document.getElementById('world-map-markers'), {
+					zoom : 12,
+					center : latLng
+				});
+				var localObj = JSON.parse(localStorage.getItem("objListing"));
+				if (localObj !== undefined)
+					var marker = new google.maps.Marker({
+						position : latLng,
+						map : map
+					});
+				var cityCircle = new google.maps.Circle({
+					strokeColor : '#FF0000',
+					strokeOpacity : 0.8,
+					strokeWeight : 2,
+					fillColor : '#FF0000',
+					fillOpacity : 0.1,
+					map : map,
+					center : latLng,
+					radius : radius
+				});
+
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>AdminLTE 2 | User Profile</title>
+		<!-- Tell the browser to be responsive to screen width -->
+		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+		<!-- Bootstrap 3.3.6 -->
+		<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+		<!-- Ionicons -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+		<!-- Toast -->
+		<link rel="stylesheet" href="../plugins/toast/jquery.toast.css">
+		<!-- Theme style -->
+		<link rel="stylesheet" href="../dist/css/AdminLTE.min.css">
+		<!-- AdminLTE Skins. Choose a skin from the css/skins
+		folder instead of downloading all of them to reduce the load. -->
+		<link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+		<style type="text/css">
+			.img-upload-btn {
+				position: relative;
+				overflow: hidden;
+				padding-top: 95%;
+			}
+
+			.img-upload-btn input[type=file] {
+				position: absolute;
+				top: 0;
+				right: 0;
+				min-width: 100%;
+				min-height: 100%;
+				font-size: 100px;
+				text-align: right;
+				filter: alpha(opacity=0);
+				opacity: 0;
+				outline: none;
+				background: white;
+				cursor: inherit;
+				display: block;
+			}
+
+			.img-upload-btn i {
+				position: absolute;
+				height: 16px;
+				width: 16px;
+				top: 50%;
+				left: 50%;
+				margin-top: -8px;
+				margin-left: -8px;
+			}
+
+			.btn-radio {
+				position: relative;
+				overflow: hidden;
+			}
+
+			.btn-radio input[type=radio] {
+				position: absolute;
+				top: 0;
+				right: 0;
+				min-width: 100%;
+				min-height: 100%;
+				font-size: 100px;
+				text-align: right;
+				filter: alpha(opacity=0);
+				opacity: 0;
+				outline: none;
+				background: white;
+				cursor: inherit;
+				display: block;
+			}
+		</style>
+	</head>
+	<body class="hold-transition skin-blue sidebar-mini">
+		<div class="wrapper">
+
+			<header class="main-header">
+				<!-- Logo -->
+				<a href="../" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels --> <span class="logo-mini"><b>A</b>LT</span> <!-- logo for regular state and mobile devices --> <span class="logo-lg"><b>Admin</b>LTE</span> </a>
+				<!-- Header Navbar: style can be found in header.less -->
+				<nav class="navbar navbar-static-top">
+					<!-- Sidebar toggle button-->
+					<a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
+
+					<div class="navbar-custom-menu">
+						<ul class="nav navbar-nav">
+							<!-- Messages: style can be found in dropdown.less-->
+							<!-- Notifications: style can be found in dropdown.less -->
+							<!-- Tasks: style can be found in dropdown.less -->
+
+							<!-- User Account: style can be found in dropdown.less -->
+							<li class="dropdown user user-menu">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="dist/img/avatar.png" class="user-image" alt="User Image"> <span class="hidden-xs" id="username_navbar"></span> </a>
+								<ul class="dropdown-menu">
+									<!-- User image -->
+									<li class="user-header">
+										<img id="user-avatar" src="dist/img/avatar.png" class="img-circle" alt="User Image">
+										<p id="username_profile">
+											<small>ProNhaDat Admin</small>
+										</p>
+									</li>
+									<!-- Menu Body -->
+									<!-- Menu Footer-->
+									<li class="user-footer">
+										<div class="pull-right" onclick="logout()">
+											<a href="#" class="btn btn-default btn-flat">Sign out</a>
+										</div>
+									</li>
+								</ul>
+							</li>
+							<!-- Control Sidebar Toggle Button -->
+							<li>
+								<a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</header>
+			<!-- Left side column. contains the logo and sidebar -->
+			<aside class="main-sidebar">
+				<!-- sidebar: style can be found in sidebar.less -->
+				<section class="sidebar">
+					<!-- Sidebar user panel -->
+					<div class="user-panel">
+						<div class="pull-left image">
+							<img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+						</div>
+						<div class="pull-left info">
+							<p id="username_slidebar"></p>
+							<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+						</div>
+					</div>
+					<!-- sidebar menu: : style can be found in sidebar.less -->
+					<ul class="sidebar-menu">
+						<li class="header">
+							MAIN NAVIGATION
+						</li>
+						<li class="treeview">
+							<a href="#"> <i class="fa fa-folder"></i> <span>Page Control</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+							<ul class="treeview-menu">
+								<li>
+									<a href="../"><i class="fa fa-circle-o"></i>Dashboard</a>
+								</li>
+								<li>
+									<a href="#"><i class="fa fa-circle-o"></i>Push Notification</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<!-- /.sidebar -->
+			</aside>
+
+			<!-- Content Wrapper. Contains page content -->
+			<div class="content-wrapper">
+				<!-- Content Header (Page header) -->
+				<section class="content-header">
+					<h1> Tạo mới user </h1>
+					<ol class="breadcrumb">
+						<li>
+							<a href="#"><i class="fa fa-dashboard"></i> Home</a>
+						</li>
+						<li class="active">
+							Tạo mới user
+						</li>
+					</ol>
+				</section>
+
+				<!-- Main content -->
+				<section class="content">
+					<div class="row">
+						<div class="col-md-3">
+							<!-- Profile Image -->
+							<div class="box box-primary" style="text-align:center;">
+								<div class="box-body box-profile">
+									<div class="profile-user-img img-responsive img-circle img-picker">
+
+									</div>
+								</div>
+								<a href="#" class="btn btn-primary btn-block"><b>Đăng avatar</b></a>
+								<!-- /.box-body -->
+							</div>
+						</div>
+						<!-- /.col -->
+						<div class="col-md-9">
+							<form class="form-horizontal">
+								<div class="form-group">
+									<label for="inputName" class="col-sm-2 control-label">Tên</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" id="inputName" placeholder="Tên">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputPhone" class="col-sm-2 control-label">Số điện thoại</label>
+
+									<div class="col-sm-10">
+										<input type="tel" class="form-control" id="inputPhone" placeholder="Số điện thoại">
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="col-sm-offset-2 col-sm-10">
+										<input type="button" onclick="ajaxCreateUser()" value = "Tạo mới" class="btn bg-orange">
+										</input>
+									</div>
+								</div>
+							</form>
+							<!-- /.nav-tabs-custom -->
+						</div>
+						<!-- /.col -->
+					</div>
+					<!-- /.row -->
+				</section>
+				<!-- /.content -->
+			</div>
+			<!-- /.content-wrapper -->
+			<footer class="main-footer">
+				<div class="pull-right hidden-xs">
+					<b>Version</b> 1.0
+				</div>
+				<strong>Copyright &copy; 2017 <a href="http://tera.com">GoNhaDat</a>.</strong> All rights
+				reserved.
+			</footer>
+			<!-- /.control-sidebar -->
+			<!-- Add the sidebar's background. This div must be placed
+			immediately after the control sidebar -->
+			<div class="control-sidebar-bg"></div>
+		</div>
+		<!-- ./wrapper -->
+
+		<!-- jQuery 2.2.3 -->
+		<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+		<!-- Bootstrap 3.3.6 -->
+		<script src="../bootstrap/js/bootstrap.min.js"></script>
+		<!-- FastClick -->
+		<script src="../plugins/fastclick/fastclick.js"></script>
+		<!-- utils.js -->
+		<script src="../library/utils.js"></script>
+		<!-- sha256 -->
+		<script src="../library/sha256.js"></script>
+		<!-- common.js -->
+		<script src="../common/common.js"></script>
+		<!-- message.js -->
+		<script src="../common/message.js"></script>
+		<!-- toast -->
+		<script src="../plugins/toast/jquery.toast.js"></script>
+		<!-- AdminLTE App -->
+		<script src="../dist/js/app.min.js"></script>
+		<!-- AdminLTE for demo purposes -->
+		<script src="../dist/js/demo.js"></script>
+		<script type="text/javascript">
+			( function($) {
+
+					$.fn.imagePicker = function(options) {
+
+						// Define plugin options
+						var settings = $.extend({
+							// Input name attribute
+							name : "",
+							// Icon which displays in center of input
+							icon : "glyphicon glyphicon-plus"
+						}, options);
+
+						// Create an input inside each matched element
+						return this.each(function() {
+							$(this).html(create_btn(this, settings));
+						});
+
+					};
+
+					// Private function for creating the input element
+					function create_btn(that, settings) {
+						// The input icon element
+						var picker_btn_icon = $('<i class="' + settings.icon + '"></i>');
+
+						// The actual file input which stays hidden
+						var picker_btn_input = $('<input type="file" name="' + settings.name + '" />');
+
+						// The actual element displayed
+						var picker_btn = $('<div class="' + settings.class + ' img-upload-btn"></div>').append(picker_btn_icon).append(picker_btn_input);
+
+						// File load listener
+						picker_btn_input.change(function() {
+							if ($(this).prop('files')[0]) {
+								// Use FileReader to get file
+								var reader = new FileReader();
+
+								// Create a preview once image has loaded
+								reader.onload = function(e) {
+									var preview = create_preview(that, e.target.result, settings);
+									$(that).html(preview);
+								};
+								// Load image
+								reader.readAsDataURL(picker_btn_input.prop('files')[0]);
+							}
+						});
+
+						return picker_btn
+					};
+
+					// Private function for creating a preview element
+					function create_preview(that, src, settings) {
+
+						// The preview image
+						var picker_preview_image = $('<img src="' + src + '" class="img-responsive img-circle" />');
+
+						// The remove image button
+						var picker_preview_remove = $('<button class="btn btn-link"><small>Hủy</small></button>');
+
+						// The preview element
+						var picker_preview = $('<div class="text-center"></div>').append(picker_preview_image);
+						$(".box-body").append(picker_preview_remove);
+
+						// Remove image listener
+						picker_preview_remove.click(function() {
+							var btn = create_btn(that, settings);
+							$(that).html(btn);
+							$(".btn-link").remove();
+						});
+
+						return picker_preview;
+					};
+
+				}(jQuery));
+
+			var access_token;
+			var first_name;
+			var user_id;
+			var avatar;
+			var globalContact;
+			$(document).ready(function() {
+				$('.img-picker').imagePicker({
+					name : 'images'
+				});
+
+				if ( typeof (Storage) !== undefined) {
+					access_token = localStorage.getItem("access_token");
+					first_name = localStorage.getItem("first_name");
+					user_id = localStorage.getItem("user_id");
+					avatar = localStorage.getItem("avatar");
+				}
+
+				if (access_token == null || access_token == "" || user_id == null || user_id == "") {
+					window.location.href = "login.html";
+				} else {
+
+					globalContact = JSON.parse(localStorage.getItem(PRE_GLOBAL_CONTACT));
+
+					if (globalContact == undefined || globalContact == null) {
+						globalContact = {};
+					}
+					$('#username_slidebar').html(first_name);
+					$('#username_navbar').html(first_name);
+					if (avatar != null && avatar != "") {
+						$('.user-image').attr('src', avatar);
+						$('.img-circle').attr('src', avatar);
+					}
+				}
+
+			});
+
+			function ajaxCreateUser() {
+				var firstName = document.getElementById('inputName').value;
+				var numberPhone = document.getElementById('inputPhone').value;
+				var formatPhone = formatNumberPhone(numberPhone);
+				if (isValidatePhone(formatPhone) == null) {
+					$.toast({
+						heading : 'Error',
+						text : e_incorrect_phone,
+						showHideTransition : 'plain',
+						icon : 'error'
+					});
+					return;
+
+				}
+
+				if (firstName == undefined || $.trim(firstName) == "") {
+					firstName = formatPhone;
+				}
+
+				var timestamp = new Date().getTime();
+				var signature = sha256(access_token + "|" + formatPhone + "|" + timestamp + "|" + SECRET_KEY);
+
+				var requestURL = getApiURL + postCreateUser;
+
+				var createUserDTO = {
+					tok : access_token,
+					fin : firstName,
+					mob : formatPhone,
+					tmp : timestamp,
+					sig : signature,
+				};
+
+				$.ajax({
+					url : requestURL,
+					async : false,
+					method : "POST",
+					data : JSON.stringify(createUserDTO),
+					crossDomain : true,
+					beforeSend : function(request) {
+						request.setRequestHeader("Authentication", access_token);
+						request.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+					},
+					success : function(response) {
+						createUserOutDTO = JSON.parse(response);
+					},
+					error : function(error) {
+						createUserOutDTO = error;
+					},
+					complete : function() {
+						if (createUserOutDTO.code == R_SUCCESS) {
+							$.toast({
+								heading : 'Success',
+								text : s_create_user,
+								showHideTransition : 'plain',
+								icon : 'success'
+							});
+
+							var account = createUserOutDTO.data;
+							globalContact[account.uid] = account;
+							localStorage.setItem(PRE_GLOBAL_CONTACT, JSON.stringify(globalContact));
+							window.history.back();
+						} else if (createUserOutDTO.code == R_EXISTED) {
+							$.toast({
+								heading : 'Error',
+								text : s_create_user_existed,
+								showHideTransition : 'plain',
+								icon : 'error'
+							});
+						} else if (createUserOutDTO.code == R_EXPIRED) {
+							logout();
+						} else {
+							$.toast({
+								heading : 'Error',
+								text : createUserOutDTO.msg,
+								showHideTransition : 'plain',
+								icon : 'error'
+							});
+						}
+					}
+				});
+
+			}
+		</script>
+	</body>
+</html>

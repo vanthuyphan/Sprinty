@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>AdminLTE 2 | General Form Elements</title>
+		<!-- Tell the browser to be responsive to screen width -->
+		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+		<!-- Bootstrap 3.3.6 -->
+		<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+		<!-- Select2 -->
+		<link rel="stylesheet" href="../plugins/select2/select2.min.css">
+		<!-- Bootstrap-touchspin -->
+		<link href="../bootstrap/css/jquery.bootstrap-touchspin.css" rel="stylesheet" type="text/css" media="all">
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+		<!-- Ionicons -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+		<!-- Theme style -->
+		<link rel="stylesheet" href="../dist/css/AdminLTE.css">
+		<!-- AdminLTE Skins. Choose a skin from the css/skins
+		folder instead of downloading all of them to reduce the load. -->
+		<link rel="stylesheet" href="../dist/css/skins/_all-skins.min.css">
+		<link href="//cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.css" rel="stylesheet" type="text/css" media="all">
+		<!-- Toast -->
+		<link rel="stylesheet" href="../plugins/toast/jquery.toast.css">
+		<!-- NProgress -->
+		<link rel="stylesheet" href="../plugins/nprogress/nprogress.css">
+		<!-- Dropzone.js -->
+		<link rel="stylesheet" href="../plugins/dropzone/dist/min/dropzone.min.css">
+
+		<link href="demo.css" rel="stylesheet" type="text/css" media="all">
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body class="hold-transition skin-blue sidebar-mini">
+		<div class="wrapper">
+			<header class="main-header">
+				<!-- Logo -->
+				<a href="../../index.html" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels --> <span class="logo-mini"><b>A</b>LT</span> <!-- logo for regular state and mobile devices --> <span class="logo-lg"><b>Admin</b>LTE</span> </a>
+				<!-- Header Navbar: style can be found in header.less -->
+				<nav class="navbar navbar-static-top">
+					<!-- Sidebar toggle button-->
+					<a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </a>
+
+					<div class="navbar-custom-menu">
+						<ul class="nav navbar-nav">
+							<!-- Messages: style can be found in dropdown.less-->
+							<!-- Notifications: style can be found in dropdown.less -->
+							<!-- Tasks: style can be found in dropdown.less -->
+
+							<!-- User Account: style can be found in dropdown.less -->
+							<li class="dropdown user user-menu">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown"> <img src="dist/img/avatar.png" class="user-image" alt="User Image"> <span class="hidden-xs" id="username_navbar"></span> </a>
+								<ul class="dropdown-menu">
+									<!-- User image -->
+									<li class="user-header">
+										<img src="dist/img/avatar.png" class="img-circle" alt="User Image">
+										<p id="username_profile">
+											<small>ProNhaDat Admin</small>
+										</p>
+									</li>
+									<!-- Menu Body -->
+									<!-- Menu Footer-->
+									<li class="user-footer">
+										<div class="pull-right">
+											<div class="pull-right" onclick="logout()">
+												<a href="#" class="btn btn-default btn-flat">Sign out</a>
+											</div>
+										</div>
+									</li>
+								</ul>
+							</li>
+							<!-- Control Sidebar Toggle Button -->
+							<li>
+								<a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+							</li>
+						</ul>
+				</nav>
+			</header>
+			<!-- Left side column. contains the logo and sidebar -->
+			<aside class="main-sidebar"></aside>
+			<!-- Content Wrapper. Contains page content -->
+			<div class="content-wrapper">
+				<!-- Content Header (Page header) -->
+				<section class="content-header">
+					<h1>Tạo tin đăng cho user <small>Preview</small></h1>
+					<ol class="breadcrumb">
+						<li>
+							<a href="../"><i class="fa fa-dashboard"></i> Home</a>
+						</li>
+						<li class="active">
+							Tạo tin đăng cho user
+						</li>
+					</ol>
+				</section>
+
+				<!-- Main content -->
+				<section class="content">
+					<div class="row">
+						<!-- right column -->
+						<div class="col-md-12">
+							<!-- general form elements disabled -->
+							<div class="box box-warning">
+								<div class="box-header with-border">
+									<div class="col-md-12">
+										<table class="table table-bordered text-center" style="margin-top: 5px;">
+											<tr>
+												<th>
+												<button type="button" value = 1 onclick="changeMode(this.value)" id = "mode-sell" class="btn bg-orange btn-flat margin" style="width: 50%;">
+													BÁN
+												</button></th>
+
+												<th>
+												<button type="button" value = 2 onclick="changeMode(this.value)"  id = "mode-lease" class="btn bg-orange btn-flat margin bg-not-active" style="width: 50%;">
+													CHO THUÊ
+												</button></th>
+											</tr>
+										</table>
+									</div>
+								</div>
+								<!-- /.box-header -->
+								<div class="box-body">
+									<form class="form-horizontal">
+										<div class="box-body">
+											<div class="form-group" id="inputUser">
+												<label class="col-sm-2 control-label">Môi giới</label>
+												<div class="col-sm-4">
+													<select id = "author-member-user" class="js-example-templating" style="width: 100%;"></select>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="inputTitle" class="col-sm-2 control-label">Tiêu đề</label>
+												<div class="col-sm-10">
+													<input type="title" class="form-control" id="inputTitle" placeholder="Tiêu đề">
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="typeBĐS" class="col-sm-2 control-label">Loại BĐS</label>
+												<div class="col-sm-3">
+													<select class="form-control" id="typeBĐS"></select>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="inputAddress" class="col-sm-2 control-label">Địa chỉ</label>
+												<div class="col-sm-10">
+													<input type="text" class="form-control" id="inputAddress" placeholder="Xin vui lòng chọn địa chỉ">
+													<div id="map" style="height: 500px;"></div>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="inputAre" class="col-sm-2 control-label">Diện tích</label>
+												<div class="col-sm-3">
+													<input type="number" class="form-control" id="inputAre" step="0.1" placeholder="Bất kì">
+												</div>
+												<div class="col-sm-3">
+													<label class="control-label">m<sup>2</sup></label>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="inputPrice" class="col-sm-2 control-label">Giá</label>
+												<div class="col-sm-3">
+													<input type="number" class="form-control" id="inputPrice" step="0.01" placeholder="0.00">
+												</div>
+												<div class="col-sm-3">
+													<select class="form-control" id="inputPriceUnit"></select>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="inputBedroom" class="col-sm-2 control-label">Phòng Ngủ</label>
+												<div class="col-sm-2">
+													<input id="inputBedroom"
+													type="text"
+													value="0"
+													name="inputBedroom"
+													data-bts-min="0"
+													data-bts-max="100"
+													data-bts-init-val=""
+													data-bts-step="1"
+													data-bts-decimal="0"
+													data-bts-step-interval="100"
+													data-bts-force-step-divisibility="round"
+													data-bts-step-interval-delay="500"
+													data-bts-prefix=""
+													data-bts-postfix=""
+													data-bts-prefix-extra-class=""
+													data-bts-postfix-extra-class=""
+													data-bts-booster="true"
+													data-bts-boostat="10"
+													data-bts-max-boosted-step="false"
+													data-bts-mousewheel="true"
+													data-bts-button-down-class="btn btn-default"
+													data-bts-button-up-class="btn btn-default"
+													/>
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="inputBadroom" class="col-sm-2 control-label">Phòng Tắm</label>
+												<div class="col-sm-2">
+													<input id="inputBadroom"
+													type="text"
+													value="0"
+													name="inputBadroom"
+													data-bts-min="0"
+													data-bts-max="100"
+													data-bts-init-val=""
+													data-bts-step="1"
+													data-bts-decimal="0"
+													data-bts-step-interval="100"
+													data-bts-force-step-divisibility="round"
+													data-bts-step-interval-delay="500"
+													data-bts-prefix=""
+													data-bts-postfix=""
+													data-bts-prefix-extra-class=""
+													data-bts-postfix-extra-class=""
+													data-bts-booster="true"
+													data-bts-boostat="10"
+													data-bts-max-boosted-step="false"
+													data-bts-mousewheel="true"
+													data-bts-button-down-class="btn btn-default"
+													data-bts-button-up-class="btn btn-default"
+													/>
+												</div>
+											</div>
+											<div class="form-group" id="group-floor">
+												<label for="inputFloor" class="col-sm-2 control-label">Số tầng</label>
+												<div class="col-sm-2">
+													<input id="inputFloor"
+													type="text"
+													value="0"
+													name="inputFloor"
+													data-bts-min="0"
+													data-bts-max="100"
+													data-bts-init-val=""
+													data-bts-step="1"
+													data-bts-decimal="0"
+													data-bts-step-interval="100"
+													data-bts-force-step-divisibility="round"
+													data-bts-step-interval-delay="500"
+													data-bts-prefix=""
+													data-bts-postfix=""
+													data-bts-prefix-extra-class=""
+													data-bts-postfix-extra-class=""
+													data-bts-booster="true"
+													data-bts-boostat="10"
+													data-bts-max-boosted-step="false"
+													data-bts-mousewheel="true"
+													data-bts-button-down-class="btn btn-default"
+													data-bts-button-up-class="btn btn-default"
+													/>
+												</div>
+											</div>
+
+											<div class="form-group">
+												<label for="inputDirect" class="col-sm-2 control-label">Hướng</label>
+												<div class="col-sm-3">
+													<select class="form-control" id="inputDirect"></select>
+												</div>
+											</div>
+
+											<div class="form-group">
+												<label for="inputLegal" class="col-sm-2 control-label">Pháp Lý</label>
+												<div class="col-sm-3">
+													<select class="form-control" id="inputLegal"></select>
+												</div>
+											</div>
+
+											<div class="form-group">
+												<label for="feature" class="col-sm-2 control-label">Tiện nghi</label>
+												<div class="col-sm-10">
+													<select id="feature" class="form-control select2" multiple="multiple" data-placeholder="Chọn tiện nghi" style="width: 100%;"></select>
+												</div>
+											</div>
+											<div class="form-group">
+												<label  for="facility" class="col-sm-2 control-label">Tiện ích</label>
+												<div class="col-sm-10">
+													<select id="facility" class="form-control select2" multiple="multiple" data-placeholder="Chọn tiện ích" style="width: 100%;"></select>
+												</div>
+											</div>
+											<!-- textarea -->
+											<div class="form-group">
+												<label for="note" class="col-sm-2 control-label"> Mô tả</label>
+												<div class="col-sm-10">
+													<textarea class="form-control" id="inputDescription" rows="3" placeholder="Nhập mô tả ..."></textarea>
+												</div>
+											</div>
+
+											<div class="form-group">
+												<label for="inputPrivateNote" class="col-sm-2 control-label"> Ghi chú</label>
+												<div class="col-sm-10 has-success">
+													<label class="control-label" for="inputPrivateNote"><sup>(Nội dung chỉ có user mới được quyền xem)</sup></label>
+													<input type="text" class="form-control" id="inputPrivateNote" placeholder="Nhập ghi chú ...">
+												</div>
+											</div>
+
+											<div class="form-group">
+												<label for="inputPrivacy" class="col-sm-2 control-label">Quyền xem</label>
+												<div class="col-sm-3">
+													<select class="form-control" id="inputPrivacy"></select>
+												</div>
+											</div>
+										</div>
+										<!-- /.box-body -->
+										<div class="box-footer">
+											<button  class="btn btn-default">
+												Hủy
+											</button>
+											<button onclick='ajaxListingAction()' class="btn btn-info pull-right">
+												Xong
+											</button>
+										</div>
+										<!-- /.box-footer -->
+									</form>
+
+								</div>
+							</div>
+							<!-- /.box -->
+						</div>
+						<!--/.col (right) -->
+					</div>
+					<!-- /.row -->
+				</section>
+				<!-- /.content -->
+			</div>
+			<!-- /.content-wrapper -->
+			<footer class="main-footer">
+				<div class="pull-right hidden-xs">
+					<b>Version</b> 2.3.8
+				</div>
+				<strong>Copyright &copy; 2014-2016 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
+				reserved.
+			</footer>
+
+			<!-- Add the sidebar's background. This div must be placed
+			immediately after the control sidebar -->
+			<div class="control-sidebar-bg"></div>
+		</div>
+		<!-- ./wrapper -->
+
+		<!-- jQuery 2.2.3 -->
+		<script src="../plugins/jQuery/jquery-2.2.3.min.js"></script>
+		<!-- Bootstrap 3.3.6 -->
+		<script src="../bootstrap/js/bootstrap.min.js"></script>
+		<!-- Select2 -->
+		<script src="../plugins/select2/select2.full.min.js"></script>
+		<!-- FastClick -->
+		<script src="../plugins/fastclick/fastclick.js"></script>
+		<!-- toast -->
+		<script src="../plugins/toast/jquery.toast.js"></script>
+		<!-- AdminLTE App -->
+		<script src="../dist/js/app.min.js"></script>
+		<!-- AdminLTE for demo purposes -->
+		<script src="../dist/js/demo.js"></script>
+		<!-- common -->
+		<script src="../common/common.js"></script>
+		<!-- message -->
+		<script src="../common/message.js"></script>
+		<!-- Utils.js -->
+		<script src="../library/utils.js"></script>
+		<!-- sha256 -->
+		<script src="../library/sha256.js"></script>
+		<!-- prettify -->
+		<script src="//cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script>
+		<!-- touchspin -->
+		<script src="../bootstrap/js/jquery.bootstrap-touchspin.js"></script>
+		<!-- NProgress -->
+		<script src="../plugins/nprogress/nprogress.js"></script>
+		<!-- Dropzone.js -->
+		<script src="../plugins/dropzone/dist/min/dropzone.min.js"></script>
+
+		<script>
+			var access_token;
+			var first_name;
+			var user_id;
+			var avatar;
+			var listingDTO = new Object();
+			var globalContact;
+			var uid;
+
+			//add default sell
+			listingDTO.mode = TYPE_SELL;
+			$(document).ready(function() {
+				$(".main-sidebar").load("content/main-sidebar.html", function() {
+					if ( typeof (Storage) !== undefined) {
+						access_token = localStorage.getItem("access_token");
+						first_name = localStorage.getItem("first_name");
+						user_id = localStorage.getItem("user_id");
+						avatar = localStorage.getItem("avatar");
+					}
+
+					if (access_token == null || access_token == "" || user_id == null || user_id == "") {
+						window.location.href = "login.html";
+					} else {
+						listingDTO.tok = access_token;
+						globalContact = JSON.parse(localStorage.getItem(PRE_GLOBAL_CONTACT));
+						$('#username_slidebar').html(first_name);
+						$('#username_navbar').html(first_name);
+						if (avatar != null && avatar != "") {
+							$('.user-image').attr('src', avatar);
+							$('.img-circle').attr('src', avatar);
+						}
+					}
+				});
+				$("input[name='inputBedroom']").TouchSpin({
+				});
+				$("input[name='inputBadroom']").TouchSpin({
+				});
+				$("input[name='inputFloor']").TouchSpin({
+				});
+
+				function addUserPic(opt) {
+					if (!opt.id) {
+						return opt.text;
+					}
+					var optimage = $(opt.element).data('image');
+					if (!optimage) {
+						return opt.text;
+					} else {
+						var $opt = $('<ul class="contacts-list-item">' + '<li><a href="#"> <img class="contacts-list-img-item" src="' + optimage + '" alt="Contact Avatar">' + '<div class="contacts-list-info">' + '<span class="contacts-list-name"> ' + $(opt.element).text() + ' </span>' + '<span class="contacts-list-phone"> ' + $(opt.element).attr("id") + '</span>' + '</div>' + '</a></li>' + '</ul>');
+						return $opt;
+					}
+				};
+
+				function chooseUserPic(opt) {
+					if (!opt.id) {
+						return opt.text;
+					}
+					var optimage = $(opt.element).data('image');
+					if (!optimage) {
+						return opt.text;
+					} else {
+						var $opt = $('<ul class="contacts-list-item">' + '<li><a href="#"> <img class="contacts-list-img-item" src="' + optimage + '" alt="Contact Avatar">' + '<div class="contacts-list-info">' + '<span class="contacts-list-name"> ' + $(opt.element).text() + ' </span>');
+					}
+					return $opt;
+				};
+
+				//Initialize Select2 Elements
+				$(".select2").select2();
+
+				$("#author-member-user").select2({
+					templateResult : addUserPic,
+					tags : true,
+					tokenSeparators : [",", " "],
+					matcher : function(params, data) {
+						// If there are no search terms, return all of the data
+						if ($.trim(params.term) === '') {
+							return data;
+						}
+						// `params.term` should be the term that is used for searching
+						keywords = params.term;
+						// `data.text` is the text that is displayed for the data object
+						// check if data.text contains all of keywords, if some is missing, return null
+						if (keywords == "" || data.text.toUpperCase().indexOf(keywords.toUpperCase()) >= 0 || data.element.id.toUpperCase().indexOf(keywords.toUpperCase()) >= 0) {
+							exist = true;
+							return data;
+						}
+						return null;
+					}
+				}).on("change", function(e) {
+					if ($(".select2-results").children().children().length == 1) {
+						var isNew = $(this).find('[data-select2-tag="true"]');
+						if (isNew.length) {
+							ajaxGetContactInfoByMobile(isNew.val(), isNew, callbackGetInfoContact);
+						} else {
+							isNew.remove();
+						}
+					}
+				});
+
+				$.each(realtyTypeMap, function(idx, type) {
+					$('#typeBĐS').append("<option id= '" + realtyTypeMapId[idx] + "' >" + type + "</option>");
+				});
+
+				$.each(directMap, function(idx, direct) {
+					$('#inputDirect').append("<option id= '" + idx + "' >" + direct + "</option>");
+				});
+
+				$.each(priceMode1, function(idx, price) {
+					$('#inputPriceUnit').append("<option id= '" + idx + "' >" + price + "</option>");
+				});
+
+				$.each(legalMap, function(idx, legal) {
+					$('#inputLegal').append("<option id= '" + idx + "' >" + legal + "</option>");
+				});
+
+				$.each(facilityMap, function(idx, fac) {
+					$('#facility').append("<option id= '" + idx + "' >" + fac + "</option>");
+				});
+
+				$.each(featureMap, function(idx, fea) {
+					$('#feature').append("<option id= '" + idx + "' >" + fea + "</option>");
+				});
+
+				$.each(privacyMap, function(idx, privacy) {
+					$('#inputPrivacy').append("<option id= '" + idx + "' >" + privacy + "</option>");
+				});
+
+				//get parameter in url
+				uid = getAllUrlParams().uid;
+				var chatId = getAllUrlParams().chatId;
+				// true
+				if (uid != undefined && uid != "") {
+					$('#inputUser').hide();
+					listingDTO.uid = uid;
+				} else {
+					$('#inputUser').show();
+					var existConversation = false;
+					if (chatId != undefined && chatId != "") {
+						var conversationDTO;
+						var conversationObject = localStorage.getItem(PRE_KEY_CHAT + chatId);
+						if (conversationObject != undefined) {
+							conversationDTO = JSON.parse(conversationObject);
+							if (conversationDTO != undefined) {
+								$.each(conversationDTO.memberList, function(index, fui) {
+									var contact = globalContact[fui];
+									if (contact != undefined) {
+										existConversation = true;
+										if (contact.ava == "" || contact.ava == undefined) {
+											contact.ava = DEFAULT_AVATAR;
+										}
+										$('#author-member-user').append('<option data-image=' + contact.ava + ' value=' + PRE_CONTACT_ALL + contact.uid + ' id=' + contact.mob + '>' + contact.fin + '</option>');
+									}
+								});
+							}
+						}
+					}
+					if (!existConversation) {
+						$.each(globalContact, function(key, contact) {
+							if (contact.ava == "" || contact.ava == undefined) {
+								contact.ava = DEFAULT_AVATAR;
+							}
+							$('#author-member-user').append('<option data-image=' + contact.ava + ' value=' + PRE_CONTACT_ALL + contact.uid + ' id=' + contact.mob + '>' + contact.fin + '</option>');
+						});
+					}
+
+				}
+				//add access token
+				listingDTO.tok = access_token;
+
+			});
+
+			function initAutocomplete() {
+				var map = new google.maps.Map(document.getElementById('map'), {
+					center : HEAD_CENTER,
+					zoom : 13,
+					mapTypeId : 'roadmap',
+					disableDefaultUI : true,
+					zoomControl : true,
+					scaleControl : true,
+					streetViewControl : true,
+				});
+
+				// Create the search box and link it to the UI element.
+				var input = document.getElementById('inputAddress');
+				var searchBox = new google.maps.places.SearchBox(input);
+				map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+				// Bias the SearchBox results towards current map's viewport.
+				map.addListener('bounds_changed', function() {
+					searchBox.setBounds(map.getBounds());
+				});
+
+				var markers = [];
+				// Listen for the event fired when the user selects a prediction and retrieve
+				// more details for that place.
+				searchBox.addListener('places_changed', function() {
+					var places = searchBox.getPlaces();
+
+					if (places.length == 0) {
+						return;
+					}
+
+					// Clear out the old markers.
+					markers.forEach(function(marker) {
+						marker.setMap(null);
+					});
+					markers = [];
+
+					// For each place, get the icon, name and location.
+					var bounds = new google.maps.LatLngBounds();
+					places.forEach(function(place) {
+						if (!place.geometry) {
+							console.log("Returned place contains no geometry");
+							return;
+						}
+
+						listingDTO.lat = place.geometry.location.lat();
+						listingDTO.lon = place.geometry.location.lng();
+
+						var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+
+						var icon = {
+							url : '../images/ic_maker.png',
+							size : new google.maps.Size(80, 80),
+							origin : new google.maps.Point(0, 0),
+							anchor : new google.maps.Point(17, 34),
+							scaledSize : new google.maps.Size(30, 30)
+						};
+
+						// Create a marker for each place.
+						var marker = new google.maps.Marker({
+							map : map,
+							icon : icon,
+							title : place.name,
+							draggable : true,
+							position : place.geometry.location
+						});
+						markers.push(marker);
+
+						google.maps.event.addListener(marker, 'dragend', function(evt) {
+							listingDTO.lat = evt.latLng.lat();
+							listingDTO.lon = evt.latLng.lon();
+							//alert('Marker dropped: Current Lat: ' + evt.latLng.lat().toFixed(3) + ' Current Lng: ' + evt.latLng.lng().toFixed(3));
+						});
+
+						if (place.geometry.viewport) {
+							// Only geocodes have viewport.
+							bounds.union(place.geometry.viewport);
+						} else {
+							bounds.extend(place.geometry.location);
+						}
+					});
+					map.fitBounds(bounds);
+				});
+			}
+
+			function callbackGetInfoContact(isNew, contact) {
+				globalContact[contact.uid] = contact;
+				localStorage.setItem(PRE_GLOBAL_CONTACT, JSON.stringify(globalContact));
+				if (contact != undefined) {
+					if (contact.ava == "" || contact.ava == undefined) {
+						contact.ava = DEFAULT_AVATAR;
+					}
+					//$('#select-all-user').append('<option data-image=' + contact.ava + ' value=' + PRE_CONTACT_ALL + contact.uid + ' id=' + contact.mob + '>' + contact.fin + '</option>');
+					isNew.replaceWith('<option data-image=' + contact.ava + ' value=' + PRE_CONTACT_ALL + contact.uid + ' id=' + contact.mob + '>' + contact.fin + '</option>');
+
+					/*
+					 $('.select2-selection__choice:last').remove();
+					 $('.select2-search__field').val(isNew.val()).focus();*/
+
+				}
+			}
+
+			function changeMode(mode) {
+				listingDTO.mode = mode;
+				if (mode == 1) {//Bán
+
+					$('#inputPriceUnit').empty();
+					$.each(priceMode1, function(idx, price) {
+						$('#inputPriceUnit').append("<option id= '" + idx + "' >" + price + "</option>");
+					});
+
+					//xóa class bg-not-active để active button
+					$('#mode-sell').removeClass("bg-not-active");
+					//thêm class bg-not-active để inactive button
+					$('#mode-lease').addClass("bg-not-active");
+					$('#inputPriceUnit').empty();
+					//$('#group-floor').show();
+
+				} else {//Cho thuê
+					$('#inputPriceUnit').empty();
+					$.each(priceMode2, function(idx, price) {
+						$('#inputPriceUnit').append("<option id= '" + idx + "' >" + price + "</option>");
+					});
+					//thêm class bg-not-active để inactive button
+					$('#mode-sell').addClass("bg-not-active");
+					//xóa class bg-not-active để active button
+					$('#mode-lease').removeClass("bg-not-active");
+					//$('#group-floor').hide();
+				}
+			}
+
+			function ajaxListingAction() {
+				if (uid == undefined || uid == "") {
+					if ($('#author-member-user').select2('data').length == 0) {
+						$.toast({
+							heading : 'Error',
+							text : e_not_select_user,
+							showHideTransition : 'plain',
+							icon : 'error'
+						});
+						return;
+					}
+
+					var author = $('#author-member-user').select2('data')[0].id.substring(PRE_CONTACT_ALL.length);
+					listingDTO.uid = author;
+				}
+
+				var title = document.getElementById('inputTitle').value;
+				listingDTO.tit = title;
+				var type = $('#typeBĐS').find(":selected").attr("id");
+				listingDTO.typ = parseInt(type);
+				var direct = $('#inputDirect').find(":selected").attr("id");
+				listingDTO.dir = parseInt(direct);
+				var area = document.getElementById('inputAre').value;
+				listingDTO.are = parseInt(area);
+				var price = document.getElementById('inputPrice').value;
+				listingDTO.pri = parseFloat(price);
+				var priceUnit = $('#inputPriceUnit').find(":selected").attr("id");
+				listingDTO.unit = parseInt(priceUnit);
+				var nob = document.getElementById('inputBedroom').value;
+				listingDTO.nob = parseInt(nob);
+				var now = document.getElementById('inputBadroom').value;
+				listingDTO.now = parseInt(now);
+				var nof = document.getElementById('inputFloor').value;
+				listingDTO.nof = parseInt(nof);
+				var legal = $('#inputLegal').find(":selected").attr("id");
+				listingDTO.leg = parseInt(legal);
+
+				var arrayFeauture = new Array();
+				$.each($("#feature").select2('data'), function(idx, feaMap) {
+					arrayFeauture[idx] = parseInt(feaMap.element.id);
+				});
+				listingDTO.fea = arrayFeauture;
+
+				var arrayFacility = new Array();
+				$.each($("#facility").select2('data'), function(idx, facMap) {
+					arrayFacility[idx] = parseInt(facMap.element.id);
+				});
+				listingDTO.fac = arrayFacility;
+
+				var description = document.getElementById('inputDescription').value;
+				listingDTO.des = description;
+
+				var privateNote = document.getElementById('inputPrivateNote').value;
+				listingDTO.not = privateNote;
+
+				var address = document.getElementById('inputAddress').value;
+				listingDTO.add = address;
+
+				var privacy = $('#inputPrivacy').find(":selected").attr("id");
+				listingDTO.acc = parseInt(privacy);
+
+				var timestamp = new Date().getTime();
+				var signature = sha256(access_token + "|" + listingDTO.tit + "|" + timestamp + "|" + SECRET_KEY);
+
+				listingDTO.tmp = timestamp;
+				listingDTO.sig = signature;
+
+				var requestURL = getApiURL + postCreateListingForUser;
+
+				$.ajax({
+					url : requestURL,
+					async : false,
+					method : "POST",
+					data : JSON.stringify(listingDTO),
+					crossDomain : true,
+					beforeSend : function(request) {
+						request.setRequestHeader("Authentication", access_token);
+						request.setRequestHeader("Content-Type", "application/json; charset=utf-8");
+					},
+					success : function(response) {
+						addlistingOutDTO = JSON.parse(response);
+					},
+					error : function(error) {
+						addlistingOutDTO = error;
+					},
+					complete : function() {
+						if (addlistingOutDTO.code == R_SUCCESS) {
+							$.toast({
+								heading : 'Success',
+								text : s_create_listing,
+								showHideTransition : 'plain',
+								icon : 'success'
+							});
+							listingDTO.lid = addlistingOutDTO.data.lid;
+							var objectListing = localStorage.getItem(PRE_USER_LISTING + listingDTO.uid);
+							if (objectListing != undefined && objectListing != null) {
+								var jsonObject = JSON.parse(objectListing);
+								jsonObject.push(listingDTO);
+								localStorage.setItem(PRE_USER_LISTING + listingDTO.uid, JSON.stringify(jsonObject));
+							}
+							window.history.back();
+						} else if (addlistingOutDTO.code == R_EXPIRED) {
+							logout();
+						}
+					}
+				});
+
+			}
+		</script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB7YWs1TvfsYc-HdtNSD3OkCeunJ_ONbgs&libraries=places&callback=initAutocomplete"
+		async defer></script>
+	</body>
+</html>
