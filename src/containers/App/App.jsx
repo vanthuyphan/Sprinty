@@ -8,6 +8,7 @@ import NotificationSystem from 'react-notification-system';
 
 import Dashboard from '../../containers/Dashboard/Dashboard';
 import UserProfile from '../../containers/UserProfile/UserProfile';
+import Scrum from '../../containers/Scrum/Scrum';
 import Chat from '../../containers/Chat/Chat';
 import Verify from '../../containers/Verify/Verify';
 import Upload from '../../containers/Upload/Upload';
@@ -86,7 +87,7 @@ class App extends Component {
     }
 
     componentDidMount(){
-        //this.toast("Welcome to Tera Dashboard. You look swell today!.")
+        //this.toast("Welcome to Sprinty. You look swell today!.")
     }
 
     componentDidUpdate(e){
@@ -116,6 +117,7 @@ class App extends Component {
                     <Switch {...this.props}>
                         <PrivateRoute toast={this.toast} authed={userStore.isAuthenticated} path="/dashboard" component={Dashboard} />
                         <PrivateRoute toast={this.toast} authed={userStore.isAuthenticated} path="/user" component={UserProfile} />
+                        <PrivateRoute toast={this.toast} authed={userStore.isAuthenticated} path="/scrum" component={Scrum} />
                         <PrivateRoute toast={this.toast} authed={userStore.isAuthenticated}  path="/chat" component={Chat} />
                         <PrivateRoute toast={this.toast} authed={userStore.isAuthenticated}  path="/verify" component={Verify} />
                         <PrivateRoute toast={this.toast} authed={userStore.isAuthenticated}  path="/groups" component={Groups} />

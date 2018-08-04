@@ -69,7 +69,7 @@ class Sidebar extends Component{
                         </div>
                     </a>
                     <a href="http://www.tera.vn" className="simple-text logo-normal" target="_blank">
-                        Tera
+                        Sprinty
                     </a>
                 </div>
                 <div className="sidebar-wrapper" ref="sidebarWrapper">
@@ -90,7 +90,7 @@ class Sidebar extends Component{
                         <li className={this.activeRoute("/dashboard")}>
                             <NavLink to={'/dashboard'} className="nav-link" activeClassName="active">
                                 <i className="pe-7s-home"></i>
-                                <p>Home</p>
+                                <p>Activity</p>
                             </NavLink>
                         </li>
                         <li className={this.activeRoute("/chat")}>
@@ -99,51 +99,11 @@ class Sidebar extends Component{
                                 <p>Chat</p>
                             </NavLink>
                         </li>
-                        <li className={this.activeRoute("/ul-facebook")}>
-                            <NavLink to={'/ul-facebook'} className="nav-link" activeClassName="active">
-                                <i className="pe-7s-upload"></i>
-                                <p>Upload FB</p>
+                        <li className={this.activeRoute("/scrum")}>
+                            <NavLink to={'/scrum'} className="nav-link" activeClassName="active">
+                                <i className="pe-7s-tools"></i>
+                                <p>Scrum</p>
                             </NavLink>
-                        </li>
-                        <li className={this.activeRoute("/upload")}>
-                            <NavLink to={'/upload'} className="nav-link" activeClassName="active">
-                                <i className="pe-7s-upload"></i>
-                                <p>Upload</p>
-                            </NavLink>
-                        </li>
-                        <li className={this.activeRoute("/groups")}>
-                            <NavLink to={'/groups'} className="nav-link" activeClassName="active">
-                                <i className="pe-7s-users"></i>
-                                <p>Groups</p>
-                            </NavLink>
-                        </li>
-                        <li className={this.activeRoute("/verify")}>
-                            <NavLink to={'/verify'} className="nav-link" activeClassName="active">
-                                <i className="pe-7s-check"></i>
-                                <p>Verify</p>
-                            </NavLink>
-                        </li>
-                        <li className={this.activeRoute("/diff-listings")}>
-                            <NavLink to={'/diff-listings'} className="nav-link" activeClassName="active">
-                                <i className="pe-7s-attention"></i>
-                                <p>Diff Listings</p>
-                            </NavLink>
-                        </li>
-                        <li className={this.activeRoute("/upload")}>
-                            <a >
-                                <i className="pe-7s-attention"></i>
-                                <p>TEST</p>
-                            </a>
-                            <Collapse in={this.activeRoute("/upload") === 'active'} >
-                                <ul className="nav">
-                                    <li className={this.activeRoute("/export/something")}>
-                                        <NavLink to="/export/something" className="nav-link" activeClassName="active">
-                                            <span className="sidebar-mini">mini</span>
-                                            <span className="sidebar-normal">Abcdef</span>
-                                        </NavLink>
-                                    </li>
-                                </ul>
-                            </Collapse>
                         </li>
                     </ul>
                 </div>

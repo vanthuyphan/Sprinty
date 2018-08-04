@@ -1,7 +1,7 @@
 {
-  "name": "TeraDashboard",
+  "name": "Sprinty",
   "version": "1.0.0",
-  "description": "Tera Nha Dat React Dashboard",
+  "description": "Sprinty",
   "scripts": {
     "start": "webpack-dev-server --hot --open",
     "package": "webpack --config webpack-pro.config.js --progress --colors",

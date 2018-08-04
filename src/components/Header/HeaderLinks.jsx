@@ -17,7 +17,7 @@ class HeaderLinks extends Component{
         return(
             <div>
                 <Nav pullRight>
-                    <NavDropdown
+                    {/*<NavDropdown
                         eventKey={3}
                         title={(
                             <div>
@@ -32,7 +32,7 @@ class HeaderLinks extends Component{
                         <MenuItem eventKey={3.1}>Message 1</MenuItem>
                         <MenuItem eventKey={3.2}>Message 2</MenuItem>
                         <MenuItem eventKey={3.3}>Message 3</MenuItem>
-                    </NavDropdown>
+                    </NavDropdown>*/}
                     <NavDropdown
                         eventKey={4}
                         title={(
@@ -44,9 +44,7 @@ class HeaderLinks extends Component{
                                 </p>
                             </div>
                         )} noCaret id="basic-nav-dropdown-3" bsClass="dropdown-with-icons dropdown">
-                        <MenuItem eventKey={4.1}><i className="pe-7s-mail"></i> Create Listing</MenuItem>
-                        <MenuItem eventKey={4.2}><i className="pe-7s-help1"></i> Create Request</MenuItem>
-                        <MenuItem eventKey={4.3}><i className="pe-7s-tools"></i> Settings</MenuItem>
+                        <MenuItem eventKey={4.3}><i className="pe-7s-tools"></i> Profile</MenuItem>
                         <MenuItem divider />
                         <MenuItem eventKey={4.5}><div className="text-danger" onClick={this.handleLogout.bind(this)}><i className="pe-7s-close-circle"></i> Log out</div></MenuItem>
                     </NavDropdown>
