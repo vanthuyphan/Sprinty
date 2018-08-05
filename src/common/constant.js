@@ -32,7 +32,7 @@ const POST = {
         {index: 4, value: 'Đông nam'},
         {index: 5, value: 'Nam'},
         {index: 6, value: 'Tây nam'},
-        {index: 7, value: 'Tây'},``
+        {index: 7, value: 'Tây'},
         {index: 8, value: 'Tây bắc'}
     ],
     legals: [

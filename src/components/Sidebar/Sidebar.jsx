@@ -105,6 +105,12 @@ class Sidebar extends Component{
                                 <p>Scrum</p>
                             </NavLink>
                         </li>
+                        <li className={this.activeRoute("/users")}>
+                            <NavLink to={'/users'} className="nav-link" activeClassName="active">
+                                <i className="pe-7s-users"></i>
+                                <p>Users</p>
+                            </NavLink>
+                        </li>
                     </ul>
                 </div>
             </div>

@@ -8,26 +8,18 @@ import NotificationSystem from 'react-notification-system';
 
 import Dashboard from '../../containers/Dashboard/Dashboard';
 import UserProfile from '../../containers/UserProfile/UserProfile';
+import Users from '../../containers/Users/Users';
 import Scrum from '../../containers/Scrum/Scrum';
 import Chat from '../../containers/Chat/Chat';
-import Verify from '../../containers/Verify/Verify';
-import Upload from '../../containers/Upload/Upload';
-import Groups from '../../containers/Groups/Groups';
 import Login from '../../containers/Login/Login';
-import UploadFacebook from '../../containers/UploadFacebook/UploadFacebook';
-import DiffListings from '../../containers/DiffListings/DiffListings';
 import { Provider } from 'mobx-react';
 import {style} from "../../variables/Variables.jsx";
 import userStore from "../../models/User/UserModel.js";
 import appStore from "../../models/App/AppModel.js";
 import chatStore from "../../models/Chat/ChatModel.js";
-import groupsStore from "../../models/Groups/GroupsModel.js";
-import listingsStore from "../../models/Listing/ListingsModel.js";
-import facebookGroupsStore from "../../models/FacebookGroups/FacebookGroupsModel.js";
-import diffListingsStore from "../../models/Listing/DiffListingsModel.js";
 import {observer, inject} from "mobx-react";
 
-const stores = {appStore, facebookGroupsStore, groupsStore, userStore, listingsStore, diffListingsStore, chatStore};
+const stores = {appStore,  userStore, chatStore};
 
 
 @observer
@@ -119,11 +111,7 @@ class App extends Component {
                         <PrivateRoute toast={this.toast} authed={userStore.isAuthenticated} path="/user" component={UserProfile} />
                         <PrivateRoute toast={this.toast} authed={userStore.isAuthenticated} path="/scrum" component={Scrum} />
                         <PrivateRoute toast={this.toast} authed={userStore.isAuthenticated}  path="/chat" component={Chat} />
-                        <PrivateRoute toast={this.toast} authed={userStore.isAuthenticated}  path="/verify" component={Verify} />
-                        <PrivateRoute toast={this.toast} authed={userStore.isAuthenticated}  path="/groups" component={Groups} />
-                        <PrivateRoute toast={this.toast} authed={userStore.isAuthenticated}  path="/upload" component={Upload} />
-                        <PrivateRoute toast={this.toast} authed={userStore.isAuthenticated}  path="/ul-facebook" component={UploadFacebook} />
-                        <PrivateRoute toast={this.toast} authed={userStore.isAuthenticated}  path="/diff-listings" component={DiffListings} />
+                        <PrivateRoute toast={this.toast} authed={userStore.isAuthenticated}  path="/users" component={Users} />
                         <LoginRoute toast={this.toast} authed={userStore.isAuthenticated} path="/login" component={Login} />
                         <Redirect from="/" to="/login"/>
                     </Switch>

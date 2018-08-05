@@ -1,30 +1,12 @@
-import React, {Component} from 'react';
-import {Grid, Col, Row} from 'react-bootstrap';
-import ChartistGraph from 'react-chartist';
+import React, {Component} from "react";
+import {Col, Grid, Row} from "react-bootstrap";
 import {scaleLinear} from "d3-scale";
-import {
-    ComposableMap,
-    ZoomableGroup,
-    Geographies,
-    Geography,
-} from "react-simple-maps";
-
-import Card from '../../components/Card/Card.jsx';
-import StatsCard from '../../components/Card/StatsCard.jsx';
-import Tasks from '../../components/Tasks/Tasks.jsx';
-import Sidebar from '../../components/Sidebar/Sidebar';
+import {ComposableMap, Geographies, Geography, ZoomableGroup} from "react-simple-maps";
+import StatsCard from "../../components/Card/StatsCard.jsx";
+import Sidebar from "../../components/Sidebar/Sidebar";
 import Header from "../../components/Header/Header";
 
-import {
-    dataPie,
-    dataSales,
-    optionsSales,
-    responsiveSales,
-    dataBar,
-    optionsBar,
-    responsiveBar,
-    table_data
-} from '../../variables/Variables.jsx';
+import {table_data} from "../../variables/Variables.jsx";
 
 const colorScale = scaleLinear()
     .domain([0, 1, 6820])

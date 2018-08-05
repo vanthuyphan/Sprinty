@@ -19,10 +19,10 @@ class Scrum extends Component {
             <div id="main-panel" className="main-panel">
                 <Sidebar {...this.props} />
                 <Header {...this.props}/>
-                <div className="content">
-                    <div className="container-fluid">
+                <div className="main-content">
+                    <div className="container">
                         <div className="row">
-                            <div className="col-md-8">
+                            <div className="col-md-10">
                                 <Card
                                     content={
                                         <form>

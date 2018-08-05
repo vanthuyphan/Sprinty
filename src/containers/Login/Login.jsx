@@ -10,7 +10,7 @@ import {
 import Card from '../../components/Card/Card.jsx';
 
 import Button from '../../elements/CustomButton/CustomButton.jsx';
-import bgImage from '../../assets/img/full-screen-image-4.jpg';
+import bgImage from '../../assets/img/full-screen-image-1.jpg';
 import Footer from '../../components/Footer/Footer.jsx';
 
 @inject('userStore', "appStore")

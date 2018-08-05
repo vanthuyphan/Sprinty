@@ -70,9 +70,6 @@ class UserModel {
                 tracker.setIdentifier(self.user.fin);
                 return cb(undefined, self.user);
             }
-
-            // console.error("account_detail ERROR");
-            // console.error(result);
             cb(err, result);
         });
     }
