@@ -8,8 +8,12 @@ import NotificationSystem from 'react-notification-system';
 
 import Dashboard from '../../containers/Dashboard/Dashboard';
 import UserProfile from '../../containers/UserProfile/UserProfile';
+import Report from '../../containers/Report/Report';
+import AddUser from '../../containers/AddUser/AddUser';
+import AddTask from '../../containers/AddTask/AddTask';
 import Users from '../../containers/Users/Users';
 import Scrum from '../../containers/Scrum/Scrum';
+import Tasks from '../../containers/Tasks/Tasks';
 import Chat from '../../containers/Chat/Chat';
 import Login from '../../containers/Login/Login';
 import { Provider } from 'mobx-react';
@@ -109,7 +113,11 @@ class App extends Component {
                     <Switch {...this.props}>
                         <PrivateRoute toast={this.toast} authed={userStore.isAuthenticated} path="/dashboard" component={Dashboard} />
                         <PrivateRoute toast={this.toast} authed={userStore.isAuthenticated} path="/user" component={UserProfile} />
+                        <PrivateRoute toast={this.toast} authed={userStore.isAuthenticated} path="/new_user" component={AddUser} />
+                        <PrivateRoute toast={this.toast} authed={userStore.isAuthenticated} path="/new_task" component={AddTask} />
+                        <PrivateRoute toast={this.toast} authed={userStore.isAuthenticated} path="/report" component={Report} />
                         <PrivateRoute toast={this.toast} authed={userStore.isAuthenticated} path="/scrum" component={Scrum} />
+                        <PrivateRoute toast={this.toast} authed={userStore.isAuthenticated} path="/tasks" component={Tasks} />
                         <PrivateRoute toast={this.toast} authed={userStore.isAuthenticated}  path="/chat" component={Chat} />
                         <PrivateRoute toast={this.toast} authed={userStore.isAuthenticated}  path="/users" component={Users} />
                         <LoginRoute toast={this.toast} authed={userStore.isAuthenticated} path="/login" component={Login} />

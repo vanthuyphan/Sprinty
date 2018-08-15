@@ -42,7 +42,7 @@ class UserProfile extends Component {
                                                         type: "text",
                                                         bsClass: "form-control",
                                                         placeholder: "Username",
-                                                        defaultValue: this.props.userStore.fin
+                                                        defaultValue: this.props.userStore.id
                                                     },
                                                     {
                                                         label: "Email address",
@@ -80,8 +80,8 @@ class UserProfile extends Component {
                                 <UserCard
                                     bgImage="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400"
                                     avatar={this.props.userStore.ava}
-                                    name={this.props.userStore.fin}
-                                    userName={this.props.userStore.mob}
+                                    name={this.props.userStore.firstName}
+                                    userName={this.props.userStore.firstName}
                                     description={
                                         <span>
                                         This is something about you

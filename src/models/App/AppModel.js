@@ -3,7 +3,7 @@
  */
 
 import {observable, computed, action} from "mobx";
-import GonhadatAPI from "../../common/gonhadatAPI.js";
+import API from "../../common/API.js";
 
 const uuidv4 = require('uuid/v4');
 
@@ -80,7 +80,7 @@ class AppModel {
         console.log(this.modeOptions);
         if (this.modeOptions === undefined || this.typeOptions === undefined) {
             const getListingCategory = self.addBlockingTask("getListingCategory");
-            GonhadatAPI.getListingCategory(tok, (err, response) => {
+            API.getListingCategory(tok, (err, response) => {
                 getListingCategory.done();
                 if(err) {
                     self.error = err;
@@ -95,7 +95,7 @@ class AppModel {
 
         if (this.cityOptions === undefined) {
             // const getCityList = self.addBlockingTask("getCityList");
-            // GonhadatAPI.getCityList(tok, (err, response) => {
+            // API.getCityList(tok, (err, response) => {
             // getListingCategory.done();
             //     if(err) {
             //         self.error = err;
@@ -134,7 +134,7 @@ class AppModel {
         const self = this;
         if (confirm("You want to create new landmark: " + word)) {
             let landmarkInfo = [{realName: word}];
-            GonhadatAPI.createLandmark(tok, landmarkInfo, (err, response) => {
+            API.createLandmark(tok, landmarkInfo, (err, response) => {
                 if(err) {
                     self.error = err;
                     console.error("createLandmark", err);
@@ -159,7 +159,7 @@ class AppModel {
     searchLandmark(word, tok, cb) {
         const self = this;
         if (word != "") {
-            GonhadatAPI.searchLandmark(tok, word, (err, response) => {
+            API.searchLandmark(tok, word, (err, response) => {
                 if (err) {
                     console.log("ERROR", err);
 
@@ -180,7 +180,7 @@ class AppModel {
     @action
     searchProject(word, tok, cb) {
         if (word != "") {
-            GonhadatAPI.searchProject(tok, word, (err, response) => {
+            API.searchProject(tok, word, (err, response) => {
                 if (err) {
                     console.log("ERROR", err);
 
@@ -201,7 +201,7 @@ class AppModel {
 
     @action
     getDistrictInfo(tok, cityId, cb) {
-        GonhadatAPI.getDistrictList(tok, [cityId], (err, response) => {
+        API.getDistrictList(tok, [cityId], (err, response) => {
             if (err) {
                 console.error(err);
                 return;

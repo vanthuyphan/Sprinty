@@ -1,17 +1,12 @@
-import React, {Component} from 'react';
-import {observable, action} from "mobx";
-import {observer, inject} from "mobx-react";
-import {
-    Grid, Row, Col,
-    FormGroup, FormControl,
-    HelpBlock
-} from 'react-bootstrap';
+import React, {Component} from "react";
+import {inject, observer} from "mobx-react";
+import {Col, FormControl, FormGroup, Grid, HelpBlock, Row} from "react-bootstrap";
 
-import Card from '../../components/Card/Card.jsx';
+import Card from "../../components/Card/Card.jsx";
 
-import Button from '../../elements/CustomButton/CustomButton.jsx';
-import bgImage from '../../assets/img/full-screen-image-1.jpg';
-import Footer from '../../components/Footer/Footer.jsx';
+import Button from "../../elements/CustomButton/CustomButton.jsx";
+import bgImage from "../../assets/img/full-screen-image-1.jpg";
+import Footer from "../../components/Footer/Footer.jsx";
 
 @inject('userStore', "appStore")
 @observer
@@ -42,7 +37,7 @@ class Login extends Component {
 
     handlePasswordKeypress(event) {
         console.log(event.key);
-        if(event.key == 'Enter'){
+        if (event.key == 'Enter') {
             this.handleFormSubmit(event);
         }
     }
@@ -66,7 +61,7 @@ class Login extends Component {
                                                         <FormControl
                                                             type="text"
                                                             value={this.state.value}
-                                                            placeholder="Enter Phone"
+                                                            placeholder="Enter Username"
                                                             onChange={this.handlePhoneChange.bind(this)}
                                                         />
                                                     </FormGroup>
@@ -79,7 +74,8 @@ class Login extends Component {
                                                             onKeyPress={this.handlePasswordKeypress.bind(this)}
                                                         />
                                                         <FormControl.Feedback />
-                                                        {this.state.errorMsg && <HelpBlock>{this.state.errorMsg}</HelpBlock>}
+                                                        {this.state.errorMsg &&
+                                                        <HelpBlock>{this.state.errorMsg}</HelpBlock>}
                                                     </FormGroup>
                                                 </form>
                                             }
@@ -109,10 +105,7 @@ class Login extends Component {
         console.log("Formsubmiting");
         var self = this;
         self.setState({errorMsg: undefined});
-
-        // let login = self.props.appStore.addBlockingTask("Logginng");
-        /*this.props.userStore.login(this.state.phone, this.state.password, (err) => {
-            // self.props.appStore.removeBlockingTask(login);
+        this.props.userStore.login(this.state.phone, this.state.password, (err) => {
             if (err) {
                 console.log(err);
                 if (err.msg) {
@@ -121,8 +114,7 @@ class Login extends Component {
                     self.setState({errorMsg: "Unknown error"});
                 }
             }
-        });*/
-         this.props.userStore.login("01229989919", "123456");
+        });
         e.preventDefault();
     };
 }

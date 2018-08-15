@@ -1,35 +1,58 @@
 import React, {Component} from "react";
-import {Col, Grid, Row} from "react-bootstrap";
-import {scaleLinear} from "d3-scale";
-import {ComposableMap, Geographies, Geography, ZoomableGroup} from "react-simple-maps";
+import {Col, FormControl, FormGroup, Grid} from "react-bootstrap";
+import {inject, observer} from "mobx-react";
 import StatsCard from "../../components/Card/StatsCard.jsx";
+import UserCard from "../../components/Card/UserCard.jsx";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Header from "../../components/Header/Header";
 
-import {table_data} from "../../variables/Variables.jsx";
+import Button from "../../elements/CustomButton/CustomButton.jsx";
 
-const colorScale = scaleLinear()
-    .domain([0, 1, 6820])
-    .range(["#E5E5E5", "#B2B2B2", "#000000"]);
-
+@inject('userStore')
+@observer
 class Dashboard extends Component {
-    createTableData() {
-        var tableRows = [];
-        for (var i = 0; i < table_data.length; i++) {
-            tableRows.push(
-                <tr key={i}>
-                    <td>
-                        <div className="flag">
-                            <img src={table_data[i].flag} alt="us_flag"/>
-                        </div>
-                    </td>
-                    <td>{table_data[i].country}</td>
-                    <td className="text-right">{table_data[i].count}</td>
-                    <td className="text-right">{table_data[i].percentage}</td>
-                </tr>
-            );
-        }
-        return tableRows;
+
+    constructor() {
+        super();
+        this.componentDidMount = this.componentDidMount.bind(this);
+        this.changeStatus = this.changeStatus.bind(this);
+        this.state = {users: [], count: {}};
+    }
+
+    componentDidMount() {
+        this.props.userStore.loadUsers((error, data) => {
+            this.setState({
+                fetching: false,
+                users : data
+            });
+            this.forceUpdate();
+        });
+
+        this.props.userStore.count((error, data) => {
+            this.setState({
+                fetching: false,
+                count : data
+            });
+            console.log("Count", this.state.count);
+            this.forceUpdate();
+        });
+
+    }
+
+    handleStatusChanged(e) {
+        this.setState({status: e.target.value});
+    }
+
+    changeStatus() {
+        this.props.userStore.changeStatus(this.state.status, (error, response) => {
+            this.props.userStore.loadUsers((error, data) => {
+                this.setState({
+                    fetching: false,
+                    users : data
+                });
+                this.forceUpdate();
+            });
+        })
     }
 
     render() {
@@ -38,39 +61,104 @@ class Dashboard extends Component {
                 <Sidebar {...this.props} />
                 <Header {...this.props}/>
                 <div className="main-content">
-                    <Grid fluid>
-                        <Row>
-                            <Col lg={3} sm={6}>
-                                <StatsCard
-                                    statsText="Van Phan"
-                                    statsIcon={<i className="fa fa-refresh"></i>}
-                                    statsIconText="Doing #123"
-                                />
-                            </Col>
-                            <Col lg={3} sm={6}>
-                                <StatsCard
-                                    statsText="Logan"
-                                    statsIcon={<i className="fa fa-calendar-o"></i>}
-                                    statsIconText="Doing #234"
-                                />
-                            </Col>
-                            <Col lg={3} sm={6}>
-                                <StatsCard
-                                    statsText="Bulgan"
-                                    statsIcon={<i className="fa fa-clock-o"></i>}
-                                    statsIconText="Writing document"
-                                />
-                            </Col>
-                            <Col lg={3} sm={6}>
-                                <StatsCard
-                                    statsText="Filip"
-                                    statsIcon={<i className="fa fa-refresh"></i>}
-                                    statsIconText="Writing document"
-                                />
-                            </Col>
-                        </Row>
+                    <form className="status">
+                        <FormGroup controlId="formBasicText">
+                            <FormControl
+                                type="text"
+                                placeholder="Enter Status"
+                                onChange={this.handleStatusChanged.bind(this)}
+                            />
+                        </FormGroup>
+                        <Button
+                            onClick={this.changeStatus}
+                            bsStyle="warning" fill wd>
+                            Update Status
+                        </Button>
+                    </form>
+
+                    <Grid fluid className="counters">
+                        <Col lg={4} sm={6}>
+                            <div className="card card-stats">
+                                <div className="content">
+                                    <div className="row">
+                                        <div className="col-xs-5">
+                                            <div className="icon-big text-center icon-warning">
+                                                {this.state.count.open}
+                                            </div>
+                                        </div>
+                                        <div className="col-xs-7">
+                                            <div className="numbers">
+                                                <p>{"OPEN"}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </Col>
+                        <Col lg={4} sm={6}>
+                            <div className="card card-stats">
+                                <div className="content">
+                                    <div className="row">
+                                        <div className="col-xs-5">
+                                            <div className="icon-big text-center icon-warning">
+                                                {this.state.count.doing}
+                                            </div>
+                                        </div>
+                                        <div className="col-xs-7">
+                                            <div className="numbers">
+                                                <p>{"DOING"}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </Col>
+                        <Col lg={4} sm={6}>
+                            <div className="card card-stats">
+                                <div className="content">
+                                    <div className="row">
+                                        <div className="col-xs-5">
+                                            <div className="icon-big text-center icon-warning">
+                                                {this.state.count.done}
+                                            </div>
+                                        </div>
+                                        <div className="col-xs-7">
+                                            <div className="numbers">
+                                                <p>{"DONE"}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </Col>
                     </Grid>
+                    <Grid fluid>
+                        {
+                            this.state.users.map((user) => {
+                                    return <Col lg={3} sm={6}>
+                                        <UserCard
+                                            bgImage=""
+                                            avatar={user.avatar}
+                                            name={user.firstName + " " + user.lastName}
+                                            userName={"@" + user.userName}
+                                            description={
+                                                <span>
+                                                    {user.status}
+                                    </span>
+                                            }
+                                        />
+                                    </Col>
+                            }
+
+                            )
+                        }
+                    </Grid>
+
                 </div>
+
             </div>
         );
     }

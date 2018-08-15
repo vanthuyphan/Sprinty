@@ -80,7 +80,7 @@ class Sidebar extends Component{
                         <div className="info">
                             <a>
                                 <span>
-                                    {this.props.userStore.fin}
+                                    {this.props.userStore.firstName}
                                 </span>
                             </a>
                         </div>
@@ -90,7 +90,7 @@ class Sidebar extends Component{
                         <li className={this.activeRoute("/dashboard")}>
                             <NavLink to={'/dashboard'} className="nav-link" activeClassName="active">
                                 <i className="pe-7s-home"></i>
-                                <p>Activity</p>
+                                <p>Dashboard</p>
                             </NavLink>
                         </li>
                         <li className={this.activeRoute("/chat")}>
@@ -99,16 +99,22 @@ class Sidebar extends Component{
                                 <p>Chat</p>
                             </NavLink>
                         </li>
-                        <li className={this.activeRoute("/scrum")}>
-                            <NavLink to={'/scrum'} className="nav-link" activeClassName="active">
+                        <li className={this.activeRoute("/tasks")}>
+                            <NavLink to={'/tasks'} className="nav-link" activeClassName="active">
                                 <i className="pe-7s-tools"></i>
-                                <p>Scrum</p>
+                                <p>Tasks</p>
                             </NavLink>
                         </li>
                         <li className={this.activeRoute("/users")}>
                             <NavLink to={'/users'} className="nav-link" activeClassName="active">
                                 <i className="pe-7s-users"></i>
                                 <p>Users</p>
+                            </NavLink>
+                        </li>
+                        <li className={this.activeRoute("/report")}>
+                            <NavLink to={'/report'} className="nav-link" activeClassName="active">
+                                <i className="pe-7s-user"></i>
+                                <p>Report</p>
                             </NavLink>
                         </li>
                     </ul>

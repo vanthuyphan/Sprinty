@@ -7061,7 +7061,7 @@ form label.radio, form label.checkbox {
       border-radius: 4px; }
 
 .card-user .image {
-  height: 110px; }
+  height: 50px; }
 .card-user .image-plain {
   height: 0;
   margin-top: 110px; }
@@ -7070,17 +7070,18 @@ form label.radio, form label.checkbox {
   text-transform: none;
   margin-top: -70px; }
 .card-user .avatar {
-  width: 124px;
-  height: 124px;
+  width: 50px;
+  height: 50px;
   border: 5px solid #FFFFFF;
   position: relative;
+  margin-top: 15px;
   margin-bottom: 15px; }
   .card-user .avatar.border-gray {
     border-color: #EEEEEE; }
 .card-user .title {
   line-height: 24px; }
 .card-user .content {
-  min-height: 240px; }
+  min-height: 100px; }
 
 .card-user .footer,
 .card-price .footer {
@@ -8339,5 +8340,17 @@ form label.radio, form label.checkbox {
 .nav-tabs li a:focus,
 .nav-icons-tabs li a:focus {
   outline: none; }
+
+.counters {
+  background-color: darkgrey;
+  padding-top: 25px;
+  margin-bottom: 20px;
+}
+
+.status {
+  margin: auto;
+  max-width: 500px;
+  padding-bottom: 50px;
+}
 
 /*# sourceMappingURL=light-bootstrap-dashboard.css.map */
