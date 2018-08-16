@@ -24,12 +24,8 @@ class AddUser extends Component {
         this.setState({content: e.target.value});
     }
 
-    handleIncluded(e) {
-        this.setState({included: e.target.value});
-    }
-
     handleFormSubmit = e => {
-        this.props.userStore.createTask(this.state.content, this.state.included, (err) => {
+        this.props.userStore.createTask(this.state.content, "Yes", (err) => {
         });
         e.preventDefault();
     };
@@ -52,14 +48,6 @@ class AddUser extends Component {
                                                     placeholder="Enter Content"
                                                     onChange={this.handleContentChanged.bind(this)}
                                                 />
-                                            </FormGroup>
-                                            <FormGroup controlId="formBasicText">
-                                                <FormControl
-                                                    type="text"
-                                                    placeholder="Is Included"
-                                                    onChange={this.handleIncluded.bind(this)}
-                                                />
-                                                <FormControl.Feedback />
                                             </FormGroup>
                                             <Button
                                                 onClick={this.handleFormSubmit}

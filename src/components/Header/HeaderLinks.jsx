@@ -8,10 +8,12 @@ import {
 @inject('userStore', "appStore")
 class HeaderLinks extends Component{
     handleLogout() {
-        const logout = this.props.appStore.addBlockingTask("Logout");
         this.props.userStore.logout(this.props.userStore.token, () => {
-            logout.done();
+            window.location.href = "#/login";
         });
+    }
+    handleProfile() {
+        window.location.href = "#/user";
     }
     render(){
         return(
@@ -44,9 +46,9 @@ class HeaderLinks extends Component{
                                 </p>
                             </div>
                         )} noCaret id="basic-nav-dropdown-3" bsClass="dropdown-with-icons dropdown">
-                        <MenuItem eventKey={4.3}><i className="pe-7s-tools"></i> Profile</MenuItem>
+                        <MenuItem eventKey={4.3} onSelect={this.handleProfile.bind(this)}><i className="pe-7s-tools"></i> Profile</MenuItem>
                         <MenuItem divider />
-                        <MenuItem eventKey={4.5}><div className="text-danger" onClick={this.handleLogout.bind(this)}><i className="pe-7s-close-circle"></i> Log out</div></MenuItem>
+                        <MenuItem eventKey={4.5} onSelect={this.handleLogout.bind(this)}><div className="text-danger" ><i className="pe-7s-close-circle"></i> Log out</div></MenuItem>
                     </NavDropdown>
                 </Nav>
             </div>

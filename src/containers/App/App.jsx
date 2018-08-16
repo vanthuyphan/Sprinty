@@ -20,10 +20,9 @@ import { Provider } from 'mobx-react';
 import {style} from "../../variables/Variables.jsx";
 import userStore from "../../models/User/UserModel.js";
 import appStore from "../../models/App/AppModel.js";
-import chatStore from "../../models/Chat/ChatModel.js";
 import {observer, inject} from "mobx-react";
 
-const stores = {appStore,  userStore, chatStore};
+const stores = {appStore,  userStore};
 
 
 @observer

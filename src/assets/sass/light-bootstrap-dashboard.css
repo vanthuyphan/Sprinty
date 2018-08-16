@@ -8353,4 +8353,57 @@ form label.radio, form label.checkbox {
   padding-bottom: 50px;
 }
 
+.company-board {
+  margin-bottom: 30px;
+}
+
+.company-messages > ul {
+  list-style-type: none;
+}
+.company-messages > ul li {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: larger;
+  margin-left: -40px;
+}
+
+.company-messages > ul li:nth-child(odd) {
+  background: #737373;
+  color: white;
+}
+
+.company-messages {
+  background-color: white;
+  min-height: 250px;
+  max-height: 250px;
+  overflow-y: scroll;
+}
+
+.time {
+  font-size: x-small;
+  font-style: italic
+}
+
+.chat-user {
+  border: 1px solid #cbc7ce;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 15px;
+  padding-left: 15px;
+  color: black;
+  font-size: larger;
+  margin-top: 10px;
+}
+
+.chat-user-active {
+  border: 1px solid #cbc7ce;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 15px;
+  padding-left: 15px;
+  font-size: larger;
+  color: white;
+  background-color: darkgrey;
+  margin-top: 10px;
+}
 /*# sourceMappingURL=light-bootstrap-dashboard.css.map */

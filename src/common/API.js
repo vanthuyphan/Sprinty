@@ -153,6 +153,24 @@ exports.createUser = (username, firstname, lastname, avatar, password, cb) => {
     });
 }
 
+exports.updateUser = (id, username, firstname, lastname, avatar, password, cb) => {
+    console.log("API", "/user/update");
+
+    const url = domain + '/user/update/' + id;
+    const data = {
+        method: 'POST',
+        url: url,
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({username, firstname, lastname, avatar,  password})
+    };
+    console.log("Data", data);
+    request(data, function (err, body) {
+        cb(err, body);
+    });
+}
+
 exports.createTask = (content, included, cb) => {
     console.log("API", "/task");
 

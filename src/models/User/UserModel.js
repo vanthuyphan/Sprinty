@@ -32,6 +32,9 @@ class UserModel {
         let self = this;
         self.loading = true;
         localStorage.removeItem("user");
+        this.user = undefined;
+        self.loading = false;
+        cb();
     }
 
     @computed
@@ -124,9 +127,21 @@ class UserModel {
     }
 
     @action
+    update(username, firstName, lastName, avatar, password, cb) {
+        API.updateUser(this.user.id, username, firstName, lastName, avatar, password, (error, response) => {
+            this.user.userName = username;
+            this.user.firstName = firstName;
+            this.user.lastName = lastName;
+            this.user.avatar = avatar;
+            this.user.password = password;
+            cb();
+        });
+    }
+
+    @action
     createTask(content, included, cb) {
         API.createTask(content, included, (error, response) => {
-            window.location.href = "#/scrum";
+            window.location.href = "#/tasks";
         });
     }
 }

@@ -9,16 +9,65 @@ import Button from '../../elements/CustomButton/CustomButton.jsx';
 import {observer, inject} from "mobx-react";
 import Sidebar from '../../components/Sidebar/Sidebar';
 import Header from "../../components/Header/Header";
+var NotificationSystem = require('react-notification-system');
 
 @inject('userStore')
 @observer
 class UserProfile extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            userName: props.userStore.user.userName,
+            firstName: props.userStore.user.firstName,
+            lastName: props.userStore.user.lastName,
+            password: props.userStore.user.password,
+            avatar: props.userStore.user.avatar,
+        }
+        this._notificationSystem = null;
+        this.componentDidMount = this.componentDidMount.bind(this);
+    }
+
+    componentDidMount() {
+        this._notificationSystem = this.refs.notificationSystem;
+        this.handleUserNameChanged = this.handleUserNameChanged.bind(this)
+        this.handleFirstNameChanged = this.handleFirstNameChanged.bind(this)
+        this.handleLastNameChanged = this.handleLastNameChanged.bind(this)
+        this.handleAvatarChanged = this.handleAvatarChanged.bind(this)
+        this.handlePasswordChange = this.handlePasswordChange.bind(this)
+        this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    }
+
+    handleUserNameChanged(e) {
+        this.setState({userName: e.target.value});
+    }
+    handleFirstNameChanged(e) {
+        this.setState({firstName: e.target.value});
+    }
+    handleLastNameChanged(e) {
+        this.setState({lastName: e.target.value});
+    }
+    handleAvatarChanged(e) {
+        this.setState({avatar: e.target.value});
+    }
+    handlePasswordChange(e) {
+        this.setState({password: e.target.value});
+    }
+
+    handleFormSubmit() {
+        this.props.userStore.update(this.state.userName, this.state.firstName,
+            this.state.lastName, this.state.avatar, this.state.password, (err) => {
+                window.location.href = "#/dashboard";
+        });
+        e.preventDefault();
+    }
 
     render() {
         return (
             <div id="main-panel" className="main-panel">
                 <Sidebar {...this.props} />
                 <Header {...this.props}/>
+                <NotificationSystem ref="notificationSystem" />
                 <div className="content">
                     <div className="container-fluid">
                         <div className="row">
@@ -26,77 +75,59 @@ class UserProfile extends Component {
                                 <Card
                                     content={
                                         <form>
-                                            <FormInputs
-                                                ncols={["col-md-5", "col-md-3", "col-md-4"]}
-                                                proprieties={[
-                                                    {
-                                                        label: "Name (disabled)",
-                                                        type: "text",
-                                                        bsClass: "form-control",
-                                                        placeholder: "Company",
-                                                        defaultValue: "Creative Code Inc.",
-                                                        disabled: true
-                                                    },
-                                                    {
-                                                        label: "Name",
-                                                        type: "text",
-                                                        bsClass: "form-control",
-                                                        placeholder: "Username",
-                                                        defaultValue: this.props.userStore.id
-                                                    },
-                                                    {
-                                                        label: "Email address",
-                                                        type: "email",
-                                                        bsClass: "form-control",
-                                                        placeholder: "Email"
-                                                    }
-                                                ]}
-                                            />
-                                            <div className="row">
-                                                <div className="col-md-12">
-                                                    <FormGroup controlId="formControlsTextarea">
-                                                        <ControlLabel>About Me</ControlLabel>
-                                                        <FormControl rows="5" componentClass="textarea"
-                                                                     bsClass="form-control"
-                                                                     placeholder="Here can be your description"
-                                                                     defaultValue="Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo."/>
-                                                    </FormGroup>
-                                                </div>
-                                            </div>
+                                            <FormGroup controlId="formBasicText">
+                                                <FormControl
+                                                    type="text"
+                                                    value={this.state.userName}
+                                                    placeholder="Username"
+                                                    onChange={this.handleUserNameChanged.bind(this)}
+                                                />
+                                            </FormGroup>
+                                            <FormGroup controlId="formBasicText">
+                                                <FormControl
+                                                    type="text"
+                                                    value={this.state.firstName}
+                                                    placeholder="First Name"
+                                                    onChange={this.handleFirstNameChanged.bind(this)}
+                                                />
+                                            </FormGroup>
+                                            <FormGroup controlId="formBasicText">
+                                                <FormControl
+                                                    type="text"
+                                                    value={this.state.lastName}
+                                                    placeholder="Last Name"
+                                                    onChange={this.handleLastNameChanged.bind(this)}
+                                                />
+                                            </FormGroup>
+                                            <FormGroup controlId="formBasicText">
+                                                <FormControl
+                                                    type="text"
+                                                    value={this.state.avatar}
+                                                    placeholder="Avatar"
+                                                    onChange={this.handleAvatarChanged.bind(this)}
+                                                />
+                                            </FormGroup>
+                                            <FormGroup controlId="formBasicText">
+                                                <FormControl
+                                                    type="password"
+                                                    value={this.state.password}
+                                                    placeholder="Password"
+                                                    onChange={this.handlePasswordChange.bind(this)}
+                                                />
+                                                <FormControl.Feedback />
+                                                {this.state.errorMsg &&
+                                                <HelpBlock>{this.state.errorMsg}</HelpBlock>}
+                                            </FormGroup>
                                             <Button
-                                                bsStyle="info"
-                                                pullRight
-                                                fill
-                                                type="submit"
-                                            >
-                                                Update Profile
+                                                onClick={this.handleFormSubmit}
+                                                bsStyle="warning" fill wd>
+                                                Update
                                             </Button>
-                                            <div className="clearfix"></div>
                                         </form>
-                                    }
-                                />
-                            </div>
-                            <div className="col-md-4">
-                                <UserCard
-                                    bgImage="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&fm=jpg&h=300&q=75&w=400"
-                                    avatar={this.props.userStore.ava}
-                                    name={this.props.userStore.firstName}
-                                    userName={this.props.userStore.firstName}
-                                    description={
-                                        <span>
-                                        This is something about you
-                                    </span>
-                                    }
-                                    socials={
-                                        <div>
-                                            <Button simple><i className="fa fa-facebook-square"></i></Button>
-                                            <Button simple><i className="fa fa-twitter"></i></Button>
-                                            <Button simple><i className="fa fa-google-plus-square"></i></Button>
-                                        </div>
-                                    }
-                                />
-                            </div>
 
+                                    }
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>

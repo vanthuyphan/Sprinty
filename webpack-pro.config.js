@@ -72,15 +72,12 @@ module.exports = {
                 loader: 'url-loader'
             },
             {
-                test: /\.(gif)$/i,
+                test: /\.(png|jpg|gif)$/,
                 use: [
-                    'file-loader',
                     {
-                        loader: 'image-webpack-loader',
-                        options: {
-                            bypassOnDebug: true,
-                        },
-                    },
+                        loader: 'file-loader',
+                        options: {}
+                    }
                 ],
             }
         ],
